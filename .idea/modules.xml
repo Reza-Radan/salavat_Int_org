@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SalavaltIntOrg.iml" filepath="$PROJECT_DIR$/SalavaltIntOrg.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salavat_Int_org.iml" filepath="$PROJECT_DIR$/salavat_Int_org.iml" />
     </modules>
   </component>
 </project>

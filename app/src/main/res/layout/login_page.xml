@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+
+    <TextView
+        android:id="@+id/txtvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:text=""
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.2"
+
+        />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            >
+
+            <Button
+                android:id="@+id/btnCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:text=""
+                android:layout_weight="1"
+                />
+
+            <!-- android:src="@drawable/flag" -->
+            <EditText
+                android:singleLine="true"
+                android:id="@+id/PhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="1dp"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:textColorHint="@color/mdtp_ampm_text_color"
+                android:hint="9121234567"
+                android:layout_weight="8"
+                android:textSize="16dp"
+                android:inputType="phone" >
+
+                <requestFocus />
+            </EditText>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:weightSum="10"
+            >
+
+            <TextView
+                android:layout_weight="1"  />
+
+            <Button
+                android:id="@+id/Next"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/next"
+                android:textStyle="bold"
+                android:layout_weight="8"
+                android:textSize="20dp"
+                />
+            <!--            android:background="@anim/buttonshapegreen" -->
+
+
+            <TextView
+                android:layout_weight="1" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/linerSelectLan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/imgvFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+
+                <TextView
+                    android:id="@+id/txtvSelectLan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Select_lan"
+                    android:gravity="center"
+                    android:autoLink="web"
+                    android:textColor="@color/mdtp_ampm_text_color"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_weight="1" />
+
+
+        </TableRow>
+        <TableRow
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            >
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

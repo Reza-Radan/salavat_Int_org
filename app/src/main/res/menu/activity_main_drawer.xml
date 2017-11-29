@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+     android:layout_height="match_parent">
+
+    <group android:id="@+id/top"
+           android:checkableBehavior="single"
+           android:layout_width="50dp">
+        <item
+            android:id="@+id/groups_menu"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/list_of_add_in_group" />
+        <item
+            android:id="@+id/archive_menu"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/archive" />
+        <item
+            android:id="@+id/notification_menu"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/notification_list" />
+
+    </group>
+
+    <group android:id="@+id/setting_"
+            android:layout_width="50dp"
+           android:checkableBehavior="none">
+        <item
+            android:id="@+id/aboutUs_menu"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/about_us"
+            />
+
+        <item
+            android:id="@+id/guide_menu"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/guide" />
+
+    </group>
+
+</menu>

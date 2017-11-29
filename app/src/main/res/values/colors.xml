@@ -3,4 +3,188 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="green">#7700FF00</color>
+    <color name="white">#FFF</color>
+    <color name="blue">#187ED7</color>
+    <color name="gray_blue">#90AAC0</color>
+    <color name="graybackgroundSetting">#eeeeee</color>
+    <color name="graybackgoundEdittext">#b6b6b6</color>
+    <color name="black">#000</color>
+    <color name="brown">#DEB887</color>
+    <color name="lavender">#E6E6FA</color>
+    <color name="plum">#DDA0DD</color>
+    <color name="yellow">#EFFF01</color>
+    <color name="lightblue">#99CCFF</color>
+    <color name="lightsteel">#B0C4DE</color>
+    <color name="lightBLUE1">#66B2FF</color>
+    <color name="yellowgreen">#999900</color>
+    <color name="OrangeRed">#FD674D</color>
+    <color name="gray_toolbar">#3a4145</color>
+    <color name="darkblue">#000099</color>
+    <color name="darkred">#990000</color>
+    <color name="verylightgray">#CCFFFF</color>
+    <color name="steelblue">#4682B4</color>
+    <color name="visualblue">#FF1E3049</color>
+    <color name="visualorange">#FFF5AB29</color>
+    <color name="red">#FF0000</color>
+    <color name="violet">#B547B5</color>
+    <color name="greenlight">#69E640</color>
+    <color name="greendark">#1f4513</color>
+
+    <color name="googleGrren">#689F38</color>
+    <color name="purple">#FF0066</color>
+    <color name="bluesilver">#9C9CE6</color>
+    <color name="pinkred">#FF00FF</color>
+    <color name="mainbackground">#FBB03B</color>
+    <color name="mainactionbar">#ED9936</color>
+    <color name="number">#9FCBD8</color>
+    <color name="name">#FDD18A</color>
+    <color name="mainNavigationdrawer">#2AABE4</color>
+    <color name="redwrong">#ED1B24</color>
+    <color name="greencorect">#8DC73F</color>
+    <color name="grayBtn">#C3C3C3</color>
+    <color name="yellowBtn">#FAB616</color>
+    <color name="yellowBtnDark">#966D0D</color>
+
+    <color name="ToastOrange">#E41909</color>
+    <color name="lightGray">#E6E6E6</color>
+    <color name="sky_blue">#39adf8</color>
+    <color name="lightgray">#DCDCDC</color>
+    <color name="redClear">#fe0000</color>
+    <color name="reddark">#650000</color>
+    <color name ="grayToast">#eeFAB616</color>
+    <color name="defaultBlue">#3a9efe</color>
+
+    <color name="greenSearch">#91D068</color>
+    <color name="ldrawer_color">#FFFFFF</color>
+
+
+    <color name="pressed_color">#b2fe4d</color>
+    <color name="default_color">#ffffff</color>
+
+    <color name="default_frame_color">#FFFFFF</color>
+    <color name="default_frame_off_color">#80FFFFFF</color>
+    <color name="default_transparent_color">#00000000</color>
+    <color name="ratingColor">#fdc403</color>
+
+    <color name="gray">#808080</color>
+
+    <color name="main_color_orange_deactive">#da8f57</color>
+    <color name="main_color_orange_light">#ec8051</color>
+    <color name="main_color_orange">#ff882c</color>
+    <color name="main_color_orange_middle">#e76128</color>
+    <color name="main_color_orange_end">#fe5454</color>
+    <color name="main_color_light_orange">#fa9c08</color>
+    <color name="main_color_blue">#1babbb</color>
+    <color name="main_color_blue_end">#19caa6</color>
+    <color name="main_color_dark_blue">#077d84</color>
+    <color name="main_color_light_gray">#f8f8f8</color>
+    <color name="main_color_dark_gray">#777</color>
+    <color name="main_color_green">#3c763d</color>
+    <color name="main_color_red">#A84442</color>
+    <color name="main_color_red_light">#ca5755</color>
+
+
+    <color name="main_color_orange_end_colapse">#ba4444</color>
+    <color name="main_color_orange_colapse">#d1874f</color>
+
+    <!-- color for persion calender-->
+    <color name="mdtp_white">#ffffff</color>
+    <color name="mdtp_background_color">@color/mdtp_white</color>
+    <color name="mdtp_circle_background">@color/mdtp_background_color</color>
+    <color name="mdtp_circle_color">#f5f5f5</color>
+    <color name="mdtp_line_background">#cccccc</color>
+    <color name="mdtp_ampm_text_color">@color/mdtp_numbers_text_color</color>
+    <color name="mdtp_done_text_color_normal">#ff212121</color>
+    <color name="mdtp_done_text_color_disabled">#cccccc</color>
+    <color name="mdtp_numbers_text_color">#ff212121</color>
+
+    <color name="mdtp_transparent_black">#7f000000</color>
+    <color name="mdtp_accent_color">#009688</color>
+    <color name="mdtp_accent_color_focused">#76ffffff</color>
+    <color name="mdtp_neutral_pressed">#33999999</color>
+    <color name="mdtp_accent_color_dark">#00796b</color>
+    <color name="mdtp_date_picker_text_normal">#ff212121</color>
+    <color name="mdtp_date_picker_text_highlighted">@color/mdtp_date_picker_text_normal</color>
+    <color name="mdtp_date_picker_text_disabled">#ccc</color>
+    <color name="mdtp_date_picker_month_day">#767676</color>
+
+    <!-- DatePicker Dark Theme -->
+    <color name="mdtp_date_picker_view_animator_dark_theme">@color/mdtp_light_gray</color>
+    <color name="mdtp_date_picker_text_normal_dark_theme">@color/mdtp_white</color>
+    <color name="mdtp_date_picker_month_day_dark_theme">#b4b4b4</color>
+    <color name="mdtp_date_picker_text_disabled_dark_theme">#767676</color>
+    <color name="mdtp_date_picker_text_highlighted_dark_theme">@color/mdtp_date_picker_text_normal_dark_theme</color>
+
+    <color name="mdtp_calendar_header">@color/mdtp_accent_color_dark</color>
+    <color name="mdtp_date_picker_view_animator">@android:color/white</color>
+    <color name="mdtp_calendar_selected_date_text">#ffd1d2d4</color>
+
+    <color name="mdtp_button_color">@color/mdtp_accent_color</color>
+    <color name="mdtp_button_selected">#33969696</color>
+
+    <!-- TimePicker Dark Theme -->
+    <color name="mdtp_circle_background_dark_theme">#525252</color>
+
+    <!-- Colors for red theme -->
+    <color name="mdtp_red">@color/mdtp_accent_color</color>
+    <color name="mdtp_red_focused">@color/mdtp_accent_color_dark</color>
+    <color name="mdtp_light_gray">#424242</color>
+    <color name="mdtp_dark_gray">#323232</color>
+    <color name="mdtp_line_dark">#808080</color>
+    <color name="mdtp_done_text_color_dark_normal">#ffffff</color>
+    <color name="mdtp_done_text_color_dark_disabled">#888888</color>
+    <color name="mdtp_done_disabled_dark">#bfbfbf</color>
+    <color name="white_transParent_navigation">#CC303030</color>
+    <color name="white_transParent">#66FFFFFF</color>
+    <color name="black_transParent">#99181818</color>
+
+    <color name="main_color_orange_dark">#cc6d23</color>
+    <color name="main_color_light_orange_dark">#cc7f07</color>
+    <color name="main_color_red_dark">#803432</color>
+
+    <color name="str_green">#3cac69</color>
+    <color name="str_red">#FF4444</color>
+    <color name="str_yellow">#FFBB33</color>
+    <color name="str_sky_blue">#33B5E5</color>
+    <color name="str_orange">#fe7b27</color>
+    <color name="grayDes">#ccece9e9</color>
+
+    <!--<color name="material_green_050">#E8F5E9</color>
+    <color name="material_green_100">#C8E6C9</color>
+    <color name="material_green_200">#A5D6A7</color>
+    <color name="material_green_300">#81C784</color>
+    <color name="material_green_400">#66BB6A</color>-->
+    <color name="material_green_500">#4CAF50</color>
+    <!--    <color name="material_green_600">#43A047</color>-->
+    <color name="material_green_700">#388E3C</color>
+    <!--<color name="material_green_800">#2E7D32</color>
+    <color name="material_green_900">#1B5E20</color>
+    <color name="material_green_a100">#B9F6CA</color>
+    <color name="material_green_a200">#69F0AE</color>
+    <color name="material_green_a400">#00E676</color>-->
+    <color name="material_green_a700">#00C853</color>
+
+
+    <color name="selector_green_focused">#2200C853</color>
+    <color name="selector_green_pressed">#4400C853</color>
+    <color name="selector_normal">@android:color/transparent</color>
+
+
+    <color name="selector_black_focused">#12000000</color>
+    <color name="selector_black_pressed">#1F000000</color>
+
+    <color name="selector_white_pressed">#33FFFFFF</color>
+    <color name="selector_white_focused">#22FFFFFF</color>
+    <color name="sharp_color">#FFDF3F3B</color>
+    <color name="graytransparent">#CC000000</color>
+
+    <color name="green_accept">#F1376B26</color>
+    <color name="red_deny">#f1ca2830</color>
+
+    <color name="bg_gradient_end">#6b394c</color>
+    <color name="default_background">#9966FF</color>
+    <color name="opaque">#70000000</color>
+    <color name="bg_gradient_start">#31244e</color>
 </resources>

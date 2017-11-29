@@ -1,0 +1,245 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:text="@string/moaref"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:ems="10"
+            android:hint="@string/moaref"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColorHint="@color/grayBtn"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="0.1"
+       android:layout_margin="5dp"
+       android:orientation="horizontal">
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.3"
+           android:layout_gravity="center"
+           android:text="@string/occupation"/>
+
+
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_weight="0.7"
+           android:ems="10"
+           android:hint="@string/moaref"
+           android:layout_marginTop="5dp"
+           android:layout_marginLeft="40dp"
+           android:layout_marginRight="40dp"
+           android:textColorHint="@color/grayBtn"
+           android:textColor="@color/white"
+           android:textSize="14dp"
+           android:inputType="textPersonName"
+           android:imeOptions="actionNext"/>
+
+   </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:text="@string/occupation"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:ems="10"
+            android:hint="@string/moaref"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColorHint="@color/grayBtn"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:text="@string/occupation"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:ems="10"
+            android:hint="@string/moaref"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColorHint="@color/grayBtn"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:text="@string/occupation"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:ems="10"
+            android:hint="@string/moaref"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColorHint="@color/grayBtn"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:text="@string/occupation"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:ems="10"
+            android:hint="@string/moaref"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColorHint="@color/grayBtn"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:inputType="textPersonName"
+            android:imeOptions="actionNext"/>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/Birthday"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textSize="14dp"
+        android:layout_weight="0.07"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:editable="false"
+        android:textColorHint="@color/grayBtn"
+        android:textColor="@color/white"
+        android:hint="@string/birthday"
+        android:inputType="text"
+        android:imeOptions="actionNext" />
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textSize="14dp"
+        android:layout_weight="0.08"
+        android:textColorHint="@color/grayBtn"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:hint="@string/email"
+
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/RegisterBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:text="@string/register"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
