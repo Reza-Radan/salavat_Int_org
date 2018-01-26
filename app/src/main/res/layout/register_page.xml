@@ -1,176 +1,175 @@
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    tools:context=".MainActivity">
 
-    <View
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        />
-
-    <TextView
-        android:id="@+id/txtvPhpneNum"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        android:text="num"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        />
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/Name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
-        android:ems="10"
-        android:hint="@string/name"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColorHint="@color/grayBtn"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        android:inputType="textPersonName"
-        android:imeOptions="actionNext">
-
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-
-        android:id="@+id/Family"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
-        android:ems="10"
-        android:hint="@string/family"
-        android:textColorHint="@color/grayBtn"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-
-        android:inputType="textPersonName"
-        android:imeOptions="actionNext"/>
-
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textSize="14dp"
-        android:layout_weight="0.08"
-        android:textColorHint="@color/grayBtn"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:ems="10"
-        android:textColor="@color/white"
-        android:hint="@string/email"
-
-        android:imeOptions="actionDone"
-        android:inputType="textEmailAddress" />
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.09"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        >
-
-
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textSize="14dp"
-            android:text="@string/gender"
-            android:gravity="center|left"
-            />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:minHeight="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:fitsSystemWindows="true"
+                android:theme="@style/AppTheme"
+                android:layout_height="wrap_content">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/male" />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
 
-            <RadioButton
-                android:id="@+id/fmale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/female" />
-        </RadioGroup>
-
-
-
-    </LinearLayout>
-
-
-
-    <Button
-        android:id="@+id/RegisterBtn"
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="center"
-        android:text="@string/register"
-        android:textColor="@color/white" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
+        android:layout_gravity="center">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/txtvPhpneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14dp"
+                android:text="num"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext"
+                    android:hint="@string/name" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_family"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_family"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext"
+                    android:hint="@string/family" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/email" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_marginLeft="0dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:text="@string/gender"
+                    android:gravity="center|left"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:text="@string/male" />
+
+                    <RadioButton
+                        android:id="@+id/fmale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:text="@string/female" />
+                </RadioGroup>
+            </LinearLayout>
 
 
 
-    <TextView
-        android:id="@+id/txtVCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.07"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:textColorLink="@color/yellowBtn"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        />
+            <Button
+                android:id="@+id/RegisterBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:text="@string/register"
+                style="@style/button"
+                android:textColor="@color/white" />
 
 
-
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

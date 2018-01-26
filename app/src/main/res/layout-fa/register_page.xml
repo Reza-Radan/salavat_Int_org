@@ -181,6 +181,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="5dp"
         android:layout_gravity="right"
+        style="@style/button"
         android:text="@string/register"
         android:textColor="@color/white" />
     

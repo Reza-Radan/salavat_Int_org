@@ -270,4 +270,10 @@
         <string name="guide">Guide</string>
     <string name="occupation">occupation</string>
 
+    <string name="less_char_name">The Name must be at more 3 characters </string>
+    <string name="less_char_family">The Family must be at more 4 characters </string>
+    <string name="email_validation"> Insert your Email correctly! </string>
+    <string name="select_gender" >select Gender field.</string>
+    <string name="do_u_like_be_a_head">Do you want to become a leader?</string>
+
 </resources>

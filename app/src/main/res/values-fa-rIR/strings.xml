@@ -275,5 +275,11 @@
     <string name="archive">آرشیو</string>
     <string name="guide">راهنما</string>
     <string name="moaref">معرف</string>
+    <string name="less_char_name">طول نام شما باید ببش از ۳ کاراکتر باشد! </string>
+    <string name="less_char_family">طول نام شما باید ببش از ۴ کاراکتر باشد! </string>
+    <string name="email_validation">ایمیل خود را به درستی وارد کنید! </string>
+    <string name="select_gender" >گزینه جنسیت خالی است.</string>
+    <string name="do_u_like_be_a_head">Do you want to become a leader?</string>
+
 
 </resources>

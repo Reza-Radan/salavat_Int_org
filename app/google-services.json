@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1571737782",
+    "firebase_url": "https://salavatintorg-6e5f0.firebaseio.com",
+    "project_id": "salavatintorg-6e5f0",
+    "storage_bucket": "salavatintorg-6e5f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1571737782:android:527b09125fe7b0bc",
+        "android_client_info": {
+          "package_name": "salavatorg.salavaltintorg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1571737782-dsu6mu9po2jruv67cu7o8k4q7tum670q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "salavatorg.salavaltintorg",
+            "certificate_hash": "08774b57fe9407d96dea6a45ddf8c6000a3e4c63"
+          }
+        },
+        {
+          "client_id": "1571737782-crakgs0t2fs8f365vk3vlpltt3t2bhd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZtCmU3XOToBxXZIc7yzChz3inI0OEtGc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1571737782-crakgs0t2fs8f365vk3vlpltt3t2bhd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
