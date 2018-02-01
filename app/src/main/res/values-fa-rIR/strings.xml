@@ -280,6 +280,9 @@
     <string name="email_validation">ایمیل خود را به درستی وارد کنید! </string>
     <string name="select_gender" >گزینه جنسیت خالی است.</string>
     <string name="do_u_like_be_a_head">Do you want to become a leader?</string>
+    <string name="select_prePhone">Select pre phone number</string>
+    <string name="insert_your_phone">Insert your phone number</string>
+    <string name="select_lan">Select your language</string>
 
 
 </resources>

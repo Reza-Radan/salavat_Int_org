@@ -18,26 +18,26 @@ import butterknife.BindView;
 
 public class AdvUserInfoActivity extends Activity {
 
-    @BindView(R.id.input_occupation)
-    EditText occupation;
-    @BindView(R.id.input_introducer)
-    EditText introducer;
-    @BindView(R.id.input_education)
-    EditText education;
-    @BindView(R.id.input_country)
-    EditText country;
-    @BindView(R.id.input_city)
-    EditText city;
-    @BindView(R.id.input_salavat_num)
-    EditText salavat_id;
-    @BindView(R.id.chkbxGroupHead)
-    CheckBox chkboxHeader;
-
-    @BindView(R.id.male)RadioButton rbfemale;
-    @BindView(R.id.fmale)RadioButton rbmale;
-    @BindView(R.id.radioGroup)RadioGroup radioGroup;
-    @BindView(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
+//    @BindView(R.id.input_occupation)
+//    EditText occupation;
+//    @BindView(R.id.input_introducer)
+//    EditText introducer;
+//    @BindView(R.id.input_education)
+//    EditText education;
+//    @BindView(R.id.input_country)
+//    EditText country;
+//    @BindView(R.id.input_city)
+//    EditText city;
+//    @BindView(R.id.input_salavat_num)
+//    EditText salavat_id;
+//    @BindView(R.id.chkbxGroupHead)
+//    CheckBox chkboxHeader;
+//
+//    @BindView(R.id.male)RadioButton rbfemale;
+//    @BindView(R.id.fmale)RadioButton rbmale;
+//    @BindView(R.id.radioGroup)RadioGroup radioGroup;
+//    @BindView(R.id.coordinatorLayout)
+//    CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

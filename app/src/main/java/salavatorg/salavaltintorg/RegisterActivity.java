@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -11,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.regex.Pattern;
 
@@ -23,6 +25,8 @@ import butterknife.OnClick;
  */
 
 public class RegisterActivity extends AppCompatActivity{
+    @BindView(R.id.txtvPhpneNum)
+    TextView phoneNumber;
     @BindView(R.id.input_name)
     EditText name;
     @BindView(R.id.input_family)
@@ -34,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity{
     @BindView(R.id.radioGroup)RadioGroup  radioGroup;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
+    String phoneNum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +46,10 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.register_page);
 
         ButterKnife.bind(this);
+
+        if(getIntent().getExtras()!= null){
+            phoneNumber.setText(phoneNum = getIntent().getExtras().getString("phone_num"));
+        }
     }
 
     private void validation() {
@@ -66,6 +75,9 @@ public class RegisterActivity extends AppCompatActivity{
             Snackbar.
                     make(coordinatorLayout, getString(R.string.select_gender), Snackbar.LENGTH_LONG).show();
 
+        }else{
+            Intent intent = new Intent(RegisterActivity.this , PasswordActivity.class);
+            startActivity(intent);
         }
     }
 
