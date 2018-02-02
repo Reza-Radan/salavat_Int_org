@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        >
+    android:layout_height="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/repeatetive_background"
         android:orientation="vertical" >
 
         <android.support.design.widget.AppBarLayout
@@ -56,7 +57,6 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:weightSum="10"
                 >
 
                 <Button
@@ -66,7 +66,7 @@
                     android:text=""
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     />
                 <LinearLayout
                     android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                     <EditText
                         android:singleLine="true"
                         android:id="@+id/PhoneNumber"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:layout_marginLeft="1dp"
                         android:ems="10"
@@ -102,7 +102,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:background="@null"/>
 
             </TableRow>
@@ -113,12 +113,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:weightSum="10"
+                android:layout_gravity="center"
+                android:gravity="center"
                 >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"  />
+
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avloadingIndicatorViewResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:indicatorName="BallSpinFadeLoaderIndicator"
+                    app:indicatorColor="@color/colorAccent"
+
+                    android:layout_gravity="center" />
 
                 <Button
                     android:id="@+id/Next"
@@ -148,21 +160,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:layout_gravity="center"
                 >
-                <TextView
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:id="@+id/linerSelectLan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center" >
-
-                    <ImageView
-                        android:id="@+id/imgvFlag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
 
                     <com.jaredrummler.materialspinner.MaterialSpinner
                         android:id="@+id/spinnerSelectLan"
@@ -173,11 +172,6 @@
                         android:autoLink="web"
                         android:textSize="12sp"
                         android:textColor="@color/mdtp_ampm_text_color"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_weight="1" />
 
 
             </TableRow>

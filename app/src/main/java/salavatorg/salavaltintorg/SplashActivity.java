@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by masoomeh on 1/13/18.
  */
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;

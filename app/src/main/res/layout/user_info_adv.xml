@@ -4,6 +4,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+     android:background="@drawable/repeatetive_background"
     tools:context=".MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:fillViewport="true"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -109,6 +111,7 @@
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spinnerCountry"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content" />
 
 
@@ -163,7 +166,7 @@
 
                 <CheckBox
                     android:id="@+id/chkbxGroupHead"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/do_u_like_be_a_head"/>
 
@@ -171,18 +174,21 @@
                     android:id="@+id/Birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
                     android:textSize="14dp"
-                    android:layout_weight="0.07"
+                    android:layout_weight="0.05"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:gravity="center_vertical"
                     android:editable="false"
-                    android:textColorHint="@color/grayBtn"
+                    android:textColorHint="@color/white"
                     android:textColor="@color/white"
                     android:hint="@string/birthday"
+                    style="@style/button"
+
                     android:inputType="text"
                     android:imeOptions="actionNext" />
 

@@ -4,4 +4,7 @@
     <string name="select_prePhone">Select pre phone number</string>
     <string name="insert_your_phone">Insert your phone number</string>
     <string name="select_lan">Select your language</string>
+    <string name="error_insert_correct_your_phone">Insert correct format phone number</string>
+    <string name="password_page">Password</string>
+    <string name="intercommunity">Intercommunity</string>
 </resources>
