@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.design.widget.CoordinatorLayout;
@@ -56,5 +57,17 @@ public class MainActivity extends AppCompatActivity {
 //        view.setLayoutParams(params);
 //        snack.show();
 //    }
+
+
+    public void RequestOfSalavatClick(View v){
+        startActivity(new Intent(this , AdvUserInfoActivity.class));
+    }
+
+    public void ParticipateOfSalavatClick(View v){
+
+    }
+
+    public void TajliClick(View v){
+    }
 
 }

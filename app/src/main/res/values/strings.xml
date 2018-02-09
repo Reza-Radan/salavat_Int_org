@@ -1,3 +1,557 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+        <string name="CHECK_URL">http://daba.netband.ir/</string>
+        <string name="COMPANY_LOG">http://daba.netband.ir/statics/companyLogo/</string>
+        <string name="WEB_SERVICE_SERVER">http://daba.netband.ir:8081</string>
+
+        <string name="app_name">Salavat</string>
+        <string name="action_settings">Settings</string>
+
+        <string name="your_phone">Your phone: </string>
+        <string name="submit">Submit</string>
+        <string name="old_pass">Old password</string>
+        <string name="new_pass">New Password</string>
+        <string name="confirm_pass">Confirm New Password</string>
+        <string name="coupon_num">Coupon Number</string>
+        <string name="cancel">Cancel</string>
+        <string name="title">title </string>
+        <string name="ok">Ok</string>
+
+        <string name="change_pass">Change Password</string>
+        <string name="user_service">User Service</string>
+        <string name="profile">Profile</string>
+        <string name="online_payment">Online Payment</string>
+
+        <string name="rate">"company rate :"</string>
+        <string name="netband_found">"NetBand Found"</string>
+
+        <string name = "error_pass_is_short"> The password must be at least 3 characters</string>
+        <string name = "error_pass_not_match">Password mismatch</string>
+        <string name = "error_empty_edittext">The field is empty</string>
+        <string name = "error_insert_correct_edittext">Please insert the value correctly</string>
+
+        <string name="wrong_date">you insert a wrong birthday date</string>
+        <string name="dialog_title">Please select the branch </string>
+        <string name="open">Open</string>
+        <string name="close">Close</string>
+
+        <string name="notification_title_msg">Available wifi</string>
+        <string name="contact_us">Contact us</string>
+        <string name="messagesuccessful">your message sent successfuly </string>
+        <string name="messagenotsuccessful">Sorry! some problem due server connection  </string>
+        <string name="about_us">About us</string>
+        <string name="send">Send</string>
+
+        <string name="Settings">Settings</string>
+        <string name="home">Home</string>
+        <string name="Settings_page">Settings Page</string>
+        <string name="info_NetBand_on_map">Information Netbands On Map</string>
+        <string name="info_page">Information Page</string>
+        <string name="about_netband">About Netband</string>
+        <!--    <string name="contact_with_netband">Contact to Netband</string>-->
+        <string name="fav_list">Favorite list</string>
+        <string name="listOfnetBand">List of Netbands </string>
+        <string name="company_lst">List of companies</string>
+        <string name="menu_lst">List of menu</string>
+        <string name="fav_page">favourite page</string>
+        <string name="rateToast">you should be member of this company to give the rate </string>
+        <string name="mapinfo">Sorry! there is no further information about this company</string>
+
+
+        <string name="webSiteNotExist">Web page not found</string>
+
+
+
+        <string name="change_phone_num">Change the phone number</string>
+        <string name="notification_list">Notifications List</string>
+        <!--    <string name="start">start</string>-->
+        <string name="save_battery">Save battery</string>
+
+        <!-- infopage -->
+        <string name="connect">Connect</string>
+        <string name="disconnect">Disconnect</string>
+        <string name="price_list">Price List</string>
+        <string name="poll">Poll</string>
+        <string name="information">Information</string>
+        <string name="map_detail">Map Details</string>
+
+        <!-- setting page -->
+        <string name="name">Name</string>
+        <string name="family">Family</string>
+        <string name="email">E-mail</string>
+        <string name="birthday">Birthday</string>
+        <string name="gender"> Gender :‌ </string>
+        <string name="male">Male</string>
+        <string name="female">Female</string>
+        <string name="register">Register</string>
+        <string name="msg">Message</string>
+
+
+        <string name="name_of_company_of">Name of Company is: </string>
+        <string name="name_of_company_of_is_not">Name of Company is not: </string>
+        <string name="name_of_company_not_available"> Oops! data not found</string>
+        <!--    <string name="disabled_broadcst_receiver">Disabled broadcast receiver</string>-->
+        <string name="wrong_password">Oops! Wrong password</string>
+
+        <!-- password -->
+        <string name="password">Received Code</string>
+        <string name="login">LogIn</string>
+        <string name="call">call</string>
+        <string name="sms">sms </string>
+        <string name="msgPass">Resend the password with one of these methods : </string>
+
+        <string name="next">Next</string>
+        <string name="next_en">Next</string>
+
+        <!-- showcase description -->
+        <string name="desc_cat_lstv">These items show category of companies</string>
+        <string name="desc_lstv_company">Show companies which using NETBAND </string>
+        <string name="desc_Connect_btn">Connect to wifi</string>
+        <string name="desc_price">You can observe menu or list of products of company. </string>
+        <string name="desc_poll">Polling </string>
+        <string name="desc_info">Observe some information about company</string>
+        <string name="desc_direc_to">Show direction to destination</string>
+        <string name="desc_fav">Add the company to favourite list  </string>
+        <string name="desc_website">Visit the website of company  </string>
+
+        <string name="daba_addr">Zaferanie,Kohpeykar</string>
+        <string name="about_daba"> Daba .Daba started its work in 1997, based on technical knowledge and expertise of a young and creative team.At the beginning of its actvity, the main focus was on network and system infrastructure.
+ </string>
+
+
+        <string name="not_inside">you are not inside the our network</string>
+        <string name="Mikrotickproblem">Sorry ! Some thing go wrong when try to connect to this company  </string>
+        <string name="Mikrotickproblem_dis">Sorry ! Some thing go wrong when try to disconnect from this company  </string>
+        <string name="company_location_does_not_exist">Company location does not exist</string>
+        <string name="sorry_there_is_no_any_information_about_location_of_this_company">Sorry there is no any information about location of this company!</string>
+        <string name="erro_in_copy_database_to_your_phone"> ERROR IN COPY DATABASE TO YOUR PHONE</string>
+        <string name="enable_logation_option_in_setting">Please enable the location Option in phone setting to find you in map</string>
+        <string name="internet_connection_dont_right">Sorry,some problem in network connection please try again later !</string>
+        <string name="empty_menu">Sorry, There is no any menu for this company !</string>
+
+        <string name="gps_is_settings">GPS settings</string>
+        <string name="not_enable_location.question_go_setting">GPS is not enabled. Do you want to go to settings menu?</string>
+        <string name="setting">Settings</string>
+        <string name="getting_data">Getting Data...</string>
+        <string name="connect_to_server">Connecting to Server...</string>
+        <string name="netband_title">NetBand</string>
+        <string name="like_to_connect_wifi">Would like to connect to Netband wifi</string>
+        <string name="go_ahead">Go ahead ...</string>
+        <string name="select_your_country">Select your country</string>
+        <string name="Wifi_List">Available Wifi ...</string>
+        <string name="Wifi_List_Navigator">List of wifi</string>
+        <string name="enter_the_correct_mobile_number">Please enter the correct Mobile Number</string>
+        <string name="passwod_shoud_be_standard">Password should be 3 to 30 characters! </string>
+        <string name="to30charachert">3 to 30 Charachter</string>
+        <string name="success_coupon">Coupon successfully registered</string>
+        <string name="success_change">Changes have made successfully!</string>
+        <string name="fail_change">the change was not done properly.</string>
+        <string name="mikrotick_successful">you connected to this network successfully </string>
+        <string name="try_again">try again!</string>
+
+
+        <string name="delete">Delete</string>
+        <string name="ignore">Ignore</string>
+
+        <string name="unavailable_route">no route found</string>
+
+        <string-array name="languages" >
+
+            <item>English</item>
+            <item>فارسی</item>
+
+        </string-array>
+
+
+        <string name="sort">Sort by: </string>
+        <string name="kindOfSearch">Search by: </string>
+        <string name="category">Category: </string>
+        <string name="keyword">Keyword: </string>
+        <string name="company">Company </string>
+        <string name="product">Product</string>
+        <string name="popular">Popular</string>
+        <string name="distance">Distance</string>
+        <string name="search">Search</string>
+
+        <string name="categorySort">Sort data by </string>
+        <string name="categorySortAll">Show all companies </string>
+
+        <string name="company_page">Company Page</string>
+        <string name="near_company">Is near by you ! </string>
+        <string name="really_exit">Really Exit?</string>
+        <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
+
+        <!-- <item>Français</item>
+            <item>Deutsch</item>
+            <item>Italiano</item>
+            <item>Malaysia</item>
+            <item>العربیه</item>
+            <item>español</item> -->
+        <!--
+        Content description for the month and day selector in the date picker, which displays
+        a selectable grid of days laid out by month.
+        [CHAR LIMIT=50]
+     -->
+        <string name="mdtp_day_picker_description">Month grid of days</string>
+        <!--
+            Content description for the year selector in the date picker, which displays
+            a scrolling, vertical list of years.
+            [CHAR LIMIT=50]
+         -->
+        <string name="mdtp_year_picker_description">Year list</string>
+        <!-- Accessibility announcement for the day picker [CHAR LIMIT=NONE] -->
+        <string name="mdtp_select_day">Select month and day</string>
+        <!-- Accessibility announcement for the year picker [CHAR LIMIT=NONE] -->
+        <string name="mdtp_select_year">Select year</string>
+        <!-- Accessibility description for the item that is currently selected. -->
+        <string name="mdtp_item_is_selected" msgid="2674929164900463786">" انتخاب شد"</string>
+        <!-- Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] -->
+        <string name="mdtp_deleted_key" msgid="6908431551612331381">" حذف شد"</string>
+        <string name="msg_lovation_on">Do you want open GPS setting?</string>
+
+        <string name="about_des">Netband application is a hotspot application produced by Imen Daba Parsian company,This application act as value-added software for our service,Netband service is a hotspot service represented by our company.The service using in several companies, restaurants and shopping malls and play a pivotal role in network monitoring, traffic control and customer caring.</string>
+        <string name="about_comp">Imen Daba Parsian</string>
+        <string name="about_contact">Contact us : </string>
+        <string name="about_site">Website : </string>
+        <string name="about_mail">Email : </string>
+
+        <string name="Netband_condition_team">I agree to the Netband Terms and Condition</string>
+        <string name="connect_to_internet_network">You should connect to internet network !!!</string>
+        <string name="recive_pass">you will receive the password shortly</string>
+        <string name="row_number">This is row number %d</string>
+        <string name="mikrotik_wrong_password">Oops! wrong password to connect Mikrotik </string>
+        <string name="Select_language">Select Language</string>
+        <string name="Select_lan"><a href="http://www.www.com" >Select language</a></string>
+        <string name="basic_del">Delete</string>
+        <string name="str_orange">#fe7b27</string>
+        <string name="favorit">Favorite</string>
+        <string name="direction">Direction</string>
+        <string name="website">Website</string>
+
+
+        <string-array name="CountryCodes" >
+            <item>509,HT</item>
+            <item>504,HN</item>
+            <item>852,HK</item>
+            <item>36,HU</item>
+            <item>91,IN</item>
+            <item>62,ID</item>
+            <item>98,IR</item>
+        </string-array>
+        <string name="next_fa">مرحله بعد</string>
+
+        <string-array name="dev_platforms">
+            <item>by distance</item>
+            <item>by popularity</item>
+
+        </string-array>
+
+
+
+        <string name="farsi">فارسی</string>
+        <string name="english">English</string>
+        <string name="france">Français</string>
+        <string name="deutsch">Deutsch</string>
+        <string name="italian">Italiano</string>
+        <string name="malaysia">Malaysia</string>
+        <string name="alarabie">العربیه</string>
+        <string name="espanol">español</string>
+
+        <string name="dialog_title_login">Receiving Data</string>
+        <string name="dialog_msg_login">Please wait...</string>
+
+
+        <string name="request_for_salavat">Request for Salavat</string>
+        <string name="participate_salavat">Participate in Salavat</string>
+        <string name="hurry_faraj">Tajil in Faraj</string>
+        <string name="count_of_salavat_txtv">Number Of Salavat: </string>
+        <string name="list_of_add_in_group">List of Groups</string>
+        <string name="archive">Archive</string>
+        <string name="guide">Guide</string>
+    <string name="occupation">occupation</string>
+
+    <string name="less_char_name">The Name must be at more 3 characters </string>
+    <string name="less_char_family">The Family must be at more 4 characters </string>
+    <string name="email_validation"> Insert your Email correctly! </string>
+    <string name="select_gender" >select Gender field.</string>
+    <string name="do_u_like_be_a_head">Do you want to become a leader?</string>
+    <string name="select_prePhone">Select pre phone number</string>
+    <string name="insert_your_phone">Insert your phone number</string>
+    <string name="select_lan">Select your language</string>
+    <string name="error_insert_correct_your_phone">Insert correct format phone number</string>
+    <string name="password_page">Password</string>
+    <string name="intercommunity">Intercommunity</string>
+    <string name="introducer">Interoducer</string>
+    <string name="education">Education</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="national_id">National Id</string>
+    <string name="less_char">Number of character is short</string>
+
+    <string-array name="salavat">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
+    <string-array name="educational">
+        <item>سیکل</item>
+        <item>دیپلم</item>
+        <item>فوق دیپلم</item>
+        <item>لیسانس</item>
+        <item>فوق لیسانس</item>
+        <item>دکترا</item>
+
+
+    </string-array>
+
+
+    <string-array name="countries_array">
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Antarctica</item>
+        <item>Antigua and Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Aruba</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bermuda</item>
+        <item>Bhutan</item>
+        <item>Bolivia</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Botswana</item>
+        <item>Brazil</item>
+        <item>British Indian Ocean Territory</item>
+        <item>British Virgin Islands</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Cape Verde</item>
+        <item>Cayman Islands</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Christmas Island</item>
+        <item>Cocos Islands</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Cook Islands</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Democratic Republic of the Congo</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>East Timor</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Falkland Islands</item>
+        <item>Faroe Islands</item>
+        <item>Fiji</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>French Polynesia</item>
+        <item>Gabon</item>
+        <item>Gambia</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+        <item>Gibraltar</item>
+        <item>Greece</item>
+        <item>Greenland</item>
+        <item>Grenada</item>
+        <item>Guam</item>
+        <item>Guatemala</item>
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Guyana</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Ireland</item>
+        <item>Isle of Man</item>
+        <item>Israel</item>
+        <item>Italy</item>
+        <item>Ivory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jersey</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Kiribati</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Laos</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macao</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Marshall Islands</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mayotte</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Montserrat</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+        <item>Myanmar</item>
+        <item>Namibia</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>Netherlands Antilles</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Nicaragua</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Niue</item>
+        <item>North Korea</item>
+        <item>Northern Mariana Islands</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Pitcairn</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Republic of the Congo</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>Rwanda</item>
+        <item>Saint Barthelemy</item>
+        <item>Saint Helena</item>
+        <item>Saint Kitts and Nevis</item>
+        <item>Saint Lucia</item>
+        <item>Saint Martin</item>
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent and the Grenadines</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Solomon Islands</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Georgia and the South Sandwich Islands</item>
+        <item>South Korea</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Suriname</item>
+        <item>Svalbard and Jan Mayen</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syria</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tokelau</item>
+        <item>Tonga</item>
+        <item>Trinidad and Tobago</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Turks and Caicos Islands</item>
+        <item>Tuvalu</item>
+        <item>U.S. Virgin Islands</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+        <item>United Kingdom</item>
+        <item>United States</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatican</item>
+        <item>Venezuela</item>
+        <item>Vietnam</item>
+        <item>Wallis and Futuna</item>
+        <item>Western Sahara</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+    </string-array>
+
 </resources>

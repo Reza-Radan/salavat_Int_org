@@ -286,6 +286,7 @@
     <string name="country">Country</string>
     <string name="city">City</string>
     <string name="national_id">National Id</string>
+    <string name="less_char">Number of character is short</string>
 
     <string-array name="salavat">
         <item>1</item>

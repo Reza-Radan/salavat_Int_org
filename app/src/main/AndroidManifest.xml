@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdvUserInfoActivity" >
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +19,11 @@
 
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity" />
-        <!--<activity android:name=".AdvUserInfoActivity" />-->
+        <activity android:name=".AdvUserInfoActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".CountriesLstActivity"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog.FixedSize"/>
 
         <service android:name=".pushnotification.FirebaseIDService">
             <intent-filter>

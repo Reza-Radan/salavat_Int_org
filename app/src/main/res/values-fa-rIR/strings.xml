@@ -558,5 +558,6 @@
     </string-array>
 
     <string name="occupation">وضعیت اشتغال</string>
+    <string name="less_char">Number of character is short</string>
 
 </resources>

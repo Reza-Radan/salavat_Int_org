@@ -81,7 +81,8 @@ public class PasswordActivity extends AppCompatActivity{
                 passwordString.length() >1){
             String url ="http://www.feel-fresh.com/getCompanyItem.php";
             Map<String, String> parameters = new HashMap<>();
-            parameters.put("phoneNumber" ,phoneNum);
+            parameters.put("phone" ,phoneNum);
+            parameters.put("pass" ,passwordString);
             new sendUserDataToServer(url,parameters).execute();
 //            Intent intent = new Intent(PasswordActivity.this , MainActivity.class);
 //            startActivity(intent);

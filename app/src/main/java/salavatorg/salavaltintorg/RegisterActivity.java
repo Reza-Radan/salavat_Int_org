@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
@@ -36,7 +38,10 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.JsonParser;
+import salavatorg.salavaltintorg.dao.UserInfoBase;
+import salavatorg.salavaltintorg.pushnotification.FirebaseIDService;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -62,7 +67,9 @@ public class RegisterActivity extends AppCompatActivity{
     Button registerBtn;
     @BindView(R.id.avloadingIndicatorViewResult)
     AVLoadingIndicatorView Loading;
-    String phoneNum ,Tag= "RegisterActivity";
+    String phoneNum ,userId, Tag= "RegisterActivity";
+    private AppCreatorDatabase db;
+    private String google_id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,16 +87,15 @@ public class RegisterActivity extends AppCompatActivity{
 
         if(getIntent().getExtras()!= null){
             phoneNumber.setText(phoneNum = getIntent().getExtras().getString("phone_num"));
+            userId = getIntent().getExtras().getString("userId");
         }
     }
 
     private void validation() {
-        String nameString , familyString , emailString;
+        String nameString , familyString , emailString ,genderString = "-1";
         nameString = name.getText().toString();
         familyString = family.getText().toString();
         emailString = email.getText().toString();
-
-
 
         if(nameString.length()<=2 || nameString.matches("[0-9_-]")){
 //            Snackbar snackbar = Snackbar
@@ -105,12 +111,32 @@ public class RegisterActivity extends AppCompatActivity{
 
             Snackbar.
                     make(coordinatorLayout, getString(R.string.select_gender), Snackbar.LENGTH_LONG).show();
-
         }else{
-            String url ="http://www.feel-fresh.com/getCompanyItem.php";
+            SharedPreferences sharedPreferences = getSharedPreferences(FirebaseIDService.googleId ,MODE_PRIVATE);
+
+             if(rbfemale.isChecked()){
+                genderString = "0";
+            }
+            else if(rbmale.isChecked()){
+                genderString = "1";
+            }
+            google_id = sharedPreferences.getString(FirebaseIDService.token,"-1");
+            String url ="api/members/getMembersInfo";
             Map<String, String> parameters = new HashMap<>();
-            parameters.put("phoneNumber" ,phoneNum);
-            new sendUserDataToServer(url,parameters).execute();
+            parameters.put("phone" ,phoneNum);
+            parameters.put("name" ,nameString);
+            parameters.put("family" ,familyString);
+            parameters.put("email" ,emailString);
+            parameters.put("gender" ,genderString);
+            parameters.put("push_id" ,google_id);
+            parameters.put("flag" ,"0");
+
+            UserInfoBase userInfoBase = new UserInfoBase(userId,phoneNum,nameString,familyString,
+                    emailString,genderString,google_id);
+
+            db = Room.databaseBuilder(RegisterActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+
+            new sendUserDataToServer(url,parameters ,userInfoBase).execute();
         }
     }
 
@@ -127,14 +153,16 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
 
-    public class sendUserDataToServer extends AsyncTask<Void,Void,JSONObject> {
+    public class sendUserDataToServer extends AsyncTask<Void,Void,Boolean> {
         JSONObject jsonObject;
         Map<String, String> parameters;
         String url;
+        UserInfoBase userInfoBase;
 
-        public sendUserDataToServer(String url, Map<String, String> parameters) {
+        public sendUserDataToServer(String url, Map<String, String> parameters , UserInfoBase userInfoBase) {
             this.parameters = parameters;
             this.url = url;
+             this.userInfoBase = userInfoBase;
         }
 
         @Override
@@ -145,35 +173,53 @@ public class RegisterActivity extends AppCompatActivity{
         }
 
         @Override
-        protected JSONObject doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params) {
 
             boolean isconnected = false;
             try {
-                URL url = new URL(this.url);
+                URL url = new URL("https://www.google.com/");
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.connect();
-                Log.i(Tag,"responsecode : "+http.getResponseCode());
+                Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
             }
 
-            if (isconnected)
-                return jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
-            else
-                return null;
+            if (isconnected) {
+                 jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
+                Log.i(Tag, "json: " + jsonObject);
+                if (jsonObject != null && jsonObject.has("result")) {
+                    try {
+                        if (jsonObject.getInt("result") == 1) {
+                            Log.i(Tag,"db: "+db);
+                            db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+                            finish();
+                            Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
+                            startActivity(intent);
+                            return  true;
+                        }else
+                            return false;
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                } else
+                    return false;
+            }else
+                return false;
         }
 
         @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
+        protected void onPostExecute(Boolean hasdata) {
 
             Log.i(Tag,"json: " +jsonObject);
-            if(jsonObject != null && jsonObject.has("result")){
+            if(hasdata){
                 finish();
-                Intent intent = new Intent(RegisterActivity.this , PasswordActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
                 startActivity(intent);
 
             }else {
@@ -181,13 +227,6 @@ public class RegisterActivity extends AppCompatActivity{
                 registerBtn.setVisibility(View.VISIBLE);
                 snackerShow(getString(R.string.internet_connection_dont_right));
             }
-            /**
-             * that is test
-             */
-             Intent intent = new Intent(RegisterActivity.this , PasswordActivity.class);
-            intent.putExtra("phone_num",phoneNum);
-            startActivity(intent);
-
         }
     }
 

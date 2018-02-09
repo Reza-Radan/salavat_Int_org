@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ import android.widget.FrameLayout;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -40,7 +43,9 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.JsonParser;
+import salavatorg.salavaltintorg.dao.UserInfoBase;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -73,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
     static String language ="lan";
     List<String> prePhone = new ArrayList<>();
     private SharedPreferences.Editor editor;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -232,25 +236,26 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject jsonObject) {
             super.onPostExecute(jsonObject);
 
-            Log.i(Tag,"json: " +jsonObject);
             if(jsonObject != null && jsonObject.has("result")){
-                finish();
-                Intent intent = new Intent(LoginActivity.this , RegisterActivity.class);
-                intent.putExtra("phone_num",parameters.get("phoneNumber"));
-                startActivity(intent);
+                try {
+                    if(jsonObject.getInt("result")==1) {
+                        JSONObject object = jsonObject.getJSONObject("export");
+                          Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
 
+                        finish();
+                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                        intent.putExtra("phone_num", parameters.get("phone"));
+                        intent.putExtra("userId", object.get("insert_id").toString());
+                        startActivity(intent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }else {
                 Loading.setVisibility(View.GONE);
                 next.setVisibility(View.VISIBLE);
                 snackerShow(getString(R.string.internet_connection_dont_right));
             }
-            /**
-             * that is test
-             */
-            Intent intent = new Intent(LoginActivity.this , RegisterActivity.class);
-            intent.putExtra("phone_num",parameters.get("phoneNumber"));
-            startActivity(intent);
-
         }
     }
 

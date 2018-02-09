@@ -50,7 +50,7 @@ public class JsonParser {
     static JSONObject jObj = null;
     static String json = "", tag = "JsonParser";
 
-    private static final String SERVER = "http://172.20.30.209:8080/";
+    private static final String SERVER = "http://bonyadsalavat.com/";
     private static final String WEB_SERVICE_SERVER_TEST = "http://daba.dabacenter.ir:8081";
 
     /*
