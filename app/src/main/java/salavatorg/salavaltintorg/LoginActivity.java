@@ -239,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
             if(jsonObject != null && jsonObject.has("result")){
                 try {
                     if(jsonObject.getInt("result")==1) {
-                        JSONObject object = jsonObject.getJSONObject("export");
+                        JSONObject object = jsonObject.getJSONObject("data");
                           Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
 
                         finish();
@@ -250,6 +250,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Loading.setVisibility(View.GONE);
+                    next.setVisibility(View.VISIBLE);
+                    snackerShow(getString(R.string.internet_connection_dont_right));
+
                 }
             }else {
                 Loading.setVisibility(View.GONE);

@@ -15,10 +15,11 @@ import android.view.View;
 import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar_main)
     Toolbar toolbar;
 
     @Override
@@ -30,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.salavat_page);
 
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setTitle(getString(R.string.register));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.app_name));
 
     }
 

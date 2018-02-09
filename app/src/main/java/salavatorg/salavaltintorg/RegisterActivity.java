@@ -196,9 +196,6 @@ public class RegisterActivity extends AppCompatActivity{
                         if (jsonObject.getInt("result") == 1) {
                             Log.i(Tag,"db: "+db);
                             db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
-                            finish();
-                            Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
-                            startActivity(intent);
                             return  true;
                         }else
                             return false;
@@ -220,6 +217,7 @@ public class RegisterActivity extends AppCompatActivity{
             if(hasdata){
                 finish();
                 Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
+                intent.putExtra("phone_num",phoneNum);
                 startActivity(intent);
 
             }else {
