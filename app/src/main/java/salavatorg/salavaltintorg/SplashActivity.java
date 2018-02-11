@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     private AppCreatorDatabase db;
+    String tag = "SplashActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,12 +56,14 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<UserInfoBase> userInfoBases) {
                 super.onPostExecute(userInfoBases);
+                    Log.e(tag,"MainActivity:size: " + userInfoBases.size());
                 if(userInfoBases.size()==1){
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                     mainIntent.putExtra("phone_num" ,userInfoBases.get(0).getPhone_num());
-                    mainIntent.putExtra("phone_num" ,userInfoBases.get(0).getId());
+                    mainIntent.putExtra("user_id" ,userInfoBases.get(0).getId());
                     SplashActivity.this.startActivity(mainIntent);
                 }else {
+                    Log.e(tag,"LoginActivity");
                     Intent mainIntent = new Intent(SplashActivity.this, LoginActivity.class);
                     SplashActivity.this.startActivity(mainIntent);
                 }

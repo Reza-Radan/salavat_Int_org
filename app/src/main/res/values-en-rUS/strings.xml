@@ -287,6 +287,8 @@
     <string name="city">City</string>
     <string name="national_id">National Id</string>
     <string name="less_char">Number of character is short</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 
     <string-array name="salavat">
         <item>1</item>
@@ -553,5 +555,8 @@
         <item>Zambia</item>
         <item>Zimbabwe</item>
     </string-array>
+    <string name="description">Description</string>
+    <string name="niat">Niat:</string>
+
 
 </resources>

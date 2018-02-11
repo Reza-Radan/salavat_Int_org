@@ -559,6 +559,11 @@
         </string-array>
 
         <string name="occupation">وضعیت اشتغال</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="description">Description</string>
+    <string name="nummber_salavat">Salavat Number</string>
+    <string name="niat">Niat:</string>
 
 
-    </resources>
+</resources>
