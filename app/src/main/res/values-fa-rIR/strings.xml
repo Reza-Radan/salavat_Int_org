@@ -564,5 +564,6 @@
     <string name="description">توضیحات</string>
     <string name="nummber_salavat">تعداد صلوات</string>
     <string name="niat">Niat:</string>
+    <string name="problem_with_server_Side">Problem in server side</string>
 
 </resources>

@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(phoneNumber != null && !phoneNumber.isEmpty() && phoneNumber.length() >0 ){
                     if(phoneNumberValidate(phoneNumber)){
                         //send number to server and return data
-                        String url ="api/members";
+                        String url ="api/members/getMemberInfo/";
                         Map<String, String> parameters = new HashMap<>();
                         parameters.put("phone" ,phoneNumber);
                         new sendUserDataToServer(url,parameters).execute();
@@ -240,13 +240,25 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     if(jsonObject.getInt("result")==1) {
                         JSONObject object = jsonObject.getJSONObject("data");
-                          Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
+                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("existence").toString());
 
-                        finish();
-                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                        intent.putExtra("phone_num", parameters.get("phone"));
-                        intent.putExtra("userId", object.get("insert_id").toString());
-                        startActivity(intent);
+                        if( object.getInt("existence")==0){
+                            finish();
+                            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                            intent.putExtra("phone_num", parameters.get("phone"));
+                            startActivity(intent);
+                        }else if ( object.getInt("existence")==1){
+                            finish();
+                            Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+                            intent.putExtra("phone_num", parameters.get("phone"));
+//                            intent.putExtra("userId", object.get("insert_id").toString());
+                            startActivity(intent);
+                        }else {
+                            Loading.setVisibility(View.GONE);
+                            next.setVisibility(View.VISIBLE);
+                            snackerShow(getString(R.string.internet_connection_dont_right));
+                        }
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -314,4 +326,6 @@ public class LoginActivity extends AppCompatActivity {
         finish();
         return super.onSupportNavigateUp();
     }
+
+
 }

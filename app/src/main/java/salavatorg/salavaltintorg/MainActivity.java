@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -28,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
+    TextView userName;
 
     String tag = "MainActivity";
+    private String name,family;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
 
         setContentView(R.layout.salavat_page);
+        
+        if(getIntent().getExtras()!=null){
+            name =getIntent().getExtras().getString("name");
+            family =getIntent().getExtras().getString("family");
+        }
 
         Log.i(tag,"onCreate");
         ButterKnife.bind(this);
@@ -51,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         //---
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -59,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         int width = getResources().getDisplayMetrics().widthPixels / 2;
         DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) navigationView.getLayoutParams();
         params.width = width + 20;
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(this);
+        userName =  headerLayout.findViewById(R.id.userText);
+        userName.setText(name+ " " +family);
 
     }
 
@@ -96,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void RequestOfSalavatClick(View v){
-        startActivity(new Intent(this , RequestForSalavatActivity.class));
+        Intent intent = new Intent(this , RequestForSalavatActivity.class);
+        intent.putExtra("name" ,name);
+        intent.putExtra("family" ,family);
     }
 
     public void ParticipateOfSalavatClick(View v){

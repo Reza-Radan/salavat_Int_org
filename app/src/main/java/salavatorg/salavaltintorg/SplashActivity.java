@@ -61,7 +61,10 @@ public class SplashActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                     mainIntent.putExtra("phone_num" ,userInfoBases.get(0).getPhone_num());
                     mainIntent.putExtra("user_id" ,userInfoBases.get(0).getId());
+                    mainIntent.putExtra("name" ,userInfoBases.get(0).getName());
+                    mainIntent.putExtra("family" ,userInfoBases.get(0).getFamily());
                     SplashActivity.this.startActivity(mainIntent);
+
                 }else {
                     Log.e(tag,"LoginActivity");
                     Intent mainIntent = new Intent(SplashActivity.this, LoginActivity.class);

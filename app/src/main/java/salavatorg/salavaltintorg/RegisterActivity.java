@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity{
                 genderString = "1";
             }
             google_id = sharedPreferences.getString(FirebaseIDService.token,"-1");
-            String url ="api/members/getMembersInfo";
+            String url ="api/members";
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
             parameters.put("name" ,nameString);
@@ -131,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity{
             parameters.put("push_id" ,google_id);
             parameters.put("flag" ,"0");
 
-            UserInfoBase userInfoBase = new UserInfoBase(userId,phoneNum,nameString,familyString,
+            UserInfoBase userInfoBase = new UserInfoBase("-1",phoneNum,nameString,familyString,
                     emailString,genderString,google_id);
 
             db = Room.databaseBuilder(RegisterActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
@@ -195,8 +195,13 @@ public class RegisterActivity extends AppCompatActivity{
                     try {
                         if (jsonObject.getInt("result") == 1) {
                             Log.i(Tag,"db: "+db);
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            userInfoBase.setId(data.getInt("id"));
                             db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
                             return  true;
+                        }else if(jsonObject.getInt("result") == -1){
+                            snackerShow(jsonObject.getString("message"));
+                            return false;
                         }else
                             return false;
 
@@ -204,10 +209,11 @@ public class RegisterActivity extends AppCompatActivity{
                         e.printStackTrace();
                         return false;
                     }
-                } else
+                }else
                     return false;
             }else
                 return false;
+
         }
 
         @Override
@@ -223,7 +229,7 @@ public class RegisterActivity extends AppCompatActivity{
             }else {
                 Loading.setVisibility(View.GONE);
                 registerBtn.setVisibility(View.VISIBLE);
-                snackerShow(getString(R.string.internet_connection_dont_right));
+//                snackerShow(getString(R.string.internet_connection_dont_right));
             }
         }
     }

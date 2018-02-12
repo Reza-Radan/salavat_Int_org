@@ -557,6 +557,7 @@
     </string-array>
     <string name="description">Description</string>
     <string name="niat">Niat:</string>
+    <string name="problem_with_server_Side">Problem in server side</string>
 
 
 </resources>

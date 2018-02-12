@@ -19,6 +19,7 @@ import android.widget.EditText;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
@@ -79,7 +80,7 @@ public class PasswordActivity extends AppCompatActivity{
         String passwordString = password.getText().toString();
         if(passwordString != null && !passwordString.isEmpty() &&
                 passwordString.length() >1){
-            String url ="http://www.feel-fresh.com/getCompanyItem.php";
+            String url ="api/members/checkPassword";
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
             parameters.put("pass" ,passwordString);
@@ -116,7 +117,7 @@ public class PasswordActivity extends AppCompatActivity{
 
             boolean isconnected = false;
             try {
-                URL url = new URL(this.url);
+                URL url = new URL("https://www.google.com/");
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.connect();
                 Log.i(Tag,"responsecode : "+http.getResponseCode());
@@ -139,24 +140,33 @@ public class PasswordActivity extends AppCompatActivity{
 
             Log.i(Tag,"json: " +jsonObject);
             if(jsonObject != null && jsonObject.has("result")){
-                finish();
-                Intent intent = new Intent(PasswordActivity.this , MainActivity.class);
-                startActivity(intent);
+                try {
+                    int result = jsonObject.getInt("result");
+
+                if(result ==-1){
+                    snackerShow(jsonObject.getString("message"));
+                    Loading.setVisibility(View.GONE);
+                    btnPass.setVisibility(View.VISIBLE);
+                }else if(result ==1) {
+                    finish();
+                    Intent intent = new Intent(PasswordActivity.this, MainActivity.class);
+//                    intent.putExtra("name" ,userInfoBases.get(0).getName());
+//                    intent.putExtra("family" ,userInfoBases.get(0).getFamily());
+                    startActivity(intent);
+                }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Loading.setVisibility(View.GONE);
+                    btnPass.setVisibility(View.VISIBLE);
+                    password.setError(getString(R.string.problem_with_server_Side));
+                }
 
             }else {
                 Loading.setVisibility(View.GONE);
                 btnPass.setVisibility(View.VISIBLE);
                 password.setError(getString(R.string.wrong_password));
-//                snackerShow(getString(R.string.internet_connection_dont_right));
 
             }
-            /**
-             * that is test
-             */
-            Intent intent = new Intent(PasswordActivity.this ,MainActivity.class);
-            parameters.put("phoneNumber" ,phoneNum);
-            startActivity(intent);
-
         }
     }
 
