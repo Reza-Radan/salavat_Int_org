@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this , RequestForSalavatActivity.class);
         intent.putExtra("name" ,name);
         intent.putExtra("family" ,family);
+        startActivity(intent);
     }
 
     public void ParticipateOfSalavatClick(View v){

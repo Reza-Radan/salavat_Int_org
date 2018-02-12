@@ -54,7 +54,7 @@
             android:id="@+id/spinner_niat"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:enabled="false"
+            android:enabled="true"
             android:layout_weight="0.9"
             />
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             app:indicatorName="BallSpinFadeLoaderIndicator"
-            app:indicatorColor="@color/colorAccent"
+            app:indicatorColor="@color/red"
             android:layout_gravity="center" />
 
     </LinearLayout>

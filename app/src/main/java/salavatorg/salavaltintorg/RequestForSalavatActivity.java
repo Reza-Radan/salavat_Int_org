@@ -60,9 +60,12 @@ public class RequestForSalavatActivity extends AppCompatActivity {
         setContentView(R.layout.request_for_salavat);
         setTitle(getString(R.string.request_for_salavat));
 
+        ButterKnife.bind(this);
         if(getIntent().getExtras()!=null){
+
             name = getIntent().getExtras().getString("name");
             family = getIntent().getExtras().getString("family");
+            Log.e(Tag,"getIntent().getExtras(): " +name + " family: " +family);
             nameEditText.setText(name);
             familyEditText.setText(family);
         }
@@ -124,6 +127,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
                         if (jsonObject.getInt("result") == 1) {
 //                            Log.i(Tag,"db: "+db);
                             JSONObject data = jsonObject.getJSONObject("data");
+
 //                            userInfoBase.setId(data.getInt("id"));
 //                            db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
                             return  true;
@@ -152,6 +156,8 @@ public class RequestForSalavatActivity extends AppCompatActivity {
             Log.i(Tag,"json: " +jsonObject);
             if(hasdata){
 //                finish();
+                spinner.setItems(getResources().getStringArray(R.array.educational));
+
                 niatLoading.setVisibility(View.GONE);
                 spinner.setEnabled(true);
 //                Toast.makeText(getApplicationContext() ,

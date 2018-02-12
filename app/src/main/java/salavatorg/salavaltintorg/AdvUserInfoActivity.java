@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -17,6 +18,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +30,8 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -43,7 +47,7 @@ import static salavatorg.salavaltintorg.R.id.coordinatorLayout;
  * Created by masoomeh on 12/14/17.
  */
 
-public class AdvUserInfoActivity extends AppCompatActivity {
+public class AdvUserInfoActivity extends AppCompatActivity   implements DatePickerDialog.OnDateSetListener{
 
     @BindView(R.id.input_occupation)
     EditText occupation;
@@ -87,6 +91,7 @@ public class AdvUserInfoActivity extends AppCompatActivity {
     String Tag= "AdvUserInfoActivity";
     private String phoneNum = "";
     private String userId= "";
+    private String dateString;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,6 +140,19 @@ public class AdvUserInfoActivity extends AppCompatActivity {
             }
         });
 
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(AdvUserInfoActivity.this,AdvUserInfoActivity.this,
+                        year, month, day);
+                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                dialog.show();
+            }
+        });
 
     }
 
@@ -217,6 +235,12 @@ public class AdvUserInfoActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        dateString = year+ "/" + month +"/"+dayOfMonth;
+        birthday.setText(dateString);
     }
 
     public class sendUserDataToServer extends AsyncTask<Void,Void,JSONObject> {
