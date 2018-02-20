@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity{
                 genderString = "1";
             }
             google_id = sharedPreferences.getString(FirebaseIDService.token,"-1");
-            String url ="api/members";
+            String url ="api/members/create";
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
             parameters.put("name" ,nameString);
@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity{
             parameters.put("email" ,emailString);
             parameters.put("gender" ,genderString);
             parameters.put("push_id" ,google_id);
-            parameters.put("flag" ,"0");
+            parameters.put("flag" ,"android");
 
             UserInfoBase userInfoBase = new UserInfoBase("-1",phoneNum,nameString,familyString,
                     emailString,genderString,google_id);
@@ -193,13 +193,14 @@ public class RegisterActivity extends AppCompatActivity{
                 Log.i(Tag, "json: " + jsonObject);
                 if (jsonObject != null && jsonObject.has("result")) {
                     try {
-                        if (jsonObject.getInt("result") == 1) {
+                        if (jsonObject.getString("result").equalsIgnoreCase("success")) {
                             Log.i(Tag,"db: "+db);
                             JSONObject data = jsonObject.getJSONObject("data");
                             userInfoBase.setId(data.getInt("id"));
-                            db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+                           long datadb =   db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+                            Log.e(Tag,"dataDb: " +datadb);
                             return  true;
-                        }else if(jsonObject.getInt("result") == -1){
+                        }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
                             snackerShow(jsonObject.getString("message"));
                             return false;
                         }else
@@ -224,6 +225,8 @@ public class RegisterActivity extends AppCompatActivity{
                 finish();
                 Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
                 intent.putExtra("phone_num",phoneNum);
+                intent.putExtra("name",name.getText().toString());
+                intent.putExtra("family",family.getText().toString());
                 startActivity(intent);
 
             }else {

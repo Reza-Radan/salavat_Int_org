@@ -14,6 +14,11 @@ public class Niat {
     int id;
     String des_fa , des_en ,des_ae;
 
+    public Niat(int id, String des_fa) {
+        this.id = id;
+        this.des_fa = des_fa;
+    }
+
     public int getId() {
         return id;
     }

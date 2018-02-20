@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     static String language ="lan";
     List<String> prePhone = new ArrayList<>();
     private SharedPreferences.Editor editor;
+    private AppCreatorDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -145,7 +146,8 @@ public class LoginActivity extends AppCompatActivity {
                         //send number to server and return data
                         String url ="api/members/getMemberInfo/";
                         Map<String, String> parameters = new HashMap<>();
-                        parameters.put("phone" ,phoneNumber);
+                        parameters.put("phone" ,"+"+prePhone.substring(0,prePhone.indexOf(","))+phoneNumber);
+                        db = Room.databaseBuilder(LoginActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
                         new sendUserDataToServer(url,parameters).execute();
 
                     }else{
@@ -191,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public class sendUserDataToServer extends AsyncTask<Void,Void,JSONObject> {
+    public class sendUserDataToServer extends AsyncTask<Void,Void,Boolean> {
 
 
         JSONObject jsonObject;
@@ -211,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected JSONObject doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params) {
 
             boolean isconnected = false;
             try {
@@ -227,51 +229,81 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (isconnected)
-                return jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
-            else
-                return null;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
-
+                jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
             if(jsonObject != null && jsonObject.has("result")){
                 try {
-                    if(jsonObject.getInt("result")==1) {
-                        JSONObject object = jsonObject.getJSONObject("data");
-                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("existence").toString());
+                    if(jsonObject.has("result")) {
+//                        JSONObject object = jsonObject.getJSONObject("data");
+//                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("existence").toString());
 
-                        if( object.getInt("existence")==0){
-                            finish();
-                            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                            intent.putExtra("phone_num", parameters.get("phone"));
-                            startActivity(intent);
-                        }else if ( object.getInt("existence")==1){
-                            finish();
-                            Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
-                            intent.putExtra("phone_num", parameters.get("phone"));
-//                            intent.putExtra("userId", object.get("insert_id").toString());
-                            startActivity(intent);
-                        }else {
-                            Loading.setVisibility(View.GONE);
-                            next.setVisibility(View.VISIBLE);
-                            snackerShow(getString(R.string.internet_connection_dont_right));
-                        }
+                        if( jsonObject.getString("result").equalsIgnoreCase("success"))
+                            if(  jsonObject.has("existence") &&  jsonObject.getString("existence").equalsIgnoreCase("0")){
+                                finish();
+                                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                                intent.putExtra("phone_num", parameters.get("phone"));
+                                startActivity(intent);
+                                return true;
+                            }else if (jsonObject.has("existence") &&  jsonObject.getString("existence").equalsIgnoreCase("1")){
+
+                                if (jsonObject.has("data")){
+                                    JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
+                                    Log.e(Tag,"data: " +data);
+
+                                    UserInfoBase userInfoBase = new UserInfoBase();
+                                    userInfoBase.setFamily(data.getString("family"));
+                                    userInfoBase.setName(data.getString("name"));
+                                    userInfoBase.setId( Integer.parseInt(data.getString("id")));
+                                    userInfoBase.setPhone_num(parameters.get("phone"));
+                                    userInfoBase.setGender(data.getString("gender"));
+                                    userInfoBase.setEmail(data.getString("email"));
+                                    long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+                                    Log.e(Tag,"dataDb: " +datadb);
+                                    finish();
+                                    Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+                                    intent.putExtra("phone_num", parameters.get("phone"));
+                                    intent.putExtra("name", data.getString("name"));
+                                    intent.putExtra("family", data.getString("family"));
+                                    startActivity(intent);
+                                    return true;
+                                }else
+                                    return false;
+
+                            }else {
+                                return false;
+                            }
 
                     }
                 } catch (JSONException e) {
+                    Log.e(Tag,"error: "+ e.toString());
                     e.printStackTrace();
-                    Loading.setVisibility(View.GONE);
-                    next.setVisibility(View.VISIBLE);
-                    snackerShow(getString(R.string.internet_connection_dont_right));
+                   return false;
 
                 }
             }else {
+                return false;
+            }
+
+            return false;
+           /* else
+                return false;*/
+        }
+
+        @Override
+        protected void onPostExecute(Boolean data) {
+            super.onPostExecute(data);
+            if (!data){
                 Loading.setVisibility(View.GONE);
                 next.setVisibility(View.VISIBLE);
                 snackerShow(getString(R.string.internet_connection_dont_right));
+                /**
+                 * sample
+                 */
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("phone_num", parameters.get("phone"));
+                //                            intent.putExtra("userId", object.get("insert_id").toString());
+                startActivity(intent);
             }
+
         }
     }
 

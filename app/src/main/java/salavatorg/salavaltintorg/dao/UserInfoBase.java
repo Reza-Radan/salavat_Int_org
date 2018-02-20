@@ -11,7 +11,8 @@ public class UserInfoBase {
 
     @PrimaryKey
     int id;
-    String name ,family , gender , phone_num ,google_id ,email;
+    String name ,family , gender , phone_num ,google_id ,email,password;
+
 
     public UserInfoBase() {
     }
@@ -73,4 +74,21 @@ public class UserInfoBase {
     public void setGoogle_id(String google_id) {
         this.google_id = google_id;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

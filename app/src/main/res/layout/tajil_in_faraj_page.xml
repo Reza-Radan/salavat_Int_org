@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android.support.design="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/tools"
-    android:layout_margin="3dp"
-    xmlns:android.support.design="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_salavat_number"
@@ -29,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="15dp">
         <Button
             android:id="@+id/btnConfirm"
@@ -41,10 +45,10 @@
             android:textColor="@color/white" />
 
         <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/avloadingIndicatorViewResult"
+            android:id="@+id/avloadingIndicatorViewResultTa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:indicatorName="BallSpinFadeLoaderIndicator"
             app:indicatorColor="@color/colorAccent"
             android:layout_gravity="center" />
@@ -61,3 +65,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

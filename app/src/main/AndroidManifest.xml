@@ -28,6 +28,13 @@
             android:theme="@style/dialogThem"/>
         <activity android:name=".RequestForSalavatActivity"
             android:theme="@style/dialogThem"/>
+        <activity android:name=".NotificationActivity" />
+        <activity
+            android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label=""
+            android:theme="@style/Theme.ImageGallery"
+             />
 
 
         <service android:name=".pushnotification.FirebaseIDService">

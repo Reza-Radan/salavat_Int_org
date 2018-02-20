@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -18,10 +20,13 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import salavatorg.salavaltintorg.dao.JsonParser;
 
 /**
@@ -30,12 +35,15 @@ import salavatorg.salavaltintorg.dao.JsonParser;
 
 public class TajilInFarajActivity extends AppCompatActivity {
 
-    @BindView(R.id.avloadingIndicatorViewResult)
+    @BindView(R.id.avloadingIndicatorViewResultTa)
     AVLoadingIndicatorView Loading;
+
     @BindView(R.id.btnConfirm)
     Button btnConfirm;
     @BindView(R.id.btnCancel)
     Button btnCancel;
+    @BindView(R.id.input_salavat_number)
+    EditText counter;
 
     String Tag ="TajilInFarajActivity";
 
@@ -45,8 +53,39 @@ public class TajilInFarajActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
         setContentView(R.layout.tajil_in_faraj_page);
+        ButterKnife.bind(this);
         setTitle(getString(R.string.hurry_faraj));
     }
+
+
+    @OnClick(R.id.btnConfirm)
+    public void confirm(){
+        String counterStr = counter.getText().toString();
+        Map<String, String> parameters = new HashMap<>();
+        if (counterStr.isEmpty()){
+            counter.setError(getString(R.string.error_empty_edittext));
+        }else if (!isNumeric(counterStr)){
+            counter.setError(getString(R.string.error_insert_correct_edittext));
+        }else {
+            parameters.put("counter" ,counterStr);
+            new sendUserDataToServer("api/tajil", parameters).execute();
+        }
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        for (char c : str.toCharArray())
+        {
+            if (!Character.isDigit(c)) return false;
+        }
+        return true;
+    }
+
+    @OnClick(R.id.btnCancel)
+    public void cancel(){
+        finish();
+    }
+
 
     public class sendUserDataToServer extends AsyncTask<Void,Void,JSONObject> {
 
@@ -96,15 +135,17 @@ public class TajilInFarajActivity extends AppCompatActivity {
 
             if(jsonObject != null && jsonObject.has("result")){
                 try {
-                    if(jsonObject.getInt("result")==1) {
-                        JSONObject object = jsonObject.getJSONObject("data");
-                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
+                    if(jsonObject.getString("result").equalsIgnoreCase("success")) {
+//                        JSONObject object = jsonObject.getJSONObject("data");
+//                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
 
                         finish();
 //                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
 //                        intent.putExtra("phone_num", parameters.get("phone"));
 //                        intent.putExtra("userId", object.get("insert_id").toString());
 //                        startActivity(intent);
+                    }else if (jsonObject.getString("result").equalsIgnoreCase("fail")){
+                        Toast.makeText(TajilInFarajActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
