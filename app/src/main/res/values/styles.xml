@@ -13,4 +13,6 @@
         <item name="android:background">@drawable/background_button</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
