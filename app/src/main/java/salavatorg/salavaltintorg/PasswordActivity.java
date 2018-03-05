@@ -1,6 +1,7 @@
 package salavatorg.salavaltintorg;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -16,9 +17,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
@@ -30,7 +34,11 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.JsonParser;
+import salavatorg.salavaltintorg.dao.UserInfoBase;
+
+import static android.R.attr.id;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -48,12 +56,15 @@ public class PasswordActivity extends AppCompatActivity{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    private String phoneNum;
+    private String phoneNum ,name ,family;
 
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
-    String Tag = "PasswordActivity";
+    @BindView(R.id.txtvPhpneNumPass)
+    TextView phoneNumTextView;
+    String Tag = "PasswordActivity", passwordString ;
+    private AppCreatorDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,18 +82,22 @@ public class PasswordActivity extends AppCompatActivity{
 
         if(getIntent().getExtras()!= null){
             phoneNum = getIntent().getExtras().getString("phone_num");
+            name = getIntent().getExtras().getString("name");
+            family = getIntent().getExtras().getString("family");
+            phoneNumTextView.setText(phoneNum);
         }
     }
 
     @OnClick(R.id.btncheckPass)
     public void checkPass(){
-        String passwordString = password.getText().toString();
+         passwordString = password.getText().toString();
         if(passwordString != null && !passwordString.isEmpty() &&
                 passwordString.length() >1){
-            String url ="http://www.feel-fresh.com/getCompanyItem.php";
+            String url ="api/members/checkUserPass";
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
-            parameters.put("pass" ,passwordString);
+            parameters.put("password" ,passwordString);
+            db = Room.databaseBuilder(PasswordActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
             new sendUserDataToServer(url,parameters).execute();
 //            Intent intent = new Intent(PasswordActivity.this , MainActivity.class);
 //            startActivity(intent);
@@ -94,7 +109,7 @@ public class PasswordActivity extends AppCompatActivity{
 
 
 
-    public class sendUserDataToServer extends AsyncTask<Void,Void,JSONObject> {
+    public class sendUserDataToServer extends AsyncTask<Void,Void,Boolean> {
         JSONObject jsonObject;
         Map<String, String> parameters;
         String url;
@@ -112,11 +127,11 @@ public class PasswordActivity extends AppCompatActivity{
         }
 
         @Override
-        protected JSONObject doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params) {
 
             boolean isconnected = false;
             try {
-                URL url = new URL(this.url);
+                URL url = new URL("https://www.google.com/");
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.connect();
                 Log.i(Tag,"responsecode : "+http.getResponseCode());
@@ -127,36 +142,58 @@ public class PasswordActivity extends AppCompatActivity{
             }catch (Exception e){
             }
 
-            if (isconnected)
-                return jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
+            if (isconnected) {
+                jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
+                Log.i(Tag, "json: " + jsonObject);
+                if (jsonObject != null && jsonObject.has("result")) {
+                    try {
+                        String result = jsonObject.getString("result");
+                        if (result.equalsIgnoreCase("success")) {
+                            JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
+                            finish();
+                            Intent intent = new Intent(PasswordActivity.this, MainActivity.class);
+                            intent.putExtra("name" ,name);
+                            intent.putExtra("family" ,family);
+                            intent.putExtra("user_id" ,data.getString("id"));
+//                            UserInfoBase userInfoBase = new UserInfoBase();
+//                            userInfoBase.setPassword(passwordString);
+//                            userInfoBase.setId(Integer.parseInt(data.getString("id")));
+                            int dataa = db.userInfoBaseDao().updatePassword(Integer.parseInt(data.getString("id")) ,passwordString);
+                            Log.e(Tag,"dataaa: " +dataa);
+                            startActivity(intent);
+                            return true;
+
+                        } else if (result.equalsIgnoreCase("fail")) {
+                            snackerShow(jsonObject.getString("message"));
+//                            password.setError(getString(R.string.problem_with_server_Side));
+                            return false;
+                        } else {
+                            return false;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }else
+                    return false;
+            }
             else
-                return null;
+                return false;
         }
 
-        @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
 
-            Log.i(Tag,"json: " +jsonObject);
-            if(jsonObject != null && jsonObject.has("result")){
-                finish();
-                Intent intent = new Intent(PasswordActivity.this , MainActivity.class);
-                startActivity(intent);
+        @Override
+        protected void onPostExecute(Boolean data) {
+            super.onPostExecute(data);
+
+                if(data){
 
             }else {
                 Loading.setVisibility(View.GONE);
                 btnPass.setVisibility(View.VISIBLE);
                 password.setError(getString(R.string.wrong_password));
-//                snackerShow(getString(R.string.internet_connection_dont_right));
 
             }
-            /**
-             * that is test
-             */
-            Intent intent = new Intent(PasswordActivity.this ,MainActivity.class);
-            parameters.put("phoneNumber" ,phoneNum);
-            startActivity(intent);
-
         }
     }
 
@@ -184,6 +221,7 @@ public class PasswordActivity extends AppCompatActivity{
 
     @Override
     public boolean onSupportNavigateUp() {
+        startActivity(new Intent(PasswordActivity.this ,LoginActivity.class));
         finish();
         return super.onSupportNavigateUp();
     }

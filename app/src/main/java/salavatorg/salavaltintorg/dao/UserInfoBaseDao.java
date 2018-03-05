@@ -21,7 +21,7 @@ public interface UserInfoBaseDao {
     void insertMultipleListRecord(List<UserInfoBase> userInfoBases);
 
     @Insert
-    void insertOnlySingleRecord(UserInfoBase userInfoBase);
+    long insertOnlySingleRecord(UserInfoBase userInfoBase);
 
     @Query("SELECT * FROM UserInfoBase")
     List<UserInfoBase> fetchAllData();
@@ -30,9 +30,12 @@ public interface UserInfoBaseDao {
     UserInfoBase getSingleRecord(int college_id);
 
     @Update
-    void updateRecord(UserInfoBase userInfoBase);
+    int updateRecord(UserInfoBase userInfoBase);
 
     @Delete
     void deleteRecord(UserInfoBase userInfoBase);
+
+    @Query("UPDATE UserInfoBase SET password = :password  WHERE id = :id ")
+    int updatePassword(int id ,String password);
 
 }

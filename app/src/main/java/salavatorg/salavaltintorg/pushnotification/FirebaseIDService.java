@@ -23,7 +23,7 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
         SharedPreferences sharedPreferences = getSharedPreferences(googleId,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(token,refreshedToken);
-
+        edit.commit();
         // TODO: Implement this method to send any registration to your app's servers.
         sendRegistrationToServer(refreshedToken);
     }

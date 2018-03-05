@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     private AppCreatorDatabase db;
+    String tag = "SplashActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,12 +40,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                insertUser();
+                getDataUser();
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
 
-    public void insertUser() {
+    public void getDataUser() {
         new AsyncTask<Void, Void, List<UserInfoBase>>() {
             @Override
             protected List<UserInfoBase> doInBackground(Void... voids) {
@@ -55,12 +56,32 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<UserInfoBase> userInfoBases) {
                 super.onPostExecute(userInfoBases);
+                    Log.e(tag,"MainActivity:size: " + userInfoBases.size());
+//                Log.e("data" ,"number: "+"phone_num"+ userInfoBases.get(0).getName());
                 if(userInfoBases.size()==1){
-                    Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
-                    mainIntent.putExtra("phone_num" ,userInfoBases.get(0).getPhone_num());
-                    mainIntent.putExtra("phone_num" ,userInfoBases.get(0).getId());
-                    SplashActivity.this.startActivity(mainIntent);
+                    if(userInfoBases.get(0).getPassword() != null && !userInfoBases.get(0).getPassword().isEmpty() ){
+                        Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+                        Log.e("data" ,"number: "+"phone_num"+ userInfoBases.get(0).getPhone_num()
+                                +"name: "+ userInfoBases.get(0).getName() +  userInfoBases.get(0).getFamily()
+                        + userInfoBases.get(0).getId());
+                        mainIntent.putExtra("phone_num", userInfoBases.get(0).getPhone_num());
+                        mainIntent.putExtra("user_id", String.valueOf(userInfoBases.get(0).getId()));
+                        mainIntent.putExtra("name", userInfoBases.get(0).getName());
+                        mainIntent.putExtra("family", userInfoBases.get(0).getFamily());
+                        SplashActivity.this.startActivity(mainIntent);
+                    }else {
+                        Intent mainIntent = new Intent(SplashActivity.this, PasswordActivity.class);
+                        Log.e("data" ,"number: "+"phone_num"+ userInfoBases.get(0).getPhone_num()
+                        +"name: "+ userInfoBases.get(0).getName());
+                        mainIntent.putExtra("phone_num", userInfoBases.get(0).getPhone_num());
+                        mainIntent.putExtra("user_id", userInfoBases.get(0).getId());
+                        mainIntent.putExtra("name", userInfoBases.get(0).getName());
+                        mainIntent.putExtra("family", userInfoBases.get(0).getFamily());
+                        SplashActivity.this.startActivity(mainIntent);
+                    }
+
                 }else {
+                    Log.e(tag,"LoginActivity");
                     Intent mainIntent = new Intent(SplashActivity.this, LoginActivity.class);
                     SplashActivity.this.startActivity(mainIntent);
                 }
