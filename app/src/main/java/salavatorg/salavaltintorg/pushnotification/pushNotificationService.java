@@ -18,6 +18,8 @@ public class pushNotificationService extends FirebaseMessagingService {
         // If the application is in the foreground handle both data and notification messages here.
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated.
+        NotificationsClass notificationsClass = new NotificationsClass();
+        notificationsClass.NotificationShow(getApplicationContext() ,"aaaaa" ,"deeeesx");
         Toast.makeText(getApplicationContext() ,"notification",Toast.LENGTH_LONG).show();
 //        Log.d(TAG, "From: " + remoteMessage.getFrom());
 //        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());

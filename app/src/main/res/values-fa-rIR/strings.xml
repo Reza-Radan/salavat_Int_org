@@ -565,6 +565,7 @@
     <string name="nummber_salavat">تعداد صلوات</string>
     <string name="niat">نیت:‌ </string>
     <string name="problem_with_server_Side">Problem in server side</string>
+    <string name="siogn_out">Sign out</string>
 
 
     <string-array name="image_gallery">

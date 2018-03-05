@@ -326,7 +326,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.archive_menu:
 
                 Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
-                String[] images = getResources().getStringArray(R.array.image_gallery);
+
+                String[] images = getResources().getStringArray(R.array.unsplash_images);
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
                 bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");

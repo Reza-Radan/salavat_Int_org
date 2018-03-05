@@ -33,8 +33,7 @@
             android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label=""
-            android:theme="@style/Theme.ImageGallery"
-             />
+            android:theme="@style/Theme.ImageGallery" />
 
 
         <service android:name=".pushnotification.FirebaseIDService">
