@@ -41,6 +41,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import salavatorg.salavaltintorg.dao.RequestForSalavat;
+import salavatorg.salavaltintorg.pushnotification.pushNotificationService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 , ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScreenImageLoader{
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setContentView(R.layout.salavat_page);
 
+//        new pushNotificationService().CallNotification("hi" ,"bye");
         // optionally set background color using Palette for full screen images
         paletteColorType = PaletteColorType.VIBRANT;
         if(getIntent().getExtras()!=null){
