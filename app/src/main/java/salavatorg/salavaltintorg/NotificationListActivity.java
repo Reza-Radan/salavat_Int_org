@@ -1,7 +1,6 @@
 package salavatorg.salavaltintorg;
 
 import android.arch.persistence.room.Room;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,21 +11,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import com.etiennelawlor.imagegallery.library.adapters.ImageGalleryAdapter;
-
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.Notification;
-import salavatorg.salavaltintorg.dao.UserInfoBase;
 
 /**
  * Created by masoomeh on 2/20/18.
  */
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationListActivity extends AppCompatActivity {
 
     private AppCreatorDatabase db;
     private List<Notification> notifications;
@@ -39,7 +35,7 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notification_page);
+        setContentView(R.layout.notification_list_page);
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -49,7 +45,7 @@ public class NotificationActivity extends AppCompatActivity {
 
 
         db = Room.databaseBuilder(
-                NotificationActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+                NotificationListActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
         getNotificationData();
 
     }
@@ -67,9 +63,9 @@ public class NotificationActivity extends AppCompatActivity {
             protected void onPostExecute(List<Notification> notifications) {
 
                 recyclerNotification.setHasFixedSize(true);
-                recyclerNotification.setLayoutManager(new LinearLayoutManager(NotificationActivity.this));
+                recyclerNotification.setLayoutManager(new LinearLayoutManager(NotificationListActivity.this));
                 recyclerNotification.setItemAnimator(new DefaultItemAnimator());
-                recyclerNotification.setAdapter(new NotificationAdaptor(NotificationActivity.this ,notifications));
+                recyclerNotification.setAdapter(new NotificationAdaptor(NotificationListActivity.this ,notifications));
             }
         }.execute();
     }

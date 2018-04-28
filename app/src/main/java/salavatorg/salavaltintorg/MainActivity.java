@@ -1,15 +1,12 @@
 package salavatorg.salavaltintorg;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,20 +15,20 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
 
+import com.etiennelawlor.imagegallery.library.ImageGalleryFragment;
+import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity;
 import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity;
 import com.etiennelawlor.imagegallery.library.adapters.FullScreenImageGalleryAdapter;
 import com.etiennelawlor.imagegallery.library.adapters.ImageGalleryAdapter;
+import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,11 +37,9 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import salavatorg.salavaltintorg.dao.RequestForSalavat;
-import salavatorg.salavaltintorg.pushnotification.pushNotificationService;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-, ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScreenImageLoader{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener ,
+ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScreenImageLoader {
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
@@ -53,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String tag = "MainActivity";
     private String name,family ,userId;
 
-    // region Member Variables
     private PaletteColorType paletteColorType;
     // endregion
     @Override
@@ -65,9 +59,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setContentView(R.layout.salavat_page);
 
+        ImageGalleryActivity.setImageThumbnailLoader(this);
+        ImageGalleryFragment.setImageThumbnailLoader(this);
+        FullScreenImageGalleryActivity.setFullScreenImageLoader(this);
+
+
+
 //        new pushNotificationService().CallNotification("hi" ,"bye");
         // optionally set background color using Palette for full screen images
-        paletteColorType = PaletteColorType.VIBRANT;
         if(getIntent().getExtras()!=null){
             name =getIntent().getExtras().getString("name");
             family =getIntent().getExtras().getString("family");
@@ -109,14 +108,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void setLanguages(String lan){
+
+        String languageToLoad  = lan; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+    }
+
+//    private void snackerShow(String textMsg) {
+//        Snackbar snack = Snackbar.
+//                make(coordinatorLayout, textMsg, Snackbar.LENGTH_LONG);
+//        View view = snack.getView();CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)view.getLayoutParams();
+//        params.gravity = Gravity.TOP;
+//        view.setLayoutParams(params);
+//        snack.show();
+//    }
 
 
+    public void RequestOfSalavatClick(View v){
+        Intent intent = new Intent(this , RequestForSalavatActivity.class);
+        intent.putExtra("name" ,name);
+        intent.putExtra("family" ,family);
+        startActivity(intent);
+    }
 
+    public void ParticipateOfSalavatClick(View v){
+        Intent intent = new Intent(this , AdvUserInfoActivity.class);
+        intent.putExtra("user_id",userId);
+        startActivity(intent);
+    }
+
+    public void TajliClick(View v){
+        startActivity(new Intent(this , TajilInFarajActivity.class));
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.archive_menu:
+
+                Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
+
+                String[] images = getResources().getStringArray(R.array.unsplash_images);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
+                bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+            break;
+
+        case R.id.notification_menu:
+
+                Intent intentno = new Intent(MainActivity.this, NotificationListActivity.class);
+                startActivity(intentno);
+                break;
+        }
+        return false;
+    }
     // region ImageGalleryAdapter.ImageThumbnailLoader Methods
     @Override
     public void loadImageThumbnail(final ImageView iv, String imageUrl, int dimension) {
         if (!TextUtils.isEmpty(imageUrl)) {
-
             Picasso.with(iv.getContext())
                     .load(imageUrl)
                     .resize(dimension, dimension)
@@ -281,68 +339,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return bgColor;
     }
     // endregion
-
-
-    private void setLanguages(String lan){
-
-        String languageToLoad  = lan; // your language
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-
-    }
-
-//    private void snackerShow(String textMsg) {
-//        Snackbar snack = Snackbar.
-//                make(coordinatorLayout, textMsg, Snackbar.LENGTH_LONG);
-//        View view = snack.getView();CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)view.getLayoutParams();
-//        params.gravity = Gravity.TOP;
-//        view.setLayoutParams(params);
-//        snack.show();
-//    }
-
-
-    public void RequestOfSalavatClick(View v){
-        Intent intent = new Intent(this , RequestForSalavatActivity.class);
-        intent.putExtra("name" ,name);
-        intent.putExtra("family" ,family);
-        startActivity(intent);
-    }
-
-    public void ParticipateOfSalavatClick(View v){
-        Intent intent = new Intent(this , AdvUserInfoActivity.class);
-        intent.putExtra("user_id",userId);
-        startActivity(intent);
-    }
-
-    public void TajliClick(View v){
-        startActivity(new Intent(this , TajilInFarajActivity.class));
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.archive_menu:
-
-                Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
-                String[] images = getResources().getStringArray(R.array.image_gallery);
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
-                bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-            break;
-
-        case R.id.notification_menu:
-
-                Intent intentno = new Intent(MainActivity.this, NotificationActivity.class);
-                startActivity(intentno);
-                break;
-        }
-        return false;
-    }
 }

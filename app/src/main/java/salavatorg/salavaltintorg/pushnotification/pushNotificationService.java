@@ -4,12 +4,18 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.onesignal.NotificationExtenderService;
+import com.onesignal.OSNotificationReceivedResult;
+
+import org.json.JSONException;
 
 import salavatorg.salavaltintorg.MainActivity;
 import salavatorg.salavaltintorg.R;
@@ -18,35 +24,44 @@ import salavatorg.salavaltintorg.R;
 /**
  * Created by masoomeh on 1/20/18.
  */
-public class pushNotificationService extends FirebaseMessagingService {
-    private static final String TAG = "FCM Service";
+public class pushNotificationService  extends NotificationExtenderService {
+
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        // TODO: Handle FCM messages here.
-        // If the application is in the foreground handle both data and notification messages here.
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated.
-        Toast.makeText(getApplicationContext() ,"notification",Toast.LENGTH_LONG).show();
-        CallNotification("titleee" ,"desssc");
-//        Log.d(TAG, "From: " + remoteMessage.getFrom());
-//        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
-    }
+    protected boolean onNotificationProcessing(OSNotificationReceivedResult receivedResult) {
+        // Read properties from result.
 
-    public void CallNotification(String title , String body){
-        NotificationCompat.Builder builder =
-            new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.splash)
-                    .setContentTitle(title)
-                    .setContentText(body);
-
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+        // Returning true tells the OneSignal SDK you have processed the notification and not to display it's own.
+        Log.i("tag", "isAppInFocus : " + receivedResult.isAppInFocus + " restoring: " + receivedResult.restoring
+                + " payload: " + receivedResult.payload.toJSONObject() + " additional: " + receivedResult.payload.additionalData + " title: " + receivedResult.payload.title
+                + " body: " + receivedResult.payload.body);
+        NotificationsClass notificationsClass = new NotificationsClass();
+        try {
+            notificationsClass.NotificationShow(this, receivedResult.payload.title, receivedResult.payload.body,
+                    receivedResult.payload.additionalData.getString("header"),
+                    receivedResult.payload.additionalData.getString("body"),
+                    receivedResult.payload.additionalData.getString("footer"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
+
+//    public void CallNotification(String title , String body){
+//        NotificationCompat.Builder builder =
+//            new NotificationCompat.Builder(this)
+//                    .setSmallIcon(R.mipmap.splash)
+//                    .setContentTitle(title)
+//                    .setContentText(body);
+//
+//        Intent notificationIntent = new Intent(this, MainActivity.class);
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+//                PendingIntent.FLAG_UPDATE_CURRENT);
+//        builder.setContentIntent(contentIntent);
+//
+//        // Add as notification
+//        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        manager.notify(0, builder.build());
+//    }
+
 

@@ -8,16 +8,21 @@
            android:layout_width="50dp">
         <item
             android:id="@+id/groups_menu"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/participate"
             android:title="@string/list_of_add_in_group" />
         <item
             android:id="@+id/archive_menu"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/archive"
             android:title="@string/archive" />
         <item
             android:id="@+id/notification_menu"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/notif"
             android:title="@string/notification_list" />
+
+        <item
+            android:id="@+id/lan_menu"
+            android:icon="@mipmap/language"
+            android:title="@string/Select_language" />
 
     </group>
 
@@ -26,14 +31,19 @@
            android:checkableBehavior="none">
         <item
             android:id="@+id/aboutUs_menu"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/about"
             android:title="@string/about_us"
             />
 
         <item
             android:id="@+id/guide_menu"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/guide"
             android:title="@string/guide" />
+
+        <item
+            android:id="@+id/out_menu"
+            android:icon="@mipmap/sign_out"
+            android:title="@string/siogn_out" />
 
     </group>
 

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import salavatorg.salavaltintorg.dao.Notification;
 
 class NotificationAdaptor extends RecyclerView.Adapter<NotificationAdaptor.holder> {
     List<Notification> notifications;
-    public NotificationAdaptor(NotificationActivity notificationActivity, List<Notification> notifications) {
+    public NotificationAdaptor(NotificationListActivity notificationActivity, List<Notification> notifications) {
         this.notifications = notifications;
     }
 

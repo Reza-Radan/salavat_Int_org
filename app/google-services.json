@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "1571737782",
-    "firebase_url": "https://salavatintorg-6e5f0.firebaseio.com",
-    "project_id": "salavatintorg-6e5f0",
-    "storage_bucket": "salavatintorg-6e5f0.appspot.com"
+    "project_number": "762913906458",
+    "firebase_url": "https://boniadsalavat.firebaseio.com",
+    "project_id": "boniadsalavat",
+    "storage_bucket": "boniadsalavat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1571737782:android:527b09125fe7b0bc",
+        "mobilesdk_app_id": "1:762913906458:android:527b09125fe7b0bc",
         "android_client_info": {
           "package_name": "salavatorg.salavaltintorg"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1571737782-dsu6mu9po2jruv67cu7o8k4q7tum670q.apps.googleusercontent.com",
+          "client_id": "762913906458-jo3i0r7sq227tarrjcdq8u56sd5s04dm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "salavatorg.salavaltintorg",
-            "certificate_hash": "08774b57fe9407d96dea6a45ddf8c6000a3e4c63"
+            "certificate_hash": "a9e61c64b6f034ba53c6cf5a51fc8e5004279ded"
           }
         },
         {
-          "client_id": "1571737782-crakgs0t2fs8f365vk3vlpltt3t2bhd2.apps.googleusercontent.com",
+          "client_id": "762913906458-15on3cpfg8pg94apd98upf9to7lmqvi8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCZtCmU3XOToBxXZIc7yzChz3inI0OEtGc"
+          "current_key": "AIzaSyBL04v4VzsOTfx5rKcrCvL7lSUpupvhLQs"
         }
       ],
       "services": {
@@ -40,8 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1571737782-crakgs0t2fs8f365vk3vlpltt3t2bhd2.apps.googleusercontent.com",
+              "client_id": "762913906458-15on3cpfg8pg94apd98upf9to7lmqvi8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "762913906458-aju5gsocoi5h0o05c2vph1o2th3vocfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.boniansalavat.salavatapplication"
+              }
             }
           ]
         },
