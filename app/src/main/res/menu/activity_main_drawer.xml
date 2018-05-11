@@ -22,7 +22,8 @@
         <item
             android:id="@+id/lan_menu"
             android:icon="@mipmap/language"
-            android:title="@string/Select_language" />
+            android:title="@string/Select_language"
+            />
 
     </group>
 

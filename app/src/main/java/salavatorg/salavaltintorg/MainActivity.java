@@ -1,10 +1,12 @@
 package salavatorg.salavaltintorg;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -33,10 +35,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
+import salavatorg.salavaltintorg.dao.UserInfoBase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener ,
 ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScreenImageLoader {
@@ -50,6 +55,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
     private PaletteColorType paletteColorType;
     // endregion
+    AppCreatorDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +156,19 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.groups_menu:
+
+                Intent intentGRoup = new Intent(MainActivity.this, GroupListActivity.class);
+
+//                String[] images = getResources().getStringArray(R.array.unsplash_images);
+//                Bundle bundle = new Bundle();
+//                bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
+//                bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+//                intent.putExtras(bundle);
+
+                startActivity(intentGRoup);
+                break;
             case R.id.archive_menu:
 
                 Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
@@ -164,10 +183,35 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
             break;
 
         case R.id.notification_menu:
-
                 Intent intentno = new Intent(MainActivity.this, NotificationListActivity.class);
                 startActivity(intentno);
+        break;
+        case R.id.lan_menu:
+
+//            Intent intent = new Intent(MainActivity.this, NotificationListActivity.class);
+//            startActivity(intentno);
+        break;
+            case R.id.aboutUs_menu:
+
+            Intent intentAboutUs = new Intent(MainActivity.this, AboutUsActivity.class);
+            startActivity(intentAboutUs);
                 break;
+
+            case R.id.guide_menu:
+
+            Intent Guide = new Intent(MainActivity.this, GuideActivity.class);
+            startActivity(Guide);
+                break;
+
+            case R.id.out_menu:
+                db = Room.databaseBuilder(
+                        MainActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+                deleteAllUSers();
+                Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(login);
+                finish();
+                break;
+
         }
         return false;
     }
@@ -339,4 +383,19 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         return bgColor;
     }
     // endregion
+
+
+    public void deleteAllUSers() {
+        new AsyncTask<Void, Void, List<UserInfoBase>>() {
+            @Override
+            protected List<UserInfoBase> doInBackground(Void... voids) {
+              int data = db.userInfoBaseDao().deleteAllRecords();
+                Log.i(tag,"data: " +data);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(List<UserInfoBase> userInfoBases) {}
+        }.execute();
+    }
 }

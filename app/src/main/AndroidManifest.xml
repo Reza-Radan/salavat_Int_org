@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/salavat"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/salavat"
         android:name=".Application"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -30,12 +30,17 @@
         <activity android:name=".RequestForSalavatActivity"
             android:theme="@style/dialogThem"/>
         <activity android:name=".NotificationListActivity" />
+        <activity android:name=".GroupListActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".GuideActivity" />
+
 
         <activity android:name=".NotificationPageActivity"/>
         <activity
             android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label=""
+            android:theme="@style/Theme.ImageGallery"
             />
 
         <!--<service android:name=".pushnotification.FirebaseIDService">-->

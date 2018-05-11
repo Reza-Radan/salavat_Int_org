@@ -125,7 +125,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
                     android:layout_marginLeft="0dp"
                     android:layout_gravity="center"
                     android:textColor="@color/black"
@@ -134,6 +133,15 @@
                     android:gravity="center|left"
                     />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_marginLeft="0dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:gravity="center|left"
+                    />
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"

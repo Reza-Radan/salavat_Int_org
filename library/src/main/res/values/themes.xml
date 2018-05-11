@@ -3,14 +3,17 @@
 
     <!-- Base application theme. -->
     <style name="Base.Theme.ImageGallery" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/grey_white_1000</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="colorButtonNormal">@color/primary</item>
+      <!--  <item name="colorButtonNormal">@color/primary</item>
         <item name="colorControlActivated">@color/primary</item>
-        <item name="colorControlHighlight">@color/grey_500</item>
+        <item name="colorControlHighlight">@color/grey_500</item>-->
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:colorControlNormal">@color/primary_text</item>
+        <item name="android:navigationBarColor">@color/red_500</item>
+        <item name="android:titleTextColor">@color/yellow_500</item>
     </style>
 
     <style name="Theme.ImageGallery" parent="Base.Theme.ImageGallery" />

@@ -256,7 +256,12 @@ public class LoginActivity extends AppCompatActivity {
                                     userInfoBase.setPhone_num(parameters.get("phone"));
                                     userInfoBase.setGender(data.getString("gender"));
                                     userInfoBase.setEmail(data.getString("email"));
+//                                    long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+
                                     long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+                                    if (datadb == -1) {
+                                        db.userInfoBaseDao().updateRecord(userInfoBase);
+                                    }
                                     Log.e(Tag,"dataDb: " +datadb);
                                     finish();
                                     Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
@@ -295,14 +300,13 @@ public class LoginActivity extends AppCompatActivity {
                 Loading.setVisibility(View.GONE);
                 next.setVisibility(View.VISIBLE);
                 snackerShow(getString(R.string.internet_connection_dont_right));
-                /**
-                 * sample
-                 */
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                intent.putExtra("phone_num", parameters.get("phone"));
-                //                            intent.putExtra("userId", object.get("insert_id").toString());
-                startActivity(intent);
-            }
+                }
+//                else{
+//                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+//                intent.putExtra("phone_num", parameters.get("phone"));
+//                //                            intent.putExtra("userId", object.get("insert_id").toString());
+//                startActivity(intent);
+//            }
 
         }
     }
