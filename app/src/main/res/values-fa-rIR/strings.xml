@@ -566,6 +566,7 @@
     <string name="niat">نیت:‌ </string>
     <string name="problem_with_server_Side">Problem in server side</string>
     <string name="siogn_out">خروج</string>
+    <string name="send_password_again">پسورد دوباره ارسال شود!</string>
 
 
     <string-array name="image_gallery">

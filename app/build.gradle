@@ -96,12 +96,10 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:cardview-v7:26.+'
@@ -125,9 +123,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.amitshekhar.android:debug-db:1.0.3'
     compile 'com.onesignal:OneSignal:[3.8.3, 3.99.99]'
-
-
-
     compile project(path: ':library')
+    compile 'com.google.android.gms:play-services:11.8.0'
+    compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
 }
 apply plugin: 'com.google.gms.google-services'

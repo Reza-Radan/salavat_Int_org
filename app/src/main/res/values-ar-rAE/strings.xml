@@ -148,6 +148,8 @@
 
         </string-array>
 
+
+
         <string name="webSiteNotExist">وب سایتی یافت نشد</string>
         <string name="company_page">صفحه مجموعه</string>
 
@@ -566,6 +568,7 @@
     <string name="niat">Niat:</string>
     <string name="problem_with_server_Side">Problem in server side</string>
     <string name="siogn_out">Sign out</string>
+    <string name="send_password_again">send password again!</string>
 
     <string-array name="image_gallery">
         <item>https://images.unsplash.com/photo-1437422061949-f6efbde0a471?q=80&amp;fm=jpg&amp;s=e23055c9ba7686b8fe583fb8318a1f88</item>

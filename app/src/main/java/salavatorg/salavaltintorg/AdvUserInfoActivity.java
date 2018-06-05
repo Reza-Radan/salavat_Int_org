@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
@@ -55,7 +56,8 @@ import static salavatorg.salavaltintorg.R.id.spinnersalavatNum;
  * Created by masoomeh on 12/14/17.
  */
 
-public class AdvUserInfoActivity extends AppCompatActivity   implements DatePickerDialog.OnDateSetListener {
+public class AdvUserInfoActivity extends AppCompatActivity   implements DatePickerDialog.OnDateSetListener ,
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.input_occupation)
     EditText occupation;
@@ -96,19 +98,20 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
-    String Tag = "AdvUserInfoActivity";
+    String Tag = "AdvUserInfoActivity" ,birthdayStr;
     //    private String phoneNum = "";
     private String userId = "";
     private String dateString;
     private AppCreatorDatabase db;
     private UserInfoExtra userAdv;
     private  boolean isRegisterExtra;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language, "en"));
 
         setContentView(R.layout.user_info_adv);
@@ -155,14 +158,29 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(AdvUserInfoActivity.this, AdvUserInfoActivity.this,
-                        year, month, day);
-                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                dialog.show();
+
+                if(sharedPreferences.getString(LoginActivity.language ,"en").equalsIgnoreCase("fa")) {
+
+                    PersianCalendar persianCalendar = new PersianCalendar();
+                    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog =
+                            com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                            AdvUserInfoActivity.this,
+                            persianCalendar.getPersianYear(),
+                            persianCalendar.getPersianMonth(),
+                            persianCalendar.getPersianDay()
+                    );
+                    datePickerDialog.show(getFragmentManager(), "Datepickerdialog");
+
+                }else{
+                    final Calendar c = Calendar.getInstance();
+                    int year = c.get(Calendar.YEAR);
+                    int month = c.get(Calendar.MONTH);
+                    int day = c.get(Calendar.DAY_OF_MONTH);
+                    DatePickerDialog dialog = new DatePickerDialog(AdvUserInfoActivity.this, AdvUserInfoActivity.this,
+                            year, month, day);
+                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                    dialog.show();
+                }
             }
         });
 
@@ -225,7 +243,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
         } else {
 
 
-            String birthdayStr ,educationalStr ,countryStr ,salavatNum;
+            String educationalStr ,countryStr ,salavatNum;
             String url = "api/members/update";
             Map<String, String> parameters = new HashMap<>();
 //            parameters.put("phone",phone_number);
@@ -235,7 +253,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             parameters.put("city", cityString);
             parameters.put("education",educationalStr = educational.getText().toString());
             parameters.put("country", countryStr = country.getText().toString());
-            parameters.put("birthday",birthdayStr =  birthday.getText().toString());
+            parameters.put("birthday",birthdayStr );
             parameters.put("groupHead", String.valueOf(chkboxHeader.isChecked()));
             parameters.put("national_id", nationalIdString);
             parameters.put("salavat_counte", salavatNum = salavat_id.getText().toString());
@@ -270,6 +288,16 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         dateString = year + "/" + month + "/" + dayOfMonth;
+        birthdayStr = dateString ;
+        birthday.setText(dateString);
+    }
+
+    @Override
+    public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+        dateString = year + "/" + monthOfYear + "/" + dayOfMonth;
+        birthdayStr =  new JalaliCalendar().getGregorianDate(dateString).toString();
+        Log.e(Tag,"convert date:  " +birthdayStr);
         birthday.setText(dateString);
     }
 

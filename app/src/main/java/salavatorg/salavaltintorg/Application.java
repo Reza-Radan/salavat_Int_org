@@ -18,8 +18,8 @@ import java.io.IOException;
 public class Application extends android.app.Application {
 
     Context context;
-    static GoogleCloudMessaging gcm;
-    static String RegId="";
+    static GoogleCloudMessaging gcm ;
+    static String RegId="",Tag = "Application";
     String PROJECT_NUMBER = "964828230076";
     public static String googleId = "GOOGLEID";
     public static String token = "token";
@@ -47,22 +47,23 @@ public class Application extends android.app.Application {
                     RegId= gcm.register(PROJECT_NUMBER)+"@gmail.com" ;
 
                     String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-//                    Log.d(TAG, "Refreshed token: " + refreshedToken);
 
                     SharedPreferences sharedPreferences = getSharedPreferences(googleId,MODE_PRIVATE);
                     SharedPreferences.Editor edit = sharedPreferences.edit();
-                    edit.putString(token,refreshedToken);
+                    edit.putString(token,RegId);
                     edit.commit();
+                    Log.d(Tag, "Refreshed token: " + refreshedToken +"\n regID: "+ RegId
+                    + " \n share: " +sharedPreferences.getString(token,"-1"));
 
 //                        editor.putString("RegistrationID",RegId);
 //                        editor.commit();
 
 
                 } catch (IOException ex) {
-//                    Log.e(tag,"error: registerId: " +RegId);
+                    Log.e(Tag,"error: registerId: " +ex);
                 }
 
-//                Log.e(tag,"registerId: " +RegId);
+                Log.e(Tag,"registerId: " +RegId);
                 return RegId;
             }
             @Override

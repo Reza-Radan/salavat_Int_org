@@ -41,7 +41,6 @@ import butterknife.OnClick;
 import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.JsonParser;
 import salavatorg.salavaltintorg.dao.UserInfoBase;
-import salavatorg.salavaltintorg.pushnotification.FirebaseIDService;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -112,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity{
             Snackbar.
                     make(coordinatorLayout, getString(R.string.select_gender), Snackbar.LENGTH_LONG).show();
         }else{
-            SharedPreferences sharedPreferences = getSharedPreferences(FirebaseIDService.googleId ,MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(Application.googleId ,MODE_PRIVATE);
 
              if(rbfemale.isChecked()){
                 genderString = "0";
@@ -120,7 +119,8 @@ public class RegisterActivity extends AppCompatActivity{
             else if(rbmale.isChecked()){
                 genderString = "1";
             }
-            google_id = sharedPreferences.getString(FirebaseIDService.token,"-1");
+            google_id = sharedPreferences.getString(Application.token,"-1");
+            Log.e(Tag,"regID:  "+google_id);
             String url ="api/members/create";
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
@@ -261,7 +261,15 @@ public class RegisterActivity extends AppCompatActivity{
 
     @Override
     public boolean onSupportNavigateUp() {
+        startActivity(new Intent(this ,LoginActivity.class));
         finish();
         return super.onSupportNavigateUp();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        onSupportNavigateUp();
+    }
+
 }

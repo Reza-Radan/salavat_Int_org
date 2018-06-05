@@ -289,6 +289,7 @@
     <string name="less_char">Number of character is short</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="send_password_again">send password again!</string>
 
     <string-array name="salavat">
         <item>1</item>

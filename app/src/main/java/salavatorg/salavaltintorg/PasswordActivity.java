@@ -63,6 +63,9 @@ public class PasswordActivity extends AppCompatActivity{
 
     @BindView(R.id.txtvPhpneNumPass)
     TextView phoneNumTextView;
+
+    @BindView(R.id.passwordMsg)
+    TextView txtvSendSms;
     String Tag = "PasswordActivity", passwordString ;
     private AppCreatorDatabase db;
 
@@ -224,6 +227,90 @@ public class PasswordActivity extends AppCompatActivity{
         startActivity(new Intent(PasswordActivity.this ,LoginActivity.class));
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        onSupportNavigateUp();
+    }
+
+
+    public void sendPassword(View view){
+        String url ="api/members/resendPassword";
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("phone" ,phoneNum);
+        new sendSms(url ,parameters).execute();
+    }
+
+    private class sendSms extends AsyncTask<Void, Void, Boolean> {
+        JSONObject jsonObject;
+        Map<String, String> parameters;
+        String url;
+
+        public sendSms(String url, Map<String, String> parameters) {
+            this.parameters = parameters;
+            this.url = url;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            txtvSendSms.setTextColor(getResources().getColor(R.color.gray_blue));
+            txtvSendSms.setClickable(false);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params){
+
+            boolean isconnected = false;
+            try {
+                URL url = new URL("https://www.google.com/");
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.connect();
+                Log.i(Tag, "responsecode : " + http.getResponseCode());
+                if (http.getResponseCode() == 200) {
+                    isconnected = true;
+                }
+            }catch(Exception e) {
+            }
+
+            if(isconnected){
+                jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
+                Log.i(Tag, "json: " + jsonObject);
+                if (jsonObject != null && jsonObject.has("result")) {
+                    try {
+                        String result = jsonObject.getString("result");
+                        if (result.equalsIgnoreCase("success")) {
+//                            JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
+
+                            return true;
+
+                        } else if (result.equalsIgnoreCase("fail")) {
+                            snackerShow(jsonObject.getString("message"));
+    //                            password.setError(getString(R.string.problem_with_server_Side));
+                            return false;
+                        } else {
+                            return false;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                } else
+                    return false;
+            }
+                else
+                        return false;
+    }
+
+        @Override
+        protected void onPostExecute(Boolean data) {
+            txtvSendSms.setTextColor(getResources().getColor(R.color.blue_500));
+            txtvSendSms.setClickable(true);
+            super.onPostExecute(data);
+
+        }
     }
 }
 

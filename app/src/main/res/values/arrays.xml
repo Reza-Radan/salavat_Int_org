@@ -33,4 +33,10 @@
         <item>https://images.unsplash.com/photo-1415226556993-1404e0c6e727?q=80&amp;fm=jpg&amp;s=334b8b5271cdbd8cbd4990a3aef89074</item>
     </string-array>
 
+    <string-array name="language" >
+        <item>فارسی</item>
+        <item>English</item>
+
+    </string-array>
+
 </resources>

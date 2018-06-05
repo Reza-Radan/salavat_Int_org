@@ -192,7 +192,6 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
     }
-
     public class sendUserDataToServer extends AsyncTask<Void,Void,Boolean> {
 
 
@@ -226,7 +225,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }catch (Exception e){
-            }
+
+                }
 
             if (isconnected)
                 jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);

@@ -1,14 +1,18 @@
 package salavatorg.salavaltintorg;
 
+import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +21,17 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.etiennelawlor.imagegallery.library.ImageGalleryFragment;
 import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity;
@@ -30,6 +39,7 @@ import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity;
 import com.etiennelawlor.imagegallery.library.adapters.FullScreenImageGalleryAdapter;
 import com.etiennelawlor.imagegallery.library.adapters.ImageGalleryAdapter;
 import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -48,28 +58,33 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
     TextView userName;
 
     String tag = "MainActivity";
     private String name,family ,userId;
 
     private PaletteColorType paletteColorType;
+    SharedPreferences sharedPreferences;
     // endregion
     AppCreatorDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+
+        sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
+        Log.i(tag,"lang: " +sharedPreferences.getString(LoginActivity.language ,"en"));
 
         setContentView(R.layout.salavat_page);
 
         ImageGalleryActivity.setImageThumbnailLoader(this);
         ImageGalleryFragment.setImageThumbnailLoader(this);
         FullScreenImageGalleryActivity.setFullScreenImageLoader(this);
-
-
 
 //        new pushNotificationService().CallNotification("hi" ,"bye");
         // optionally set background color using Palette for full screen images
@@ -81,18 +96,37 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         }
 
         ButterKnife.bind(this);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle(getString(R.string.app_name));
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(getResources().getColor(R.color.black));
-
         setSupportActionBar(toolbar);
+
+        MaterialSpinner spinner=(MaterialSpinner) MenuItemCompat.getActionView(navigationView.getMenu().
+                findItem(R.id.lan_menu));
+
+        spinner.setItems(getResources().getStringArray(R.array.language));
+        Log.e(tag ,"111 spinner.getItems() spinner: "+ spinner.getText());
+        if(sharedPreferences.getString(LoginActivity.language ,"en").equalsIgnoreCase("en")) {
+            spinner.setPadding(0, spinner.getPaddingTop(), spinner.getPaddingLeft(), spinner.getPaddingBottom());
+            spinner.setSelectedIndex(1);
+        }else{
+            spinner.setPadding(spinner.getPaddingRight(), spinner.getPaddingTop(), 0, spinner.getPaddingBottom());
+            spinner.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        }
+        spinner.setGravity(Gravity.CENTER |Gravity.FILL);
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                if(item.equalsIgnoreCase("فارسی")) {
+                    restartActivity(MainActivity.this,"fa");
+                }else if(item.equalsIgnoreCase("english")) {
+                    restartActivity(MainActivity.this ,"en");
+                }
+            }
+        });
 
         //---
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.setDrawerListener(toggle);
@@ -112,6 +146,25 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         userName =  headerLayout.findViewById(R.id.userText);
         userName.setText(name+ " " +family);
 
+    }
+
+    private void restartActivity(Activity activity , String lang) {
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LoginActivity.language,lang);
+        editor.commit();
+
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate();
+        } else {
+            Intent intent = getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            activity.finish();
+            overridePendingTransition(0, 0);
+
+            activity.startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
     }
 
     private void setLanguages(String lan){
