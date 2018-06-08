@@ -46,6 +46,7 @@ import butterknife.OnClick;
 import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
 import salavatorg.salavaltintorg.dao.JsonParser;
 import salavatorg.salavaltintorg.dao.UserInfoBase;
+import salavatorg.salavaltintorg.dao.UserInfoExtra;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -94,6 +95,9 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.login));
+
+        db = Room.databaseBuilder(LoginActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+        deleteAllUSers();
 
         String GetCountryZipCode = GetCountryZipCode();
         if(GetCountryZipCode != null && !GetCountryZipCode.isEmpty()){
@@ -147,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
                         String url ="api/members/getMemberInfo/";
                         Map<String, String> parameters = new HashMap<>();
                         parameters.put("phone" ,"+"+prePhone.substring(0,prePhone.indexOf(","))+phoneNumber);
-                        db = Room.databaseBuilder(LoginActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
                         new sendUserDataToServer(url,parameters).execute();
 
                     }else{
@@ -256,13 +259,35 @@ public class LoginActivity extends AppCompatActivity {
                                     userInfoBase.setPhone_num(parameters.get("phone"));
                                     userInfoBase.setGender(data.getString("gender"));
                                     userInfoBase.setEmail(data.getString("email"));
-//                                    long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
-
                                     long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
                                     if (datadb == -1) {
                                         db.userInfoBaseDao().updateRecord(userInfoBase);
                                     }
-                                    Log.e(Tag,"dataDb: " +datadb);
+                                    Log.e(Tag,"dataDb: " +datadb + " has: " +data.has("occupation"));
+
+                                    if(data.has("occupation") && !data.getString("occupation").isEmpty() && !data.getString("occupation").equalsIgnoreCase("")){
+//                                        data: {"id":"28","birthday":"2018\/41\/3","flag":"android","salavat_counter":"0","country":"Iran","city":"تهران","":"","":"فوق دیپلم","groupHead":"fals","introducer":"معصومه عبدوس","lang":"fa","group_id":"","registerDate":"2018-06-06 02:52:21","last_login":"0000-00-00 00:00:00"}
+                                        UserInfoExtra userInfoExtra = new UserInfoExtra((int)datadb,
+                                                data.getString("occupation"),
+                                                data.getString("birthday"),
+                                                data.getString("introducer"),
+                                                data.getString("education"),
+                                                data.getString("country"),
+                                                data.getString("city"),
+                                                data.getString("nationalId"),
+                                                data.getString("salavat_counter"),
+                                                data.getBoolean("groupHead"));
+
+                                        long datadbinsert = db.userInfoExtraDao().insertOnlySingleRecord(userInfoExtra);
+                                        if (datadbinsert == -1) {
+                                            db.userInfoExtraDao().updateRecord(userInfoExtra);
+                                        }
+
+
+                                    }
+//                                    long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+
+
                                     finish();
                                     Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
                                     intent.putExtra("phone_num", parameters.get("phone"));
@@ -363,5 +388,23 @@ public class LoginActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+    public void deleteAllUSers() {
+        new AsyncTask<Void, Void, List<UserInfoBase>>() {
+            @Override
+            protected List<UserInfoBase> doInBackground(Void... voids) {
+                db.userInfoBaseDao().deleteAllRecords();
+                db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+
+//                Log.i(Tag,"data: " +data);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(List<UserInfoBase> userInfoBases) {}
+        }.execute();
+    }
 
 }

@@ -28,6 +28,9 @@ public interface UserInfoExtraDao {
 
 //    @Query("SELECT * FROM UserInfoExtra WHERE id =:college_id")
 //    UserInfoExtra getSingleRecord(int college_id);
+    @Query("DELETE FROM UserInfoExtra")
+    int deleteAllRecords();
+
 
     @Update
     int updateRecord(UserInfoExtra UserInfoExtra);

@@ -229,7 +229,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
                 String[] images = getResources().getStringArray(R.array.unsplash_images);
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
-                bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+                bundle.putString(ImageGalleryActivity.KEY_TITLE, getString(R.string.archive));
                 intent.putExtras(bundle);
 
                 startActivity(intent);
@@ -257,9 +257,9 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
                 break;
 
             case R.id.out_menu:
-                db = Room.databaseBuilder(
-                        MainActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
-                deleteAllUSers();
+//                db = Room.databaseBuilder(
+//                        MainActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+
                 Intent login = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(login);
                 finish();
@@ -438,17 +438,5 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     // endregion
 
 
-    public void deleteAllUSers() {
-        new AsyncTask<Void, Void, List<UserInfoBase>>() {
-            @Override
-            protected List<UserInfoBase> doInBackground(Void... voids) {
-              int data = db.userInfoBaseDao().deleteAllRecords();
-                Log.i(tag,"data: " +data);
-                return null;
-            }
 
-            @Override
-            protected void onPostExecute(List<UserInfoBase> userInfoBases) {}
-        }.execute();
-    }
 }

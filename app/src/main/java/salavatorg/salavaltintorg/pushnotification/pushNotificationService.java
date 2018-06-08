@@ -1,15 +1,25 @@
 package salavatorg.salavaltintorg.pushnotification;
+import android.arch.persistence.room.Room;
+import android.os.AsyncTask;
 import android.util.Log;
 import com.onesignal.NotificationExtenderService;
 import com.onesignal.OSNotificationReceivedResult;
 
 import org.json.JSONException;
 
+import java.util.List;
+
+import salavatorg.salavaltintorg.LoginActivity;
+import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
+import salavatorg.salavaltintorg.dao.UserInfoBase;
+
 
 /**
  * Created by masoomeh on 1/20/18.
  */
 public class pushNotificationService  extends NotificationExtenderService {
+
+    private AppCreatorDatabase db;
 
     @Override
     protected boolean onNotificationProcessing(OSNotificationReceivedResult receivedResult) {
@@ -19,6 +29,10 @@ public class pushNotificationService  extends NotificationExtenderService {
         Log.i("tag", "isAppInFocus : " + receivedResult.isAppInFocus + " restoring: " + receivedResult.restoring
                 + " payload: " + receivedResult.payload.toJSONObject() + " additional: " + receivedResult.payload.additionalData + " title: " + receivedResult.payload.title
                 + " body: " + receivedResult.payload.body);
+
+        db = Room.databaseBuilder(this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+        insertNotification();
+
         NotificationsClass notificationsClass = new NotificationsClass();
         try {
             notificationsClass.NotificationShow(this, receivedResult.payload.title, receivedResult.payload.body,
@@ -30,7 +44,6 @@ public class pushNotificationService  extends NotificationExtenderService {
         }
         return true;
     }
-}
 
 //    public void CallNotification(String title , String body){
 //        NotificationCompat.Builder builder =
@@ -48,5 +61,24 @@ public class pushNotificationService  extends NotificationExtenderService {
 //        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        manager.notify(0, builder.build());
 //    }
+public void insertNotification() {
+    new AsyncTask<Void, Void, List<UserInfoBase>>() {
+        @Override
+        protected List<UserInfoBase> doInBackground(Void... voids) {
+            db.userInfoBaseDao().deleteAllRecords();
+            db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+//                db.userInfoExtraDao().deleteAllRecords();
+
+//                Log.i(Tag,"data: " +data);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<UserInfoBase> userInfoBases) {}
+    }.execute();
+}
 
 
+}

@@ -23,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -295,8 +296,18 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     @Override
     public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
-        dateString = year + "/" + monthOfYear + "/" + dayOfMonth;
-        birthdayStr =  new JalaliCalendar().getGregorianDate(dateString).toString();
+        dateString = year + "/" + (monthOfYear+1) + "/" + dayOfMonth;
+
+        CalendarTool calendarTool = new CalendarTool();
+        calendarTool.setIranianDate(year,monthOfYear,dayOfMonth);
+//        calendarTool.getGregorianDate();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(date);
+//        int yearGregorian = cal.get(Calendar.YEAR);
+//        int monthGregorian = cal.get(Calendar.MONTH);
+//        int dayGregorian = cal.get(Calendar.DAY_OF_MONTH);
+        birthdayStr = calendarTool.getGregorianDate();;
+//        Toast.makeText(this ,birthdayStr + "\n date: "  , Toast.LENGTH_LONG).show();
         Log.e(Tag,"convert date:  " +birthdayStr);
         birthday.setText(dateString);
     }
@@ -401,7 +412,19 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
 
                     isRegisterExtra = true;
                     UserInfoExtra userInfoExtra = userInfoExtras.get(0);
-                    birthday.setText(userInfoExtra.getBirthday());
+                    if(sharedPreferences.getString(LoginActivity.language, "en").equalsIgnoreCase("fa")){
+                        String date =  userInfoExtra.getBirthday();
+                        String [] array = date.split("/");
+                        CalendarTool calendarTool = new CalendarTool(
+                                Integer.parseInt(array[0])
+                                ,Integer.parseInt(array[1])
+                                ,Integer.parseInt(array[2])
+                        );
+                        birthday.setText(calendarTool.getIranianDate());
+                    }else{
+                        birthday.setText(userInfoExtra.getBirthday());
+                    }
+
                     country.setText(userInfoExtra.getCountry());
                     city.setText(userInfoExtra.getCity());
                     educational.setText(userInfoExtra.getEducation());

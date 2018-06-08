@@ -11,7 +11,7 @@ import android.arch.persistence.room.RoomDatabase;
  */
 
     @Database(entities = {Faraj.class ,Niat.class ,Notification.class ,RequestForSalavat.class
-            ,UserInfoBase.class ,UserInfoExtra.class}, version = 5)
+            ,UserInfoBase.class ,UserInfoExtra.class}, version = 4)
     public abstract class AppCreatorDatabase extends RoomDatabase {
     public static final String DB_NAME = "salavat_db";
     public abstract FarajDao farajDao();
