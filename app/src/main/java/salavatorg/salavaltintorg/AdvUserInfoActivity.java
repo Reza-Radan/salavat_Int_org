@@ -256,7 +256,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             parameters.put("country", countryStr = country.getText().toString());
             parameters.put("birthday",birthdayStr );
             parameters.put("groupHead", String.valueOf(chkboxHeader.isChecked()));
-            parameters.put("national_id", nationalIdString);
+            parameters.put("nationalId", nationalIdString);
             parameters.put("salavat_counte", salavatNum = salavat_id.getText().toString());
 
             userAdv = new UserInfoExtra(Integer.parseInt(userId),occupationString,birthdayStr,IntroducerString ,educationalStr
@@ -415,12 +415,12 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                     if(sharedPreferences.getString(LoginActivity.language, "en").equalsIgnoreCase("fa")){
                         String date =  userInfoExtra.getBirthday();
                         String [] array = date.split("/");
-                        CalendarTool calendarTool = new CalendarTool(
-                                Integer.parseInt(array[0])
-                                ,Integer.parseInt(array[1])
-                                ,Integer.parseInt(array[2])
-                        );
-                        birthday.setText(calendarTool.getIranianDate());
+//                        CalendarTool calendarTool = new CalendarTool(
+//                                Integer.parseInt(array[0])
+//                                ,Integer.parseInt(array[1])
+//                                ,Integer.parseInt(array[2])
+//                        );
+                        birthday.setText(date);
                     }else{
                         birthday.setText(userInfoExtra.getBirthday());
                     }
