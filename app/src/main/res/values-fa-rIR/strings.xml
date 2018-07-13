@@ -280,10 +280,10 @@
     <string name="email_validation">ایمیل خود را به درستی وارد کنید! </string>
     <string name="select_gender" >گزینه جنسیت خالی است.</string>
     <string name="do_u_like_be_a_head">تمایل به سرگروه شدن دارم?</string>
-    <string name="select_prePhone">Select pre phone number</string>
-    <string name="insert_your_phone">Insert your phone number</string>
-    <string name="select_lan">Select your language</string>
-    <string name="error_insert_correct_your_phone">Insert correct format phone number</string>
+    <string name="select_prePhone">انتخاب پیش شماره</string>
+    <string name="insert_your_phone">شماره خود را وارد نمایید</string>
+    <string name="select_lan">انتخاب زبان مورد نظر</string>
+    <string name="error_insert_correct_your_phone">شماره خود را به درستی وارد کنید</string>
     <string name="password_page">پسورد</string>
     <string name="intercommunity">مشارکت‌ </string>
     <string name="introducer">معرف  </string>
@@ -301,13 +301,7 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
+
 
     </string-array>
 
@@ -567,6 +561,8 @@
     <string name="problem_with_server_Side">Problem in server side</string>
     <string name="siogn_out">خروج</string>
     <string name="send_password_again">پسورد دوباره ارسال شود!</string>
+    <string name="number_of_salavat_daily">تعداد صلوات روزانه:‌ </string>
+    <string name="in_thousand">× ۱۰۰۰ </string>
 
 
     <string-array name="image_gallery">

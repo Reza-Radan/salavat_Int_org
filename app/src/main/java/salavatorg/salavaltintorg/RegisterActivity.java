@@ -130,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity{
             parameters.put("gender" ,genderString);
             parameters.put("push_id" ,google_id);
             parameters.put("flag" ,"android");
+            parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
 
             UserInfoBase userInfoBase = new UserInfoBase("-1",phoneNum,nameString,familyString,
                     emailString,genderString,google_id);

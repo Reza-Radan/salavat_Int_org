@@ -46,11 +46,12 @@ public class TajilInFarajActivity extends AppCompatActivity {
     EditText counter;
 
     String Tag ="TajilInFarajActivity";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+         sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
         setContentView(R.layout.tajil_in_faraj_page);
         ButterKnife.bind(this);
@@ -62,12 +63,14 @@ public class TajilInFarajActivity extends AppCompatActivity {
     public void confirm(){
         String counterStr = counter.getText().toString();
         Map<String, String> parameters = new HashMap<>();
+
         if (counterStr.isEmpty()){
             counter.setError(getString(R.string.error_empty_edittext));
         }else if (!isNumeric(counterStr)){
             counter.setError(getString(R.string.error_insert_correct_edittext));
         }else {
             parameters.put("counter" ,counterStr);
+            parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
             new sendUserDataToServer("api/tajil", parameters).execute();
         }
     }

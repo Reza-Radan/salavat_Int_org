@@ -59,6 +59,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
     AVLoadingIndicatorView Loading;
     String Tag = "RequestForSalavat";
     private String niatIdDelected;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
             familyEditText.setText(family);
         }
 
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+         sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("name" ,"getAllCategories");
@@ -94,6 +95,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
             parameters.put("name", name);
             parameters.put("family", family);
             parameters.put("niat_category_id", niatIdDelected);
+            parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
             parameters.put("description", descEditText.getText().toString());
             String niat = spinner.getText().toString();
             if (niat != null && !niat.isEmpty()) {

@@ -80,12 +80,13 @@ public class LoginActivity extends AppCompatActivity {
     List<String> prePhone = new ArrayList<>();
     private SharedPreferences.Editor editor;
     private AppCreatorDatabase db;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
 
         setContentView(R.layout.login_page);
@@ -151,6 +152,13 @@ public class LoginActivity extends AppCompatActivity {
                         String url ="api/members/getMemberInfo/";
                         Map<String, String> parameters = new HashMap<>();
                         parameters.put("phone" ,"+"+prePhone.substring(0,prePhone.indexOf(","))+phoneNumber);
+                        SharedPreferences sharedPreferencesgoogle = getSharedPreferences(Application.googleId, MODE_PRIVATE);
+                        parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
+                        ///
+                        String google_id = sharedPreferencesgoogle.getString(Application.token, "-1");
+                        Log.e(Tag,"regID:  "+google_id);
+                        parameters.put("push_id" ,google_id);
+                        //
                         new sendUserDataToServer(url,parameters).execute();
 
                     }else{

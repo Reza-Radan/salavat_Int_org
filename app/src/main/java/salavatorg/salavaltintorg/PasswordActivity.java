@@ -68,11 +68,12 @@ public class PasswordActivity extends AppCompatActivity{
     TextView txtvSendSms;
     String Tag = "PasswordActivity", passwordString ;
     private AppCreatorDatabase db;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(LoginActivity.SHARED_LAN, MODE_PRIVATE);
         setLanguages(sharedPreferences.getString(LoginActivity.language ,"en"));
 
         setContentView(R.layout.password_verification_page);
@@ -100,6 +101,7 @@ public class PasswordActivity extends AppCompatActivity{
             Map<String, String> parameters = new HashMap<>();
             parameters.put("phone" ,phoneNum);
             parameters.put("password" ,passwordString);
+            parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
             db = Room.databaseBuilder(PasswordActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
             new sendUserDataToServer(url,parameters).execute();
 //            Intent intent = new Intent(PasswordActivity.this , MainActivity.class);
@@ -240,6 +242,7 @@ public class PasswordActivity extends AppCompatActivity{
         String url ="api/members/resendPassword";
         Map<String, String> parameters = new HashMap<>();
         parameters.put("phone" ,phoneNum);
+        parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
         new sendSms(url ,parameters).execute();
     }
 

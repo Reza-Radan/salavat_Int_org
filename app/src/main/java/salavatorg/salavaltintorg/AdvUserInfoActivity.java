@@ -257,7 +257,8 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             parameters.put("birthday",birthdayStr );
             parameters.put("groupHead", String.valueOf(chkboxHeader.isChecked()));
             parameters.put("nationalId", nationalIdString);
-            parameters.put("salavat_counte", salavatNum = salavat_id.getText().toString());
+            parameters.put("lang",sharedPreferences.getString(LoginActivity.language, "en"));
+            parameters.put("salavat_counter", salavatNum = salavat_id.getText().toString());
 
             userAdv = new UserInfoExtra(Integer.parseInt(userId),occupationString,birthdayStr,IntroducerString ,educationalStr
                 ,countryStr ,cityString,nationalIdString,salavatNum ,chkboxHeader.isChecked());
@@ -298,15 +299,15 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
 
         dateString = year + "/" + (monthOfYear+1) + "/" + dayOfMonth;
 
-        CalendarTool calendarTool = new CalendarTool();
-        calendarTool.setIranianDate(year,monthOfYear,dayOfMonth);
+//        CalendarTool calendarTool = new CalendarTool();
+//        calendarTool.setIranianDate(year,monthOfYear,dayOfMonth);
 //        calendarTool.getGregorianDate();
 //        Calendar cal = Calendar.getInstance();
 //        cal.setTime(date);
 //        int yearGregorian = cal.get(Calendar.YEAR);
 //        int monthGregorian = cal.get(Calendar.MONTH);
 //        int dayGregorian = cal.get(Calendar.DAY_OF_MONTH);
-        birthdayStr = calendarTool.getGregorianDate();;
+        birthdayStr =dateString;
 //        Toast.makeText(this ,birthdayStr + "\n date: "  , Toast.LENGTH_LONG).show();
         Log.e(Tag,"convert date:  " +birthdayStr);
         birthday.setText(dateString);
@@ -414,7 +415,8 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                     UserInfoExtra userInfoExtra = userInfoExtras.get(0);
                     if(sharedPreferences.getString(LoginActivity.language, "en").equalsIgnoreCase("fa")){
                         String date =  userInfoExtra.getBirthday();
-                        String [] array = date.split("/");
+                        Log.i(Tag,"dateee: "+date);
+//                        String [] array = date.split("/");
 //                        CalendarTool calendarTool = new CalendarTool(
 //                                Integer.parseInt(array[0])
 //                                ,Integer.parseInt(array[1])
@@ -432,6 +434,12 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                     salavat_id.setText(userInfoExtra.getSalavat_num());
                     occupation.setText(userInfoExtra.getOccupation());
                     nationalId.setText(userInfoExtra.getNational_id());
+                    if (userInfoExtra.isGroup_head()){
+                        chkboxHeader.setChecked(true);
+                    }else {
+                        chkboxHeader.setChecked(false);
+                    }
+
 
                 }
             }
