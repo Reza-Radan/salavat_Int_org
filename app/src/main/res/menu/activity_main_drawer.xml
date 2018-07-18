@@ -6,10 +6,10 @@
     <group android:id="@+id/top"
            android:checkableBehavior="single"
            android:layout_width="50dp">
-        <item
+        <!--<item
             android:id="@+id/groups_menu"
             android:icon="@mipmap/participate"
-            android:title="@string/list_of_add_in_group" />
+            android:title="@string/list_of_add_in_group" />-->
         <item
             android:id="@+id/archive_menu"
             android:icon="@mipmap/archive"

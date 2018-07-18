@@ -30,7 +30,7 @@ public class NotificationPageActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbarNo)
     Toolbar toolbar;
-    String header,body,footer;
+    String header =" header",body ="body",footer= "footer";
 
     @BindView(R.id.txtvBody)
     TextView txtvBody;
@@ -47,10 +47,12 @@ public class NotificationPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_page);
 
+        ButterKnife.bind(this);
         if(getIntent().getExtras() != null){
             header = getIntent().getExtras().getString("header","");
             body = getIntent().getExtras().getString("body");
             footer = getIntent().getExtras().getString("footer");
+            Log.e("tag" ,"extra: " +getIntent().getExtras() + " body: " +body);
 
         }
 
@@ -65,31 +67,10 @@ public class NotificationPageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.notification_list));
 
 
-//        db = Room.databaseBuilder(
-//                NotificationPageActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
-//        getNotificationData();
+
 
     }
 
-//    public void getNotificationData() {
-//        new AsyncTask<Void, Void, List<Notification>>() {
-//            @Override
-//            protected List<Notification> doInBackground(Void... voids) {
-//                notifications = db.notificationDao().fetchAllData();
-//                Log.i("Tag" ,"notification: " +notifications.size());
-//                return notifications;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(List<Notification> notifications) {
-//
-//                recyclerNotification.setHasFixedSize(true);
-//                recyclerNotification.setLayoutManager(new LinearLayoutManager(NotificationPageActivity.this));
-//                recyclerNotification.setItemAnimator(new DefaultItemAnimator());
-//                recyclerNotification.setAdapter(new NotificationAdaptor(NotificationPageActivity.this ,notifications));
-//            }
-//        }.execute();
-//    }
 
     @Override
     public boolean onSupportNavigateUp() {

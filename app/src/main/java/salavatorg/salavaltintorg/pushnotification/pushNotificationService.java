@@ -7,10 +7,14 @@ import com.onesignal.OSNotificationReceivedResult;
 
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import salavatorg.salavaltintorg.LoginActivity;
+import salavatorg.salavaltintorg.NotificationPageActivity;
 import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
+import salavatorg.salavaltintorg.dao.Notification;
 import salavatorg.salavaltintorg.dao.UserInfoBase;
 
 
@@ -20,6 +24,7 @@ import salavatorg.salavaltintorg.dao.UserInfoBase;
 public class pushNotificationService  extends NotificationExtenderService {
 
     private AppCreatorDatabase db;
+    private Notification notification;
 
     @Override
     protected boolean onNotificationProcessing(OSNotificationReceivedResult receivedResult) {
@@ -30,15 +35,27 @@ public class pushNotificationService  extends NotificationExtenderService {
                 + " payload: " + receivedResult.payload.toJSONObject() + " additional: " + receivedResult.payload.additionalData + " title: " + receivedResult.payload.title
                 + " body: " + receivedResult.payload.body);
 
-        db = Room.databaseBuilder(this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
-        insertNotification();
+      
 
         NotificationsClass notificationsClass = new NotificationsClass();
         try {
+            Log.w("tag", " body: "+receivedResult.payload.additionalData.getString("body"));
+
             notificationsClass.NotificationShow(this, receivedResult.payload.title, receivedResult.payload.body,
                     receivedResult.payload.additionalData.getString("header"),
                     receivedResult.payload.additionalData.getString("body"),
                     receivedResult.payload.additionalData.getString("footer"));
+
+            notification = new Notification();
+            notification.setTitle(receivedResult.payload.additionalData.getString("header"));
+            notification.setDesc(receivedResult.payload.additionalData.getString("body"));
+            notification.setFooter(receivedResult.payload.additionalData.getString("footer"));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            String currentDateandTime = sdf.format(new Date());
+            notification.setDate(currentDateandTime);
+            db = Room.databaseBuilder(
+                    this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+            getNotificationData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -61,24 +78,18 @@ public class pushNotificationService  extends NotificationExtenderService {
 //        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        manager.notify(0, builder.build());
 //    }
-public void insertNotification() {
-    new AsyncTask<Void, Void, List<UserInfoBase>>() {
-        @Override
-        protected List<UserInfoBase> doInBackground(Void... voids) {
-            db.userInfoBaseDao().deleteAllRecords();
-            db.userInfoExtraDao().deleteAllRecords();
-//                db.userInfoExtraDao().deleteAllRecords();
-//                db.userInfoExtraDao().deleteAllRecords();
-//                db.userInfoExtraDao().deleteAllRecords();
+    public void getNotificationData() {
+        new AsyncTask<Void, Void, Void>() {
 
-//                Log.i(Tag,"data: " +data);
-            return null;
-        }
 
-        @Override
-        protected void onPostExecute(List<UserInfoBase> userInfoBases) {}
-    }.execute();
-}
+            @Override
+            protected Void doInBackground(Void... voids) {
+                db.notificationDao().insertOnlySingleRecord(notification);
+
+                return null;
+            }
+        }.execute();
+    }
 
 
 }

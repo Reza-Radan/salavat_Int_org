@@ -22,11 +22,13 @@
         >
 
         <TextView
+            android:id="@+id/txtvSalavat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="@string/count_of_salavat_txtv"/>
 
     </LinearLayout>

@@ -10,10 +10,10 @@ import android.arch.persistence.room.PrimaryKey;
 public class Notification {
 
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
-    String title,desc , url;
-    int date;
+    String title,desc , footer;
+    String date;
 
     public int getId() {
         return id;
@@ -39,19 +39,19 @@ public class Notification {
         this.desc = desc;
     }
 
-    public String getUrl() {
-        return url;
+    public String getFooter() {
+        return footer;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setFooter(String footer) {
+        this.footer = footer;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

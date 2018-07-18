@@ -51,7 +51,7 @@ public class NotificationsClass {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("header", header);
         intent.putExtra("footer", footer);
-        intent.putExtra("boddy", body);
+        intent.putExtra("body", body);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
