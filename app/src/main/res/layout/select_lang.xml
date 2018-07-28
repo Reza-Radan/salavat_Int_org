@@ -9,6 +9,6 @@
     android:backgroundTint="@color/default_transparent_color"
     app:ms_background_selector="@color/white_transParent_navigation"
     android:layout_gravity="center_vertical"
-    android:textColor="@color/white"
+    android:textColor="@color/black"
     android:textStyle="bold"
     android:gravity="center_vertical" />
