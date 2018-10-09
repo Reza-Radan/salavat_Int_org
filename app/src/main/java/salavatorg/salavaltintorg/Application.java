@@ -3,6 +3,7 @@ package salavatorg.salavaltintorg;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+//import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -31,6 +32,12 @@ public class Application extends android.app.Application {
         context = getApplicationContext();
        getGoogleId();
     }
+
+//    @Override
+//    protected void attachBaseContext(Context newBase) {
+//        super.attachBaseContext(newBase);
+//        MultiDex.install(this);
+//    }
 
     /**
      * get Google Registration ID from Google

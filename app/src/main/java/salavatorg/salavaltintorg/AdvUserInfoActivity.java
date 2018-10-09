@@ -289,7 +289,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        dateString = year + "/" + month + "/" + dayOfMonth;
+        dateString = year + "-" + month + "-" + dayOfMonth;
         birthdayStr = dateString ;
         birthday.setText(dateString);
     }
@@ -297,7 +297,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     @Override
     public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
-        dateString = year + "/" + (monthOfYear+1) + "/" + dayOfMonth;
+        dateString = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
 
 //        CalendarTool calendarTool = new CalendarTool();
 //        calendarTool.setIranianDate(year,monthOfYear,dayOfMonth);
