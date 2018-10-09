@@ -412,6 +412,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                 if (userInfoExtras.size() == 1) {
 
                     isRegisterExtra = true;
+                    register.setText(getString(R.string.update));
                     UserInfoExtra userInfoExtra = userInfoExtras.get(0);
                     if(sharedPreferences.getString(LoginActivity.language, "en").equalsIgnoreCase("fa")){
                         String date =  userInfoExtra.getBirthday();
@@ -423,8 +424,10 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
 //                                ,Integer.parseInt(array[2])
 //                        );
                         birthday.setText(date);
+                        birthdayStr = date;
                     }else{
                         birthday.setText(userInfoExtra.getBirthday());
+                        birthdayStr = userInfoExtra.getBirthday();
                     }
 
                     country.setText(userInfoExtra.getCountry());

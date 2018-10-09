@@ -23,11 +23,13 @@
         >
 
         <TextView
+            android:id="@+id/txtvSalavat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="@string/count_of_salavat_txtv"/>
 
     </LinearLayout>
@@ -62,6 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
+                    android:layoutDirection="ltr"
                     android:onClick="RequestOfSalavatClick">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -87,6 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="0.2"
+                            android:textStyle="bold"
                             android:text="@string/request_for_salavat"
                             android:gravity="center"/>
 
@@ -145,6 +149,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
                 android:orientation="vertical">
                 <View
                     android:layout_width="wrap_content"
@@ -179,6 +184,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center"
+                                android:textStyle="bold"
                                 android:layout_weight="0.2"
                                 android:text="@string/participate_salavat"/>
                         <ImageView
@@ -228,6 +234,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layoutDirection="ltr"
                         android:onClick="TajliClick">
 
                         <ImageView
@@ -255,6 +262,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:layout_weight="0.1"
+                                android:textStyle="bold"
                                 android:text="@string/hurry_faraj"/>
 
                             <ImageView

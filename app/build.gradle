@@ -70,6 +70,7 @@ android {
         targetSdkVersion 26
         multiDexEnabled true
         versionCode 1
+        multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
@@ -77,6 +78,10 @@ android {
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
 

@@ -43,15 +43,26 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import salavatorg.salavaltintorg.dao.AppCreatorDatabase;
+import salavatorg.salavaltintorg.dao.JsonParser;
+import salavatorg.salavaltintorg.dao.Niat;
 import salavatorg.salavaltintorg.dao.UserInfoBase;
+import salavatorg.salavaltintorg.dao.UserInfoExtra;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener ,
 ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScreenImageLoader {
@@ -61,6 +72,9 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    @BindView(R.id.txtvSalavat)
+    TextView txtvSalavat;
 
     TextView userName;
 
@@ -146,6 +160,11 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         userName =  headerLayout.findViewById(R.id.userText);
         userName.setText(name+ " " +family);
 
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("name" ,"getAllCategories");
+        parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
+        new getNiatData("api/niat_category",parameters).execute();
+
     }
 
     private void restartActivity(Activity activity , String lang) {
@@ -210,9 +229,9 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
 
-            case R.id.groups_menu:
+//            case R.id.groups_menu:
 
-                Intent intentGRoup = new Intent(MainActivity.this, GroupListActivity.class);
+//                Intent intentGRoup = new Intent(MainActivity.this, GroupListActivity.class);
 
 //                String[] images = getResources().getStringArray(R.array.unsplash_images);
 //                Bundle bundle = new Bundle();
@@ -220,19 +239,18 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 //                bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
 //                intent.putExtras(bundle);
 
-                startActivity(intentGRoup);
-                break;
+//                startActivity(intentGRoup);
+//                break;
             case R.id.archive_menu:
 
-                Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
 
-                String[] images = getResources().getStringArray(R.array.unsplash_images);
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
-                bundle.putString(ImageGalleryActivity.KEY_TITLE, getString(R.string.archive));
-                intent.putExtras(bundle);
 
-                startActivity(intent);
+                String url ="api/album";
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
+
+                //
+                new getListOfArchive(url,parameters).execute();
             break;
 
         case R.id.notification_menu:
@@ -247,12 +265,14 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
             case R.id.aboutUs_menu:
 
             Intent intentAboutUs = new Intent(MainActivity.this, AboutUsActivity.class);
+            intentAboutUs.putExtra("url" ,"http://bonyadsalavat.com/about");
             startActivity(intentAboutUs);
                 break;
 
             case R.id.guide_menu:
 
-            Intent Guide = new Intent(MainActivity.this, GuideActivity.class);
+            Intent Guide = new Intent(MainActivity.this, AboutUsActivity.class);
+            Guide.putExtra("url" ,"http://bonyadsalavat.com/guide");
             startActivity(Guide);
                 break;
 
@@ -435,7 +455,207 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
         return bgColor;
     }
-    // endregion
+
+
+    public class getListOfArchive extends AsyncTask<Void,Void,Boolean> {
+
+
+        JSONObject jsonObject;
+        Map<String, String> parameters;
+        String url;
+
+        public getListOfArchive(String url, Map<String, String> parameters) {
+            this.parameters = parameters;
+            this.url = url;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            Loading.setVisibility(View.VISIBLE);
+//            next.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            boolean isconnected = false;
+            try {
+                URL url = new URL("https://www.google.com/");
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.connect();
+                Log.i(tag,"responsecode : "+http.getResponseCode());
+                if (http.getResponseCode() == 200) {
+                    isconnected = true;
+                }
+
+            }catch (Exception e){
+
+            }
+
+            if (isconnected)
+                jsonObject = JsonParser.getJSONFromUrl(url, null, "POST", false);
+            if(jsonObject != null && jsonObject.has("result")){
+                try {
+                    if(jsonObject.has("result")) {
+//                        JSONObject object = jsonObject.getJSONObject("data");
+//                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("existence").toString());
+
+                        if( jsonObject.getString("result").equalsIgnoreCase("success")) {
+                            if (jsonObject.has("existence") && jsonObject.getString("existence").equalsIgnoreCase("1")) {
+                                if (jsonObject.has("data")) {
+
+                                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                    String[] images = new String[jsonArray.length()];
+                                    for (int i = 0;i<jsonArray.length();i++) {
+                                        JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(i);
+                                        images[i] =  data.getString("image");
+                                        Log.e(tag, "data: " + data.getString("image"));
+                                    }
+
+
+                                    Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
+
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
+                                    bundle.putString(ImageGalleryActivity.KEY_TITLE, getString(R.string.archive));
+                                    intent.putExtras(bundle);
+
+                                    startActivity(intent);
+                                    return true;
+                                }
+                            }
+                        
+                        }else
+                            return false;
+
+
+                    }
+                } catch (JSONException e) {
+                    Log.e(tag,"error: "+ e.toString());
+                    e.printStackTrace();
+                    return false;
+
+                }
+            }else {
+                return false;
+            }
+
+            return false;
+           /* else
+                return false;*/
+        }
+
+        @Override
+        protected void onPostExecute(Boolean data) {
+            super.onPostExecute(data);
+            if (!data){
+//                Loading.setVisibility(View.GONE);
+//                next.setVisibility(View.VISIBLE);
+                Toast.makeText(MainActivity.this,getString(R.string.internet_connection_dont_right),Toast.LENGTH_LONG).show();
+//                snackerShow(getString(R.string.internet_connection_dont_right));
+            }
+//                else{
+//                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+//                intent.putExtra("phone_num", parameters.get("phone"));
+//                //                            intent.putExtra("userId", object.get("insert_id").toString());
+//                startActivity(intent);
+//            }
+
+        }
+    }
+
+
+    public class getNiatData extends AsyncTask<Void,Void,Boolean> {
+        JSONObject jsonObject;
+        Map<String, String> parameters;
+        String url;
+        List<Niat> niat = new ArrayList<>();
+
+        public getNiatData(String url, Map<String, String> parameters ) {
+            this.parameters = parameters;
+            this.url = url;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            niatLoading.setVisibility(View.VISIBLE);
+//            spinner.setEnabled(false);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            boolean isconnected = false;
+            try {
+                URL url = new URL("https://www.google.com/");
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.connect();
+//                Log.i(Tag, "responsecode : " + http.getResponseCode());
+                if (http.getResponseCode() == 200) {
+                    isconnected = true;
+                }
+
+            } catch (Exception e) {
+            }
+
+            if (isconnected) {
+                jsonObject = JsonParser.getJSONFromUrl(url, parameters, "POST", false);
+                Log.i(tag, "json: " + jsonObject);
+                if (jsonObject != null && jsonObject.has("result")) {
+                    try {
+                        if (jsonObject.getString("result").equalsIgnoreCase("success")) {
+//                            Log.i(Tag,"db: "+db);
+//                            JSONArray data = jsonObject.getJSONArray("data");
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+
+                                    try {
+                                        txtvSalavat.append(" " + jsonObject.getString("salavatCount"));
+                                    } catch (JSONException e) {
+                                        txtvSalavat.append(" - ");
+                                    }
+                                }
+                            });
+
+                            return  true;
+                        }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
+//                            snackerShow(jsonObject.getString("message"));
+                            Toast.makeText(getApplicationContext() ,
+                                    getString(R.string.messagenotsuccessful),Toast.LENGTH_LONG).show();
+                            return false;
+                        }else
+                            return false;
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }else
+                    return false;
+            }else
+                return false;
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean hasdata) {
+
+            Log.i(tag,"json: " +jsonObject);
+            if(hasdata){
+
+            }else {
+                Toast.makeText(getApplicationContext() ,
+                        getString(R.string.try_again),Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
 
 
 
