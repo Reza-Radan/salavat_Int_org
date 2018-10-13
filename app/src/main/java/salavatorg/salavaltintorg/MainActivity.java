@@ -78,7 +78,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
     TextView userName;
 
-    String tag = "MainActivity";
+    String tag = "MainActivity",error=null;
     private String name,family ,userId;
 
     private PaletteColorType paletteColorType;
@@ -96,6 +96,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 
         setContentView(R.layout.salavat_page);
 
+        error.length();
         ImageGalleryActivity.setImageThumbnailLoader(this);
         ImageGalleryFragment.setImageThumbnailLoader(this);
         FullScreenImageGalleryActivity.setFullScreenImageLoader(this);

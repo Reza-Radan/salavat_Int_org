@@ -13,6 +13,8 @@ repositories {
     maven { url 'https://maven.google.com' }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
 /*
 
 android {
@@ -133,5 +135,8 @@ dependencies {
     compile project(path: ':library')
     compile 'com.google.android.gms:play-services:11.8.0'
     compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
+//    implementation 'com.google.firebase:firebase-core:16.0.4'
+    compile 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+
 }
 apply plugin: 'com.google.gms.google-services'
