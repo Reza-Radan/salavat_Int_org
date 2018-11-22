@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:762913906458:android:527b09125fe7b0bc",
+        "mobilesdk_app_id": "1:762913906458:android:65432586f1e5d107",
         "android_client_info": {
-          "package_name": "salavatorg.salavaltintorg"
+          "package_name": "salavat.salavaltintorg"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "762913906458-jo3i0r7sq227tarrjcdq8u56sd5s04dm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "salavatorg.salavaltintorg",
-            "certificate_hash": "a9e61c64b6f034ba53c6cf5a51fc8e5004279ded"
-          }
-        },
         {
           "client_id": "762913906458-15on3cpfg8pg94apd98upf9to7lmqvi8.apps.googleusercontent.com",
           "client_type": 3
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "762913906458-15on3cpfg8pg94apd98upf9to7lmqvi8.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "762913906458-aju5gsocoi5h0o05c2vph1o2th3vocfe.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.boniansalavat.salavatapplication"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

@@ -56,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext"
+                    android:textColorHint="@color/black"
                     android:hint="@string/occupation" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -71,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext"
+                    android:textColorHint="@color/black"
                     android:hint="@string/introducer" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -127,6 +129,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext"
+                    android:textColorHint="@color/black"
                     android:hint="@string/city" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -142,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext"
+                    android:textColorHint="@color/black"
                     android:hint="@string/national_id" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -159,10 +163,41 @@
                         android:hint="@string/name" />
                 </android.support.design.widget.TextInputLayout>-->
 
-                <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/spinnersalavatNum"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="@string/number_of_salavat_daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnersalavatNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+
+                        <TextView
+                            android:text="@string/in_thousand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="5dp"/>
+
+                        </LinearLayout>
+
+
+                </LinearLayout>
 
                 <CheckBox
                     android:id="@+id/chkbxGroupHead"

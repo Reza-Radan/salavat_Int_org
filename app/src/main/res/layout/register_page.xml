@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/salavat"/>
 
             <TextView
                 android:id="@+id/txtvPhpneNum"
@@ -68,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
+                android:textColorHint="@color/black"
                 android.support.design:hintAnimationEnabled="true"
                 android.support.design:hintEnabled="true">
 
@@ -85,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/family"
+                android:textColorHint="@color/black"
                 android.support.design:hintAnimationEnabled="true"
                 android.support.design:hintEnabled="true">
 
@@ -103,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
+                android:textColorHint="@color/black"
                 android.support.design:hintAnimationEnabled="true"
                 android.support.design:hintEnabled="true">
 
@@ -125,7 +128,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
                     android:layout_marginLeft="0dp"
                     android:layout_gravity="center"
                     android:textColor="@color/black"
@@ -134,6 +136,15 @@
                     android:gravity="center|left"
                     />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_marginLeft="0dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:gravity="center|left"
+                    />
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"

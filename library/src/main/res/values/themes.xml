@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ImageGallery" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/grey_white_1000</item>
+        <item name="colorPrimaryDark">#C3C3C3</item>
+      <!--  <item name="colorButtonNormal">@color/primary</item>
+        <item name="colorControlActivated">@color/primary</item>
+        <item name="colorControlHighlight">@color/grey_500</item>-->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <!--<item name="android:textColorSecondary">@color/secondary_text</item>-->
+        <item name="android:colorControlNormal">#C3C3C3</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+    </style>
+
+    <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/green_500</item>
+    </style>
+
+    <style name="Theme.ImageGallery" parent="Base.Theme.ImageGallery" />
+
+</resources>

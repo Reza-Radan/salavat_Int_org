@@ -26,164 +26,171 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <TextView
-            android:id="@+id/txtvError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:text=""
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.2"
-
-            />
-
-
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            >
+            android:layout_height="match_parent"
+            android:layoutDirection="ltr"
+            android:orientation="vertical">
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <TextView
+                android:id="@+id/txtvError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:text=""
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.2"
+
+                />
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
                 >
 
-                <Button
-                    android:id="@+id/btnCountryCode"
-                    android:layout_marginLeft="5dp"
-                    android:background="@null"
-                    android:text=""
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    />
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="9"
                     >
 
-                    <!-- android:src="@drawable/flag" -->
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:id="@+id/spinner_prePhone"
+                    <Button
+                        android:id="@+id/btnCountryCode"
+                        android:layout_marginLeft="5dp"
+                        android:background="@null"
+                        android:text=""
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_weight="1"
                         />
-                    <EditText
-                        android:singleLine="true"
-                        android:id="@+id/PhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginLeft="1dp"
-                        android:ems="10"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grayBtn"
-                        android:hint="9121234567"
-                        android:textSize="16dp"
-                        android:inputType="phone" >
-
-                        <requestFocus />
-                    </EditText>
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"/>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:weightSum="10"
-                android:layout_gravity="center"
-                android:gravity="center"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"  />
-
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/avloadingIndicatorViewResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:indicatorName="BallSpinFadeLoaderIndicator"
-                    app:indicatorColor="@color/colorAccent"
-
-                    android:layout_gravity="center" />
-
-                <Button
-                    android:id="@+id/Next"
-                    android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="@string/next"
-                    android:textStyle="bold"
-                    android:layout_weight="8"
-                    style="@style/button"
-                    android:textSize="20dp"
-                    />
-                <!--            android:background="@anim/buttonshapegreen" -->
-
-
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                >
-
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:id="@+id/spinnerSelectLan"
-                        android:layout_width="match_parent"
+                    <LinearLayout
                         android:layout_height="wrap_content"
-                        android:text="@string/Select_lan"
-                        android:gravity="center"
-                        android:autoLink="web"
-                        android:textSize="12sp"
-                        android:textColor="@color/mdtp_ampm_text_color"/>
+                        android:layout_width="0dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="9"
+                        >
+
+                        <!-- android:src="@drawable/flag" -->
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:id="@+id/spinner_prePhone"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            />
+                        <EditText
+                            android:singleLine="true"
+                            android:id="@+id/PhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="1dp"
+                            android:ems="10"
+                            android:textColor="@color/black"
+                            android:hint="9121234567"
+                            android:textColorHint="@color/black"
+                            android:textSize="16dp"
+                            android:inputType="phone" >
+
+                            <requestFocus />
+                        </EditText>
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:weightSum="10"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"  />
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/avloadingIndicatorViewResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:indicatorName="BallSpinFadeLoaderIndicator"
+                        app:indicatorColor="@color/colorAccent"
+
+                        android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/Next"
+                        android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/next"
+                        android:textStyle="bold"
+                        android:layout_weight="8"
+                        style="@style/button"
+                        android:textSize="20dp"
+                        />
+                    <!--            android:background="@anim/buttonshapegreen" -->
 
 
-            </TableRow>
-            <TableRow
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                >
+                </TableRow>
 
-            </TableRow>
-        </TableLayout>
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerSelectLan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Select_lan"
+                            android:gravity="center"
+                            android:autoLink="web"
+                            android:textSize="12sp"
+                            android:textColor="@color/mdtp_ampm_text_color"/>
+
+
+                </TableRow>
+                <TableRow
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    >
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
