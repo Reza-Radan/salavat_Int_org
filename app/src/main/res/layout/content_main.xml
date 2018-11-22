@@ -47,7 +47,17 @@
             app:cardElevation="6dp"
             app:cardCornerRadius="3dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorAccent">
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,32 +65,69 @@
                 android:orientation="horizontal"
                 android:onClick="RequestOfSalavatClick"
                >
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/right_main_img"
+                    android:src="@mipmap/right"
                     android:layout_gravity="center"/>
-                <View
+             <!--   <View
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.1"/>
+                    android:layout_weight="0.1"/>-->
 
-                <TextView
+                <!--<ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/request_for_salavat"/>
-                <View
+                    android:drawableTop="@mipmap/khat_bala"
+                    android:drawableEnd="@mipmap/khat_paen"
+                    android:text="@string/request_for_salavat"/>-->
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/img_view"
+                        android:cropToPadding="false"
+                        android:src="@mipmap/khat_bala"
+                        android:background="#01C2DB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="sdsdsd"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:baselineAlignBottom="true"
+                        android:background="#01C2DB"
+                        android:src="@mipmap/khat_paen" />
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/left_main_img"
-                    android:layout_gravity="center" />
+                    android:src="@mipmap/left"
+                    android:layout_gravity="center|left" />
+
+            </LinearLayout>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"/>
 
             </LinearLayout>
 
