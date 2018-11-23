@@ -59,7 +59,7 @@ public class NotificationsClass {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.mipmap.splash)
+                .setSmallIcon(R.mipmap.salavat_small)
                 .setTicker("Hearty365")
                 //     .setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle(title)

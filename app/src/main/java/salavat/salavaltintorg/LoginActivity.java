@@ -226,10 +226,12 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(Tag,"responsecode : "+http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             }catch (Exception e){
-
+                snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             if (isconnected)

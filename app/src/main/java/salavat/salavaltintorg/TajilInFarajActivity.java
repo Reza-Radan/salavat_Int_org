@@ -5,8 +5,11 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +46,8 @@ public class TajilInFarajActivity extends AppCompatActivity {
     Button btnCancel;
     @BindView(R.id.input_salavat_number)
     EditText counter;
+    @BindView(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
 
     String Tag ="TajilInFarajActivity";
     SharedPreferences sharedPreferences;
@@ -120,9 +125,12 @@ public class TajilInFarajActivity extends AppCompatActivity {
                 Log.i(Tag,"responsecode : "+http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             }catch (Exception e){
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if (isconnected)
@@ -140,14 +148,20 @@ public class TajilInFarajActivity extends AppCompatActivity {
                     if(jsonObject.getString("result").equalsIgnoreCase("success")) {
 //                        JSONObject object = jsonObject.getJSONObject("data");
 //                        Log.i(Tag,"json: " +jsonObject + " object: " + object + "  object.get(\"insert_id\").toString() " +  object.get("insert_id").toString());
-
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getApplicationContext() , getString(R.string.messagesuccessful),Toast.LENGTH_LONG).show();
+                            }
+                        });
+//                        snackerShow(
+//                                getString(R.string.messagesuccessful));
                         finish();
 //                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
 //                        intent.putExtra("phone_num", parameters.get("phone"));
 //                        intent.putExtra("userId", object.get("insert_id").toString());
 //                        startActivity(intent);
                     }else if (jsonObject.getString("result").equalsIgnoreCase("fail")){
-                        Toast.makeText(TajilInFarajActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                        snackerShow(jsonObject.getString("message"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -178,5 +192,13 @@ public class TajilInFarajActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
 
     }
-
+    private void snackerShow(String textMsg) {
+        Snackbar snack = Snackbar.
+                make(coordinatorLayout, textMsg, Snackbar.LENGTH_LONG);
+        View view = snack.getView();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        view.setLayoutParams(params);
+        snack.show();
+    }
 }

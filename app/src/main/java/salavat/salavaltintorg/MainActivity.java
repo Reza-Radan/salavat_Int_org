@@ -70,6 +70,9 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     @BindView(R.id.txtvSalavat)
     TextView txtvSalavat;
 
+    @BindView(R.id.linearLoading)
+    LinearLayout linearLoading;
+
     TextView userName;
 
     String tag = "MainActivity",error=null;
@@ -79,6 +82,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     static SharedPreferences sharedPreferences;
     // endregion
     AppCreatorDatabase db;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +115,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         setSupportActionBar(toolbar);
 
         //---
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.setDrawerListener(toggle);
@@ -215,11 +219,10 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
             case R.id.archive_menu:
 
 
-
                 String url ="api/album";
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("lang" ,sharedPreferences.getString(LoginActivity.language ,"en"));
-
+                drawer.closeDrawers();
                 //
                 new getListOfArchive(url,parameters).execute();
             break;
@@ -227,17 +230,20 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         case R.id.notification_menu:
                 Intent intentno = new Intent(MainActivity.this, NotificationListActivity.class);
                 startActivity(intentno);
+            drawer.closeDrawers();
         break;
         case R.id.lan_menu:
 
             Intent intent = new Intent(MainActivity.this, ChangeLangActivity.class);
             startActivityForResult(intent,1001);
+            drawer.closeDrawers();
         break;
             case R.id.aboutUs_menu:
 
             Intent intentAboutUs = new Intent(MainActivity.this, AboutUsActivity.class);
             intentAboutUs.putExtra("url" ,"http://bonyadsalavat.com/about");
             startActivity(intentAboutUs);
+                drawer.closeDrawers();
                 break;
 
             case R.id.guide_menu:
@@ -245,6 +251,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
             Intent Guide = new Intent(MainActivity.this, AboutUsActivity.class);
             Guide.putExtra("url" ,"http://bonyadsalavat.com/guide");
             startActivity(Guide);
+                drawer.closeDrawers();
                 break;
 
             case R.id.out_menu:
@@ -443,6 +450,7 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            linearLoading.setVisibility(View.VISIBLE);
 //            Loading.setVisibility(View.VISIBLE);
 //            next.setVisibility(View.GONE);
         }
@@ -458,6 +466,8 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
                 Log.i(tag,"responsecode : "+http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+//                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             }catch (Exception e){
@@ -526,6 +536,8 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
 //                next.setVisibility(View.VISIBLE);
                 Toast.makeText(MainActivity.this,getString(R.string.internet_connection_dont_right),Toast.LENGTH_LONG).show();
 //                snackerShow(getString(R.string.internet_connection_dont_right));
+            }else{
+                linearLoading.setVisibility(View.GONE);
             }
 //                else{
 //                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -596,8 +608,13 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
                             return  true;
                         }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
 //                            snackerShow(jsonObject.getString("message"));
-                            Toast.makeText(getApplicationContext() ,
-                                    getString(R.string.messagenotsuccessful),Toast.LENGTH_LONG).show();
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                Toast.makeText(getApplicationContext() ,
+                                        getString(R.string.messagenotsuccessful),Toast.LENGTH_LONG).show();
+                                }
+                            });
                             return false;
                         }else
                             return false;

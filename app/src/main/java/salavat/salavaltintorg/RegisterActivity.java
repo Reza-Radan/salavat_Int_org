@@ -182,9 +182,12 @@ public class RegisterActivity extends AppCompatActivity{
                 Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else{
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             } catch (Exception e) {
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if (isconnected) {
@@ -194,6 +197,8 @@ public class RegisterActivity extends AppCompatActivity{
                     try {
                         if (jsonObject.getString("result").equalsIgnoreCase("success")) {
                             Log.i(Tag,"db: "+db);
+                            snackerShow(
+                                    getString(R.string.messagesuccessful));
                             JSONObject data = jsonObject.getJSONObject("data");
                             userInfoBase.setId(data.getInt("id"));
                            long datadb =   db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);

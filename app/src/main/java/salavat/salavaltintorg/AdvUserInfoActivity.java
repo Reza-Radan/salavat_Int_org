@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -42,9 +43,6 @@ import salavat.salavaltintorg.dao.AppCreatorDatabase;
 import salavat.salavaltintorg.dao.JsonParser;
 import salavat.salavaltintorg.dao.UserInfoExtra;
 
-import static salavat.salavaltintorg.R.id.coordinatorLayout;
-import static salavat.salavaltintorg.R.id.input_national_id;
-import static salavat.salavaltintorg.R.id.spinnersalavatNum;
 
 /**
  * Created by masoomeh on 12/14/17.
@@ -71,8 +69,8 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     @BindView(R.id.input_national_id)
     EditText nationalId;
 
-    @BindView(R.id.spinnersalavatNum)
-    MaterialSpinner salavat_id;
+    @BindView(R.id.input_salavat_number)
+    EditText salavat_num;
 
     @BindView(R.id.chkbxGroupHead)
     CheckBox chkboxHeader;
@@ -122,14 +120,14 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.intercommunity));
 
-        salavat_id.setItems(getResources().getStringArray(R.array.salavat));
-        salavat_id.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-
-            }
-        });
+//        salavat_id.setItems(getResources().getStringArray(R.array.salavat));
+//        salavat_id.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+//
+//            @Override
+//            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+//
+//            }
+//        });
 
         country.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,11 +209,12 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
     }
 
     private void validation() {
-        String occupationString, IntroducerString, cityString, nationalIdString;
+        String occupationString, IntroducerString, cityString, nationalIdString ,salavatNumberString;
         occupationString = occupation.getText().toString();
         IntroducerString = introducer.getText().toString();
         cityString = city.getText().toString();
         nationalIdString = nationalId.getText().toString();
+        salavatNumberString = salavat_num.getText().toString();
 
 
         if (!dataValidation(occupationString, occupation)) {
@@ -230,8 +229,8 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             educational.setError(getString(R.string.error_insert_correct_edittext));
         } else if (!checkSpinnerData(country)) {
             country.setError(getString(R.string.error_insert_correct_edittext));
-        } else if (!checkSpinnerData(salavat_id)) {
-            salavat_id.setError(getString(R.string.error_insert_correct_edittext));
+        } else if (!dataValidation(salavatNumberString,salavat_num)) {
+            return;
         } else if (birthday.getText() == null || birthday.getText().toString().isEmpty()) {
             birthday.setError(getString(R.string.error_insert_correct_edittext));
         } else {
@@ -251,7 +250,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             parameters.put("groupHead", String.valueOf(chkboxHeader.isChecked()));
             parameters.put("nationalId", nationalIdString);
             parameters.put("lang",sharedPreferences.getString(LoginActivity.language, "en"));
-            parameters.put("salavat_counter", salavatNum = salavat_id.getText().toString());
+            parameters.put("salavat_counter", salavatNum = salavat_num.getText().toString());
 
             userAdv = new UserInfoExtra(Integer.parseInt(userId),occupationString,birthdayStr,IntroducerString ,educationalStr
                 ,countryStr ,cityString,nationalIdString,salavatNum ,chkboxHeader.isChecked());
@@ -334,9 +333,12 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                 Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             } catch (Exception e) {
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if (isconnected) {
@@ -347,6 +349,13 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                             snackerShow(getString(R.string.try_again));
                             return false;
                         }else if (jsonObject.getString("result").equalsIgnoreCase("success")) {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getApplicationContext() , getString(R.string.messagesuccessful),Toast.LENGTH_LONG).show();
+                                }
+                            });
+//                            snackerShow(
+//                                    getString(R.string.messagesuccessful));
                             if (isRegisterExtra){
                                  db.userInfoExtraDao().updateRecord(userAdv);
                             }else {
@@ -427,7 +436,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
                     city.setText(userInfoExtra.getCity());
                     educational.setText(userInfoExtra.getEducation());
                     introducer.setText(userInfoExtra.getIntroducer());
-                    salavat_id.setText(userInfoExtra.getSalavat_num());
+                    salavat_num.setText(userInfoExtra.getSalavat_num());
                     occupation.setText(userInfoExtra.getOccupation());
                     nationalId.setText(userInfoExtra.getNational_id());
                     if (userInfoExtra.isGroup_head()){

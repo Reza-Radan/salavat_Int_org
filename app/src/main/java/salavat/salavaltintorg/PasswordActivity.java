@@ -137,9 +137,12 @@ public class PasswordActivity extends AppCompatActivity{
                 Log.i(Tag,"responsecode : "+http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else{
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             }catch (Exception e){
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if (isconnected) {
@@ -269,8 +272,11 @@ public class PasswordActivity extends AppCompatActivity{
                 Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else{
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
             }catch(Exception e) {
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if(isconnected){
@@ -281,7 +287,8 @@ public class PasswordActivity extends AppCompatActivity{
                         String result = jsonObject.getString("result");
                         if (result.equalsIgnoreCase("success")) {
 //                            JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
-
+//                            snackerShow(
+//                                    getString(R.string.messagesuccessful));
                             return true;
 
                         } else if (result.equalsIgnoreCase("fail")) {

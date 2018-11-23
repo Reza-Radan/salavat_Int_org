@@ -4,8 +4,11 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +58,10 @@ public class RequestForSalavatActivity extends AppCompatActivity {
     AVLoadingIndicatorView niatLoading;
     @BindView(R.id.avloadingIndicatorViewResult)
     AVLoadingIndicatorView Loading;
+
+    @BindView(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
+
     String Tag = "RequestForSalavat";
     private String niatIdDelected;
     SharedPreferences sharedPreferences;
@@ -121,6 +128,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
         Map<String, String> parameters;
         String url;
         List<Niat> niat = new ArrayList<>();
+        boolean hasSnackShow = false;
 
         public getNiatData(String url, Map<String, String> parameters ) {
             this.parameters = parameters;
@@ -145,9 +153,14 @@ public class RequestForSalavatActivity extends AppCompatActivity {
 //                Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+                    snackerShow(getString(R.string.internet_connection_dont_right));
+                    hasSnackShow =true;
                 }
 
             } catch (Exception e) {
+                snackerShow(getString(R.string.internet_connection_dont_right));
+                hasSnackShow =true;
             }
 
             if (isconnected) {
@@ -168,8 +181,8 @@ public class RequestForSalavatActivity extends AppCompatActivity {
                             return  true;
                         }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
 //                            snackerShow(jsonObject.getString("message"));
-                            Toast.makeText(getApplicationContext() ,
-                                    getString(R.string.messagenotsuccessful),Toast.LENGTH_LONG).show();
+                            snackerShow(
+                                    getString(R.string.messagenotsuccessful));
                             return false;
                         }else
                             return false;
@@ -213,8 +226,10 @@ public class RequestForSalavatActivity extends AppCompatActivity {
                 });
             }else {
                 niatLoading.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext() ,
-                        getString(R.string.try_again),Toast.LENGTH_LONG).show();
+                if(!hasSnackShow) {
+                    snackerShow(
+                            getString(R.string.try_again));
+                }
             }
         }
     }
@@ -252,9 +267,12 @@ public class RequestForSalavatActivity extends AppCompatActivity {
 //                Log.i(Tag, "responsecode : " + http.getResponseCode());
                 if (http.getResponseCode() == 200) {
                     isconnected = true;
+                }else {
+                    snackerShow(getString(R.string.internet_connection_dont_right));
                 }
 
             } catch (Exception e) {
+                snackerShow(getString(R.string.internet_connection_dont_right));
             }
 
             if (isconnected) {
@@ -264,14 +282,20 @@ public class RequestForSalavatActivity extends AppCompatActivity {
                     try {
                         if (jsonObject.getString("result").equalsIgnoreCase("success")) {
 //                            Log.i(Tag,"db: "+db);
-                            JSONObject data = jsonObject.getJSONObject("data");
+//                            JSONObject data = jsonObject.getJSONObject("data");
 //                            userInfoBase.setId(data.getInt("id"));
 //                            db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
+//                            snackerShow(
+//                                    getString(R.string.messagesuccessful));
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getApplicationContext() , getString(R.string.messagesuccessful),Toast.LENGTH_LONG).show();
+                                }
+                            });
                             return  true;
                         }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
 //                            snackerShow(jsonObject.getString("message"));
-                            Toast.makeText(getApplicationContext() ,
-                                    getString(R.string.messagenotsuccessful),Toast.LENGTH_LONG).show();
+                            snackerShow(getString(R.string.messagenotsuccessful));
                             return false;
                         }else
                             return false;
@@ -293,8 +317,7 @@ public class RequestForSalavatActivity extends AppCompatActivity {
             Log.i(Tag,"json: " +jsonObject);
             if(hasdata){
                 finish();
-                Toast.makeText(getApplicationContext() ,
-                        getString(R.string.messagesuccessful),Toast.LENGTH_LONG).show();
+                snackerShow(getString(R.string.messagesuccessful));
             }else {
                 Loading.setVisibility(View.INVISIBLE);
                 confirm.setVisibility(View.VISIBLE);
@@ -302,5 +325,15 @@ public class RequestForSalavatActivity extends AppCompatActivity {
 //                snackerShow(getString(R.string.internet_connection_dont_right));
             }
         }
+    }
+
+    private void snackerShow(String textMsg) {
+        Snackbar snack = Snackbar.
+                make(coordinatorLayout, textMsg, Snackbar.LENGTH_LONG);
+        View view = snack.getView();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        view.setLayoutParams(params);
+        snack.show();
     }
 }

@@ -38,7 +38,7 @@ class NotificationAdaptor extends RecyclerView.Adapter<NotificationAdaptor.holde
         holder.desc.setText(notifications.get(position).getDesc());
         holder.date.setText(notifications.get(position).getDate());
 
-        Log.e("tag" ,notifications.get(position).getTitle());
+//        Log.e("tag" ,notifications.get(position).getTitle());
 //        holder.image.setImageBitmap(null);
 //        Picasso.with(holder.image.getContext()).cancelRequest(holder.image);
 //        Picasso.with(holder.image.getContext()).load(item.getImage()).into(holder.image);
