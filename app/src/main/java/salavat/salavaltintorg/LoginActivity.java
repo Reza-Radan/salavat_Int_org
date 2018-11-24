@@ -270,7 +270,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     if(data.has("occupation") && !data.getString("occupation").isEmpty() && !data.getString("occupation").equalsIgnoreCase("")){
 //                                        data: {"id":"28","birthday":"2018\/41\/3","flag":"android","salavat_counter":"0","country":"Iran","city":"تهران","":"","":"فوق دیپلم","groupHead":"fals","introducer":"معصومه عبدوس","lang":"fa","group_id":"","registerDate":"2018-06-06 02:52:21","last_login":"0000-00-00 00:00:00"}
-                                        UserInfoExtra userInfoExtra = new UserInfoExtra((int)datadb,
+                                        UserInfoExtra userInfoExtra = new UserInfoExtra(
+                                                (int)datadb,
                                                 data.getString("occupation"),
                                                 data.getString("birthday"),
                                                 data.getString("introducer"),
@@ -291,12 +292,16 @@ public class LoginActivity extends AppCompatActivity {
 //                                    long datadb = db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
 
 
-                                    finish();
-                                    Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+                                   finish();
+                                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                                     intent.putExtra("phone_num", parameters.get("phone"));
-                                    intent.putExtra("name", data.getString("name"));
-                                    intent.putExtra("family", data.getString("family"));
+                                    intent.putExtra("userId",String.valueOf( datadb));
                                     startActivity(intent);
+//                                    Intent intent = new Intent(LoginActivity.this, PasswordActivity.class);
+//                                    intent.putExtra("phone_num", parameters.get("phone"));
+//                                    intent.putExtra("name", data.getString("name"));
+//                                    intent.putExtra("family", data.getString("family"));
+//                                    startActivity(intent);
                                     return true;
                                 }else
                                     return false;

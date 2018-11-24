@@ -64,6 +64,7 @@ public class PasswordActivity extends AppCompatActivity{
     String Tag = "PasswordActivity", passwordString ;
     private AppCreatorDatabase db;
     SharedPreferences sharedPreferences;
+    private String userId = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +84,11 @@ public class PasswordActivity extends AppCompatActivity{
             phoneNum = getIntent().getExtras().getString("phone_num");
             name = getIntent().getExtras().getString("name");
             family = getIntent().getExtras().getString("family");
+            try {
+                userId = getIntent().getExtras().getString("user_id");
+            }catch (Exception e){
+                
+            }
             phoneNumTextView.setText(phoneNum);
         }
     }
@@ -224,7 +230,11 @@ public class PasswordActivity extends AppCompatActivity{
 
     @Override
     public boolean onSupportNavigateUp() {
-        startActivity(new Intent(PasswordActivity.this ,LoginActivity.class));
+//        startActivity(new Intent(PasswordActivity.this ,LoginActivity.class));
+        Intent intent = new Intent(PasswordActivity.this ,RegisterActivity.class);
+        intent.putExtra("phone_num", phoneNum);
+        intent.putExtra("userId",userId);
+        startActivity(intent);
         finish();
         return super.onSupportNavigateUp();
     }

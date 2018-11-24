@@ -11,6 +11,7 @@ android {
     buildToolsVersion "26.0.2"
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
+
         applicationId "salavat.salavaltintorg"
         minSdkVersion 15
         targetSdkVersion 26
@@ -24,6 +25,8 @@ android {
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
+
+        multiDexEnabled true
     }
 
     dexOptions {
@@ -46,6 +49,13 @@ android {
 
 ext {
     supportLibVersion = '26.+'
+}
+
+configurations {
+    all {
+        exclude module: 'httpclient'
+        exclude module: 'commons-logging'
+    }
 }
 
 dependencies {
@@ -77,6 +87,8 @@ dependencies {
     compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 }
 apply plugin: 'com.google.gms.google-services'

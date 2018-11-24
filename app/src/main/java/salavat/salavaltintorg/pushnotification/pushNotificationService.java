@@ -53,7 +53,7 @@ import salavat.salavaltintorg.dao.Notification;
         Log.w(TAG, "remoteMessage: "+remoteMessage.getData());
         Map<String, String> data = remoteMessage.getData();
 
-        notificationsClass.NotificationShow(this,data.get("header"), data.get("body"),
+        notificationsClass.NotificationShow(this,data.get("title"), data.get("brief"),
                 data.get("header"),
                 data.get("body"),
                 data.get("footer"));

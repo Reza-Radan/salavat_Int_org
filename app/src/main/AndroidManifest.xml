@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/salavat"
         android:name=".Application"
         android:supportsRtl="true"
+
         android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity" >
             <intent-filter>

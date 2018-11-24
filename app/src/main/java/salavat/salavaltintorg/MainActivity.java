@@ -1,12 +1,17 @@
 package salavat.salavaltintorg;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -14,6 +19,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
@@ -24,6 +30,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,8 +77,6 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
     @BindView(R.id.txtvSalavat)
     TextView txtvSalavat;
 
-    @BindView(R.id.linearLoading)
-    LinearLayout linearLoading;
 
     TextView userName;
 
@@ -441,18 +446,26 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
         JSONObject jsonObject;
         Map<String, String> parameters;
         String url;
+        Dialog dialog;
 
         public getListOfArchive(String url, Map<String, String> parameters) {
             this.parameters = parameters;
             this.url = url;
+
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            linearLoading.setVisibility(View.VISIBLE);
 //            Loading.setVisibility(View.VISIBLE);
 //            next.setVisibility(View.GONE);
+
+            dialog = new  Dialog(MainActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.loading_layout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.setCancelable(false);
+            dialog.show();
         }
 
         @Override
@@ -537,7 +550,10 @@ ImageGalleryAdapter.ImageThumbnailLoader, FullScreenImageGalleryAdapter.FullScre
                 Toast.makeText(MainActivity.this,getString(R.string.internet_connection_dont_right),Toast.LENGTH_LONG).show();
 //                snackerShow(getString(R.string.internet_connection_dont_right));
             }else{
-                linearLoading.setVisibility(View.GONE);
+//                linearLoading.setVisibility(View.GONE);
+            }
+            if(dialog.isShowing()) {
+                dialog.dismiss();
             }
 //                else{
 //                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

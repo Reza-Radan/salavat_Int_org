@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="CHECK_URL">http://daba.netband.ir/</string>
+    <string name="COMPANY_LOG">http://daba.netband.ir/statics/companyLogo/</string>
+    <string name="WEB_SERVICE_SERVER">http://daba.netband.ir:8081</string>
+
+    <string name="app_name">بنیاد صلوات</string>
+    <string name="action_settings">تنظیمات</string>
+
+    <string name="your_phone">شماره تلفن : </string>
+    <string name="submit">ارسال کردن</string>
+    <string name="old_pass">رمز عبور قبلی</string>
+    <string name="new_pass">رمز جدید</string>
+    <string name="confirm_pass">تکرار رمز عبور جدید </string>
+    <string name="coupon_num">شماره کوپن</string>
+    <string name="cancel">لغو کردن </string>
+
+    <string name="change_pass">تغییر رمز عبور </string>
+    <string name="user_service">استفاده خدمات</string>
+    <string name="profile">پروفایل</string>
+    <string name="online_payment">پرداخت آنلاین</string>
+    <string name="rate">"امتیاز این مجموعه : "</string>
+
+    <string name = "error_pass_is_short"> پسورد شما کمتر از 3 کاراکتر است</string>
+    <string name = "error_pass_not_match">پسوردهای شما یکسان نیست</string>
+    <string name = "error_empty_edittext"> مقدار فیلد خالی است</string>
+    <string name = "error_insert_correct_edittext">مقدار مورد نظر را به درستی وارد کنید</string>
+    <string name="Mikrotickproblem">خطا در اتصال به شبکه این مجموعه  </string>
+    <string name="Mikrotickproblem_dis">خطا در قطع اتصال از شبکه این مجموعه </string>
+
+    <string name="wrong_date">تاریخ تولد شما اشتباه است</string>
+    <string name="dialog_title">لطفا شعبه مورد نظر را انتخاب کنید</string>
+    <string name="netband_found">"نت بندها "</string>
+
+
+    <string name="open">باز کردن</string>
+    <string name="close">بستن</string>
+
+    <string name="notification_title_msg">اتصال به شبکه</string>
+    <string name="contact_us">تماس باما</string>
+    <string name="about_us">درباره ما</string>
+    <string name="send">ارسال</string>
+
+    <string name="messagesuccessful">پیغام شما با موفقیت ارسال شد  </string>
+    <string name="messagenotsuccessful">متأسفانه ارتباط با سرور موفقیت آمیز نبود....  </string>
+
+    <string name="info_page">اطلاعات</string>
+    <string name="map_detail">جزئیات نقشه</string>
+
+    <string name="Settings">تنظیمات</string>
+    <string name="info_NetBand_on_map">اطلاعات نت بند روی نقشه</string>
+    <string name="about_netband">درباره نت بند</string>
+    <string name="Wifi_List_Navigator">لیست شبکه ها</string>
+    <string name="change_phone_num">تغییر شماره تلفن</string>
+    <string name="notification_list">لیست پیام</string>
+    <!--    <string name="start">end</string>-->
+    <string name="home">خانه</string>
+    <string name="Settings_page">صفحه تنظیمات</string>
+    <!--    <string name="contact_with_netband">ارتباط با نت بند</string>-->
+    <string name="fav_list">لیست علاقه مندی ها</string>
+    <string name="listOfnetBand">لیست نت بندها </string>
+
+
+    <string name="favorit">علاقه مندی</string>
+    <string name="direction">مسیر</string>
+    <string name="website">وب سایت</string>
+
+    <!-- infopage -->
+    <string name="not_inside"> در حال حاضر شما خارج از شبکه ماهستید</string>
+    <string name="connect">اتصال</string>
+    <string name="disconnect"> قطع اتصال</string>
+    <string name="price_list">لیست قیمت</string>
+    <string name="poll">نظرسنجی</string>
+    <string name="information">اطلاعات</string>
+    <string name="rateToast">برای امتیاز دادن به این مجموعه باید عضواین مجموعه باشید </string>
+    <string name="mapinfo">متأسفانه اطلاعات بیشتری در مورد این مجموعه موجود نمی باشد </string>
+
+    <!-- setting page -->
+    <string name="name">نام</string>
+    <string name="family">نام خانوادگی</string>
+    <string name="email">ایمیل</string>
+    <string name="birthday">تاریخ تولد</string>
+    <string name="gender"> جنسیت :‌ </string>
+    <string name="male">مرد</string>
+    <string name="female">زن</string>
+    <string name="register">ثبت نام</string>
+    <string name="msg">پیام</string>
+
+    <string name="next">مرحله بعد</string>
+    <string name="next_fa">مرحله بعد</string>
+
+    <string name="ok">تایید</string>
+
+    <!-- password -->
+    <string name="password">کد ارسالی</string>
+    <string name="login">ورود</string>
+    <string name="call">تماس</string>
+    <string name="sms">ارسال پیامک </string>
+    <string name="msgPass">ارسال رمزعبور از طریق ... </string>
+    <string name="company_lst">لیست شرکت</string>
+    <string name="menu_lst">لیست منو</string>
+    <string name="save_battery"> ذخیره انرژی</string>
+
+
+    <!-- showcase description -->
+    <string name="desc_cat_lstv">این آیتم دسته بندی های مربوط به مجموعه ها را نمایش میدهد.</string>
+    <string name="desc_lstv_company">شرکتهایی که از سرویس نت بند استفاده می‌کنند. </string>
+    <string name="desc_Connect_btn">اتصال به شبکه شرکت</string>
+    <string name="desc_price">لیست محصولات و یا منو شرکت  </string>
+    <string name="desc_poll">پر کردن نظرسنجی این شرکت </string>
+    <string name="desc_info">مشاهده اطلاعات شرکت </string>
+    <string name="desc_direc_to">نمایش مسیر به صورت گرافیکی تا مقصد</string>
+    <string name="desc_fav">شما میتوانید مجموعه مورد علاقه خودتان را در علاقه مندی های خود بیافزایید.</string>
+    <string name="desc_website">سایت مجموعه مدنظر را دیدن کنید. </string>
+    <string name="fav_page">صفحه علاقمندی ها</string>
+    <string name="success_coupon">کوپن با موفقیت ثبت شد!</string>
+    <string name="success_change">تغییرات با موفقیت انجام شد!</string>
+    <string name="fail_change">تغییرات با به درستی انجام نشد</string>
+    <string name="try_again">دوباره تلاش کنید!</string>
+
+    <string name="name_of_company_of">نام شرکت:  </string>
+    <string name="name_of_company_of_is_not">نام شرکت موجود نیست</string>
+    <string name="name_of_company_not_available">اطلاعاتی یافت نشد!</string>
+    <!--   <string name="disabled_broadcst_receiver">Disabled broadcst receiver</string>-->
+    <string name="wrong_password"> پسورد اشتباه است</string>
+    <string name="mikrotik_wrong_password">… پسورد میکروتیک اشتباه است</string>
+    <string name="delete">حذف</string>
+    <string name="ignore">انصراف</string>
+
+    <string name="daba_addr">زعفرانیه، بلوار بهزادی، خیابان ماکوئی پور جنوبی، پلاک ۲۲، زنگ دوم</string>
+
+    <string name="about_des"> اپلیکیشن نت بند یک اپلیکیشن هات اسپات است که به وسیله شرکت ایمن دابا پارسیان تولید شده است.این  اپلیکیشن به عنوان نرم افزار ارزش افزوده عمل میکند سرویس تولید شده به وسیله شرکت ما در شرکتها ، رستوران ها و مراکز خرید یک نقش محوری در نظارت بر شبکه، کنترل ترافیک و مراقبت از مشتری را دارد.</string>
+    <string name="about_daba"> درباره مافعالیت دابا از سال 1384 و با تکیه بر دانش تخصصی و فنی سیستم و بر بستری از خلاقیت و کار تیمی همراه با پویایی و انرژی جوانان متخصص شروع شد. در ابتدای فعالیت دابا، تمرکز عمده بر ارائه ی خدمات شبکه و زیر ساخت سیستم بود
+    </string>
+    <string-array name="languages" >
+        <item>فارسی</item>
+        <item>English</item>
+
+    </string-array>
+
+    <string name="webSiteNotExist">وب سایتی یافت نشد</string>
+    <string name="company_page">صفحه مجموعه</string>
+
+    <string name="really_exit">خروج</string>
+    <string name="are_you_sure_you_want_to_exit"> آیامطمین هستید که میخواهید خارج شوید؟</string>
+
+    <string name="sort">ترتیب: </string>
+    <string name="kindOfSearch">بر اساس:‌</string>
+    <string name="category">دسته بندی:‌ </string>
+    <string name="keyword">کلمه جستجو: </string>
+    <string name="company">مجموعه</string>
+    <string name="product">محصولات</string>
+    <string name="popular">محبوب ترین</string>
+    <string name="distance">نزدیک ترین</string>
+    <string name="search">جستجو</string>
+    <string name="near_company">درنزدیکی شماست !</string>
+
+
+    <string name="unavailable_route">مسیر در دسترس نیست!</string>
+
+
+
+    <!-- <item>Français</item>
+   <item>Deutsch</item>
+   <item>Italiano</item>
+   <item>Malaysia</item>
+   <item>العربیه</item>
+   <item>español</item> -->
+
+    <!--
+    Content description for the month and day selector in the date picker, which displays
+    a selectable grid of days laid out by month.
+    [CHAR LIMIT=50]
+ -->
+
+
+    <string name="categorySort">نمایش اطلاعات براساس  </string>
+    <string name="categorySortAll"> نمایش اطلاعات براساس کلیه مجموعه  </string>
+
+
+    <string name="mdtp_day_picker_description">Month grid of days</string>
+    <!--
+        Content description for the year selector in the date picker, which displays
+        a scrolling, vertical list of years.
+        [CHAR LIMIT=50]
+     -->
+    <string name="mdtp_year_picker_description">سال</string>
+    <!-- Accessibility announcement for the day picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_day">انتخاب ماه و روز</string>
+    <!-- Accessibility announcement for the year picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_year">انتخاب سال</string>
+    <!-- Accessibility description for the item that is currently selected. -->
+    <string name="mdtp_item_is_selected" msgid="2674929164900463786">" انتخاب شد"</string>
+    <!-- Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] -->
+    <string name="mdtp_deleted_key" msgid="6908431551612331381">" حذف شد"</string>
+
+    <string name="company_location_does_not_exist">موقعیت مکان موردنظر موجود نیست</string>
+    <string name="sorry_there_is_no_any_information_about_location_of_this_company">متاسفانه هیچ اطلاعاتی از محل مورد نظر یافت نشد ! </string>
+    <string name="erro_in_copy_database_to_your_phone">ایجاد خطا در کپی دیتابیس </string>
+    <string name="enable_logation_option_in_setting">لطفا برای پیدا کردن موقعیت خود در نقشه، گزینه موقعیت را در تنظیمات فعال کنید.</string>
+    <string name="internet_connection_dont_right">متاسفانه خطایی در حین اتصال رخ داده است ، دوباره تلاش کنید. </string>
+    <string name="empty_menu">متاسفانه هیچ اطلاعاتی درباره منو این مجموعه موجود نمی باشد</string>
+    <string name="gps_is_settings">تنظیمات موقعیت</string>
+    <string name="not_enable_location.question_go_setting">مکان یاب شما فعال نیس. آیا  میایلید آن را فعال نمایید؟</string>
+    <string name="setting">تنظیمات</string>
+    <string name="getting_data">دریافت اطلاعات..</string>
+    <string name="connect_to_server">اتصال به سرور..</string>
+    <string name="netband_title">نت بند...</string>
+    <string name="like_to_connect_wifi">آیا مایلید به وای فای نت بند متصل شوید </string>
+    <string name="go_ahead"></string>
+    <string name="select_your_country">کشور خود را انتخاب کنید</string>
+    <string name="Wifi_List">انتخاب شبکه ...</string>
+    <string name="enter_the_correct_mobile_number">شماره تلفن را به درستی وارد کنید</string>
+    <string name="passwod_shoud_be_standard">طول پسورد باید بین 3 تا 30 کاراکتر باشد! </string>
+    <string name="to30charachert"> 3 تا 30 کاراکتر </string>
+
+    <string name="msg_lovation_on"> مایلید تنظیمات جی پی اس خود را فعال کنید؟</string>
+    <string name="about_comp">شرکت ایمن دابا  پارسیان</string>
+    <string name="about_contact">برای ارتباط با ما</string>
+    <string name="about_site">سایت ما :</string>
+    <string name="about_mail">وایمیل ما : </string>
+
+    <string name="Netband_condition_team"> با قوانین و مقررات نت بند موافقم.</string>
+    <string name="connect_to_internet_network"> به اینترنت خود متصل شوید !!</string>
+    <string name="recive_pass">رمز عبور بزودی برای شما ارسال خواهد شد.</string>
+
+    <string name="title">عنوان </string>
+    <string name="row_number">%d  شماره ردیف </string>
+    <string name="Select_language">انتخاب زبان</string>
+    <string name="Select_lan"><a href="http://www.www.com" >انتخاب زبان</a></string>
+    <string name="basic_del">حذف</string>
+    <string name="str_orange">#fe7b27</string>
+
+    <string-array name="CountryCodes" >
+        <item>509,HT</item>
+        <item>504,HN</item>
+        <item>852,HK</item>
+        <item>36,HU</item>
+        <item>91,IN</item>
+        <item>62,ID</item>
+        <item>98,IR</item>
+    </string-array>
+
+    <string name="next_en">Next</string>
+
+    <string-array name="dev_platforms">
+        <item>نزدیک ترین</item>
+        <item>محبوب ترین</item>
+
+    </string-array>
+
+
+    <string name="farsi">فارسی</string>
+    <string name="english">English</string>
+    <string name="france">Français</string>
+    <string name="deutsch">Deutsch</string>
+    <string name="italian">Italiano</string>
+    <string name="malaysia">Malaysia</string>
+    <string name="alarabie">العربیه</string>
+    <string name="espanol">español</string>
+
+
+
+    <string name="mikrotick_successful">شما به شبکه متصل شده اید </string>
+
+    <string name="dialog_title_login">دریافت اطلاعات</string>
+    <string name="dialog_msg_login">لطفا منتظر بمانید...</string>
+    <string name="request_for_salavat">درخواست صلوات</string>
+    <string name="participate_salavat">مشارکت در صلوات</string>
+    <string name="hurry_faraj">تعجیل در فرج</string>
+    <string name="count_of_salavat_txtv">تعداد صلوات فرستاده شده:</string>
+    <string name="list_of_add_in_group">لیست گروه ها</string>
+    <string name="archive">آرشیو</string>
+    <string name="guide">راهنما</string>
+    <string name="moaref">معرف</string>
+    <string name="less_char_name">طول نام شما باید ببش از ۳ کاراکتر باشد! </string>
+    <string name="less_char_family">طول نام شما باید ببش از ۴ کاراکتر باشد! </string>
+    <string name="email_validation">ایمیل خود را به درستی وارد کنید! </string>
+    <string name="select_gender" >گزینه جنسیت خالی است.</string>
+    <string name="do_u_like_be_a_head">تمایل به سرگروه شدن دارم؟</string>
+    <string name="select_prePhone">انتخاب پیش شماره</string>
+    <string name="insert_your_phone">شماره خود را وارد نمایید</string>
+    <string name="select_lan">انتخاب زبان مورد نظر</string>
+    <string name="error_insert_correct_your_phone">شماره خود را به درستی وارد کنید</string>
+    <string name="password_page">پسورد</string>
+    <string name="intercommunity">مشارکت‌ </string>
+    <string name="introducer">معرف  </string>
+    <string name="education">تحصیلات </string>
+    <string name="country">کشور </string>
+    <string name="city">شهر </string>
+    <string name="national_id">شماره ملی‌ </string>
+
+    <string-array name="salavat" >
+
+        <item>10</item>
+        <item> 20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>100</item>
+        <item>150</item>
+
+    </string-array>
+
+    <string-array name="educational">
+        <item>سیکل</item>
+        <item>دیپلم</item>
+        <item>فوق دیپلم</item>
+        <item>لیسانس</item>
+        <item>فوق لیسانس</item>
+        <item>دکترا</item>
+    </string-array>
+
+    <string-array name="countries_array">
+        <item>Afghanistan</item>
+        <item>Albania</item>
+        <item>Algeria</item>
+        <item>American Samoa</item>
+        <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Antarctica</item>
+        <item>Antigua and Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Aruba</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bermuda</item>
+        <item>Bhutan</item>
+        <item>Bolivia</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Botswana</item>
+        <item>Brazil</item>
+        <item>British Indian Ocean Territory</item>
+        <item>British Virgin Islands</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Cape Verde</item>
+        <item>Cayman Islands</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Christmas Island</item>
+        <item>Cocos Islands</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Cook Islands</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Democratic Republic of the Congo</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>East Timor</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Falkland Islands</item>
+        <item>Faroe Islands</item>
+        <item>Fiji</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>French Polynesia</item>
+        <item>Gabon</item>
+        <item>Gambia</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+        <item>Gibraltar</item>
+        <item>Greece</item>
+        <item>Greenland</item>
+        <item>Grenada</item>
+        <item>Guam</item>
+        <item>Guatemala</item>
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Guyana</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Ireland</item>
+        <item>Isle of Man</item>
+        <item>Israel</item>
+        <item>Italy</item>
+        <item>Ivory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jersey</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Kiribati</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Laos</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macao</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Marshall Islands</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mayotte</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Montserrat</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+        <item>Myanmar</item>
+        <item>Namibia</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>Netherlands Antilles</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Nicaragua</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Niue</item>
+        <item>North Korea</item>
+        <item>Northern Mariana Islands</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Pitcairn</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Republic of the Congo</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>Rwanda</item>
+        <item>Saint Barthelemy</item>
+        <item>Saint Helena</item>
+        <item>Saint Kitts and Nevis</item>
+        <item>Saint Lucia</item>
+        <item>Saint Martin</item>
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent and the Grenadines</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Solomon Islands</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Georgia and the South Sandwich Islands</item>
+        <item>South Korea</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Suriname</item>
+        <item>Svalbard and Jan Mayen</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syria</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tokelau</item>
+        <item>Tonga</item>
+        <item>Trinidad and Tobago</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Turks and Caicos Islands</item>
+        <item>Tuvalu</item>
+        <item>U.S. Virgin Islands</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+        <item>United Kingdom</item>
+        <item>United States</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatican</item>
+        <item>Venezuela</item>
+        <item>Vietnam</item>
+        <item>Wallis and Futuna</item>
+        <item>Western Sahara</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+    </string-array>
+
+    <string name="occupation">وضعیت اشتغال</string>
+    <string name="less_char">Number of character is short</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="description">توضیحات</string>
+    <string name="nummber_salavat">تعداد صلوات</string>
+    <string name="niat">نیت:‌ </string>
+    <string name="problem_with_server_Side">Problem in server side</string>
+    <string name="siogn_out">خروج</string>
+    <string name="send_password_again">پسورد دوباره ارسال شود!</string>
+    <string name="number_of_salavat_daily">تعداد صلوات روزانه:‌ </string>
+    <string name="in_thousand">تسبیح </string>
+    <string name="update">ویرایش</string>
+    <string name="Select_language_" >انتخاب زبان</string>
+
+
+</resources>

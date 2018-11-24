@@ -229,7 +229,7 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
             educational.setError(getString(R.string.error_insert_correct_edittext));
         } else if (!checkSpinnerData(country)) {
             country.setError(getString(R.string.error_insert_correct_edittext));
-        } else if (!dataValidation(salavatNumberString,salavat_num)) {
+        } else if (!dataValidationSalavat(salavatNumberString,salavat_num)) {
             return;
         } else if (birthday.getText() == null || birthday.getText().toString().isEmpty()) {
             birthday.setError(getString(R.string.error_insert_correct_edittext));
@@ -278,6 +278,21 @@ public class AdvUserInfoActivity extends AppCompatActivity   implements DatePick
         }
         return true;
     }
+
+
+    private boolean dataValidationSalavat(String editTextString, EditText editText) {
+        String regex = "\\d+";
+        Log.i(Tag, "editTextString: " + editTextString);
+        if (editTextString == null || editTextString.isEmpty()) {
+            editText.setError(getString(R.string.error_empty_edittext));
+            return false;
+        } else if (!editTextString.matches(regex)) {
+            editText.setError(getString(R.string.error_insert_correct_edittext));
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

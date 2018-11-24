@@ -73,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
                         Log.e("data" ,"number: "+"phone_num"+ userInfoBases.get(0).getPhone_num()
                         +"name: "+ userInfoBases.get(0).getName());
                         mainIntent.putExtra("phone_num", userInfoBases.get(0).getPhone_num());
-                        mainIntent.putExtra("user_id", userInfoBases.get(0).getId());
+                        mainIntent.putExtra("user_id", String.valueOf(userInfoBases.get(0).getId()));
                         mainIntent.putExtra("name", userInfoBases.get(0).getName());
                         mainIntent.putExtra("family", userInfoBases.get(0).getFamily());
                         SplashActivity.this.startActivity(mainIntent);

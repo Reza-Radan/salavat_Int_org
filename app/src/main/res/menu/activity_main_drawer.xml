@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:icon="@mipmap/language"
-            android:title="@string/Select_language" />
+            android:title="@string/Select_language_" />
 
     </group>
 

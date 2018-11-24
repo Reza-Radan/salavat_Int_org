@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -86,6 +87,11 @@ public class RegisterActivity extends AppCompatActivity{
             phoneNumber.setText(phoneNum = getIntent().getExtras().getString("phone_num"));
             userId = getIntent().getExtras().getString("userId");
         }
+        db = Room.databaseBuilder(RegisterActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+
+        if(userId != null && !userId.equalsIgnoreCase("") && !userId.isEmpty()){
+            getDataUserById(userId);
+        }
     }
 
     private void validation() {
@@ -133,7 +139,8 @@ public class RegisterActivity extends AppCompatActivity{
             UserInfoBase userInfoBase = new UserInfoBase("-1",phoneNum,nameString,familyString,
                     emailString,genderString,google_id);
 
-            db = Room.databaseBuilder(RegisterActivity.this, AppCreatorDatabase.class, AppCreatorDatabase.DB_NAME).build();
+            Log.i(Tag,"phoneNum: " +genderString);
+
 
             new sendUserDataToServer(url,parameters ,userInfoBase).execute();
         }
@@ -203,6 +210,9 @@ public class RegisterActivity extends AppCompatActivity{
                             userInfoBase.setId(data.getInt("id"));
                            long datadb =   db.userInfoBaseDao().insertOnlySingleRecord(userInfoBase);
                             Log.e(Tag,"dataDb: " +datadb);
+                            if(datadb ==-1){
+                                db.userInfoBaseDao().updateRecord(userInfoBase);
+                            }
                             return  true;
                         }else if(jsonObject.getString("result").equalsIgnoreCase("fail")){
                             snackerShow(jsonObject.getString("message"));
@@ -230,6 +240,7 @@ public class RegisterActivity extends AppCompatActivity{
                 Intent intent = new Intent(RegisterActivity.this, PasswordActivity.class);
                 intent.putExtra("phone_num",phoneNum);
                 intent.putExtra("name",name.getText().toString());
+                intent.putExtra("user_id", String.valueOf(userId));
                 intent.putExtra("family",family.getText().toString());
                 startActivity(intent);
 
@@ -275,5 +286,59 @@ public class RegisterActivity extends AppCompatActivity{
         super.onBackPressed();
         onSupportNavigateUp();
     }
+    public void getDataUserById(String userId) {
 
+        final int userIdInt;
+        try{
+            userIdInt = Integer.parseInt(userId);
+        }catch (Exception e){
+            snackerShow(getString(R.string.try_again));
+            return;
+        }
+        new AsyncTask<Void, Void, UserInfoBase>() {
+            @Override
+            protected UserInfoBase doInBackground(Void... voids) {
+                UserInfoBase userInfoBases = db.userInfoBaseDao().getSingleRecord(userIdInt);
+                return userInfoBases;
+            }
+
+            @Override
+            protected void onPostExecute(UserInfoBase userInfoBases) {
+                super.onPostExecute(userInfoBases);
+//                Log.e(Tag,"MainActivity:size: " + userInfoBases.size());
+//                Log.e("data" ,"number: "+"phone_num"+ userInfoBases.getName());
+                //  this.name = nameString;
+                //        this.family = familyString;
+                //        this.gender = genderString;
+                //        this.google_id = google_id;
+                //        this.email = emailString;
+
+                //  TextView phoneNumber;
+                //    @BindView(R.id.input_name)
+                //    EditText name;
+                //    @BindView(R.id.input_family)
+                //    EditText family;
+                //    @BindView(R.id.input_email)
+                //    EditText email;
+                if (userInfoBases != null) {
+                    Log.e("data", "number: " + "phone_num" + userInfoBases.getPhone_num()
+                            + "name: " +userInfoBases.getGender());
+                    phoneNumber.setText( userInfoBases.getPhone_num());
+                    name.setText(userInfoBases.getName());
+                    family.setText(userInfoBases.getFamily());
+                    email.setText(userInfoBases.getEmail());
+                    if (userInfoBases.getGender().equalsIgnoreCase("0")){
+                        Log.e("data", "number: " + "phone_num" + userInfoBases.getPhone_num()
+                                + "name: " +userInfoBases.getGender() + "  in if");
+                        rbfemale.setChecked(true);
+                    }else if (userInfoBases.getGender().equalsIgnoreCase("1")){
+                        rbmale.setChecked(true);
+                    }
+
+                }
+
+            }
+
+        }.execute();
+    }
 }
